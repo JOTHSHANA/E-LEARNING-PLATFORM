@@ -12,10 +12,10 @@ function AppLayout(props) {
 
     return (
         <div style={{
-            backgroundColor: "#ecebf3",
+            backgroundColor: "var(--select)",
             height: '100vh',
             width: '100vw',
-            position: 'fixed'
+            position: 'fixed',
         }}>
             <TopBar sidebar={handleSideBar} />
             <div style={{ height: '100%', display: 'flex' }}>

@@ -14,13 +14,33 @@ const theme = createTheme({
 });
 
 const lightModeProperties = {
-    "--background": "f5f6f7",
+    "--background": "fbfbfb",
     "--background-1": "#ffffff",
+    "--text": "#1f1f1f",
+    "--select": "#fbfbfb",
+    "--border-color": "#cbcccd",
+    "--menu-hover": "#ecebf3",
+    "--active-bg": "#ffffff",
+    "--shadow": "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+    "--icons-rev": "#12c5d1",
+    "--icons-bg": "#e5e3f3",
+    "--card": "#1d1f22",
+
 };
 
 const darkModeProperties = {
-    "--background": "#0f1015",
-    "--background-1": "#191c24",
+    "--background": "#0f0f0f",
+    "--background-1": "#000000",
+    "--text": "white",
+    "--select": "#0f1015",
+    "--border-color": "#17171a",
+    "--menu-hover": "#0f1015",
+    "--active-bg": "#2a2d3b",
+    "--shadow": "0px 0px 0px solid black",
+    "--icons-rev": "#025a63",
+    "--icons-bg": "#2a2d3b",
+    "--card": "#1d1f22",
+
 };
 
 // Set custom properties based on theme mode

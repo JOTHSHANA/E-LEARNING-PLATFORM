@@ -4,12 +4,13 @@
   font-weight: 400;
 
   /* color-scheme: light dark; */
-  color: rgba(255, 255, 255, 0.87);
+  color: var(--text);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 body {
@@ -27,4 +28,31 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+}
+
+
+/* Style the scrollbar track */
+::-webkit-scrollbar {
+  width: 6px; /* Width of the scrollbar */
+}
+
+/* Style the part of the scrollbar not covered by the thumb */
+::-webkit-scrollbar-track {
+  background: var(--background); /* Background color of the track */
+}
+
+/* Style the draggable part of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background-color: #4159d0aa;
+  background-image: linear-gradient(43deg, #4159d084 0%, #c850c077 46%, #ffcd7083 100%);
+  border-radius: 10px; /* Optional: Adds rounded corners to the thumb */
+}
+
+/* Optional: Style the thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--background); /* Change color when hovered */
+}
+
+::-webkit-scrollbar {
+height: 4px; /* Width of the horizontal scrollbar */
 }
