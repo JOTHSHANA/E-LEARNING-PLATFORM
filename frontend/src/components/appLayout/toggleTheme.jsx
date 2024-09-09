@@ -33,7 +33,7 @@ const darkModeProperties = {
     "--background-1": "#000000",
     "--text": "white",
     "--select": "#0f1015",
-    "--border-color": "#17171a",
+    "--border-color": "#3d444d",
     "--menu-hover": "#0f1015",
     "--active-bg": "#2a2d3b",
     "--shadow": "0px 0px 0px solid black",

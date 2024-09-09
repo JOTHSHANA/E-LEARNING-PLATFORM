@@ -37,7 +37,7 @@
 
 .contact-div {
     display: flex;
-    min-height: 88.7vh;
+    min-height: 93vh;
     gap: 2px;
     align-items: center;
     justify-content: center;
@@ -112,6 +112,7 @@
 .quote-image {
     display: flex;
     gap: 15px;
+    flex: 1;
 }
 
 .quote {
@@ -143,6 +144,7 @@ h6 {
 .features {
     display: flex;
     gap: 15px;
+    flex: 3;
 }
 
 .give,
@@ -151,4 +153,26 @@ h6 {
     background-color: var(--card);
     padding: 15px;
     border-radius: 5px;
+}
+
+.social-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    width: fit-content;
+    margin: auto;
+}
+
+.social-container a img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.social-container a img:hover {
+    transform: scale(1.1);
 }

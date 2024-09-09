@@ -18,7 +18,11 @@ import cpp from '../../assets/cpp.png';
 import java from '../../assets/java.png';
 import python from '../../assets/python.png';
 import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
-
+import { Box, IconButton } from '@mui/material';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import EmailIcon from '@mui/icons-material/Email';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import FacebookIcon from '@mui/icons-material/Facebook';
 
 
 
@@ -85,6 +89,10 @@ function Body() {
     }
     const handleMessageChange = (event) => {
         setMessage(event.target.value);
+    }
+
+    const handleContactSubmit = () => {
+
     }
 
     return (
@@ -160,7 +168,7 @@ function Body() {
                 </div>
                 <div className="contact-div">
                     <div className="contact-card">
-                        <h2 style={{ display: "flex", alignItems: "center", gap: "5px", padding: "10px 0px" }}><PermPhoneMsgIcon />Contact Us</h2>
+                        <h2 style={{ display: "flex", alignItems: "center", gap: "5px", padding: "10px 0px" }}><PermPhoneMsgIcon sx={{ color: "#0170e7" }} />Contact Us</h2>
                         <hr />
                         <div className="contact-flex">
                             <form style={{ flex: "3" }}>
@@ -190,13 +198,58 @@ function Body() {
                                     >
                                     </textarea>
                                 </div>
+                                <div style={{ float: "right" }}>
+                                    <Button
+                                        color="#fff"
+                                        backgroundColor="#007bff"
+                                        text="Submit"
+                                        onClick={handleContactSubmit}
+                                    />
+                                </div>
                             </form>
                             <div style={{ flex: "2" }}>
                                 <div className="content">
                                     <div style={{ fontSize: "20px", fontWeight: "700" }}>Get in Touch</div>
                                     <hr style={{ width: "100%" }} />
                                     <p>Have questions or need assistance? We’re here to help! Whether you're a student seeking course information or an educator interested in collaborating, feel free to reach out, and we'll get back to you soon.</p>
+
+                                    <Box sx={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                        <IconButton
+                                            component="a"
+                                            href="https://wa.me/your-number"
+                                            target="_blank"
+                                            color="primary"
+                                        >
+                                            <WhatsAppIcon fontSize="medium" sx={{ color: "white", padding: "5px", backgroundColor: "#0dbc79", borderRadius: "30px" }} />
+                                        </IconButton>
+                                        <IconButton
+                                            component="a"
+                                            href="mailto:your-email@example.com"
+                                            target="_blank"
+                                            color="primary"
+                                        >
+                                            <EmailIcon sx={{ color: "#2872dd", padding: "5px", backgroundColor: "#ffffff", borderRadius: "30px" }} fontSize="medium" />
+                                        </IconButton>
+                                        <IconButton
+                                            component="a"
+                                            href="https://github.com/your-username"
+                                            target="_blank"
+                                            color="primary"
+                                        >
+                                            <GitHubIcon sx={{ color: "white", padding: "5px", backgroundColor: "#000000", borderRadius: "30px" }} fontSize="medium" />
+                                        </IconButton>
+                                        <IconButton
+                                            component="a"
+                                            href="https://facebook.com/your-profile"
+                                            target="_blank"
+                                            color="primary"
+                                        >
+                                            <FacebookIcon sx={{ color: "#3f5b9f", padding: "5px", backgroundColor: "#ffffff", borderRadius: "30px" }} fontSize="medium" />
+                                        </IconButton>
+                                    </Box>
                                 </div>
+
+
                             </div>
                         </div>
                     </div>
