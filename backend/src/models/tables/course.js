@@ -3,11 +3,11 @@ const sequelize = require('../../config/database');
 
 const Course = sequelize.define('Course', {
   id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.BIGINT,
     autoIncrement: true,
     primaryKey: true,
   },
-  course_name: {
+  name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -15,8 +15,12 @@ const Course = sequelize.define('Course', {
     type: DataTypes.TEXT,
     allowNull: false,
   },
+  img: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
   rating:{
-    type:DataTypes.ENUM('0','1','2','3','4','5'),
+    type:DataTypes.DECIMAL(2,1),
     defaultValue:'1'
   },
   status: {
@@ -25,7 +29,7 @@ const Course = sequelize.define('Course', {
   },
 }, {
   tableName: 'courses',
-  timestamps: true,
+  timestamps: false,
 });
 
 module.exports = Course;

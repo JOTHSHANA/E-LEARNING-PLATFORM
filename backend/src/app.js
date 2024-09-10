@@ -3,10 +3,17 @@ const sequelize = require('./config/database');
 const path = require('path');
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
+const {User, Course} = require('./models')
+const courseRoutes = require('./routes/courses')
+
 const app = express();
 const PORT = process.env.DB_PORT;
 
 app.use(express.json());
+
+// routes
+app.use('/api', courseRoutes);
+
 
 const startServer = async () => {
     try {
@@ -14,7 +21,7 @@ const startServer = async () => {
       await sequelize.authenticate();
       console.log('Database connection established successfully.');
   
-      await sequelize.sync(); 
+      await sequelize.sync({ alter: true }); 
       console.log('Models synchronized successfully.');
   
       app.listen(PORT, () => {
