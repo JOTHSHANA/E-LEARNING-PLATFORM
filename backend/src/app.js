@@ -1,18 +1,23 @@
 const express = require('express');
 const sequelize = require('./config/database'); 
 const path = require('path');
+const morgan = require('morgan');
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 const {User, Course} = require('./models')
 const courseRoutes = require('./routes/courses')
+const authRoutes = require('./routes/auth')
 
 const app = express();
 const PORT = process.env.DB_PORT;
 
 app.use(express.json());
+app.use(morgan('dev')); 
 
 // routes
 app.use('/api', courseRoutes);
+app.use('/api', authRoutes);
+
 
 
 const startServer = async () => {
