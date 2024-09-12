@@ -103,6 +103,13 @@ function Body() {
             <div className="landing-body">
                 <div className="intro-div">
                     <div className="about-div">
+                        <h1 className="quote">Learn Beyond Boundaries, gain knowledge Without Limits!</h1>
+                        <p className="user-text">Discover exciting courses designed just for you! Join our platform to learn new skills, explore your interests, and start your journey to success. Sign up today and take the first step toward a brighter future!</p>
+                    </div>
+                    <div className="courses-div">
+
+                    </div>
+                    {/* <div className="about-div">
                         <div className="quote-image">
                             <div className="quote">
                                 <h1 className="TechLehren">TechLehren</h1>
@@ -151,8 +158,8 @@ function Body() {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="courses-div">
+                    </div> */}
+                    {/* <div className="courses-div">
                         <div className="course-listing">
                             <div style={{ fontSize: "18px", fontWeight: "600", position: "sticky", top: "-15px", backgroundColor: "var(--background)", padding: "10px", borderBottom: "2px solid var(--border-color)" }}>Courses Available</div>
                             {courses.map((course, index) => (
@@ -164,7 +171,8 @@ function Body() {
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </div> */}
+
                 </div>
                 <div className="contact-div">
                     <div className="contact-card">

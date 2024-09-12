@@ -46,10 +46,10 @@
 }
 
 .app-name {
-    font-size: 25px;
     letter-spacing: 1px;
-    font-family: "Varela Round", sans-serif;
-    font-weight: var(--f-weight);
+    font-weight: 700;
+    flex: 1;
+    margin-top: 10px;
 }
 
 .app-body {
