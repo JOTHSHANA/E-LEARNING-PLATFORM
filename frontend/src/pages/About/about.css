@@ -1,0 +1,133 @@
+#about {
+  
+  border-radius: 10px;
+  position: relative; 
+}
+
+.about-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  color: #333;
+}
+
+.about-video {
+  border-radius: 50%;
+  flex: 1;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  background-color: rgb(189, 226, 215);
+  padding: 30px;
+  border-radius: 5px;
+}
+
+.text-container {
+  flex: 4;
+  text-align: right;
+
+}
+
+.text-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.text-container p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 50px;
+  background-color: #129161;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  z-index: 90;
+  transform: rotate(0deg);
+  transform-origin: top right;
+  --r: .8em;
+  border-block: .5em solid #0000;
+  padding-inline: calc(var(--r) + .15em) .2em;
+  line-height: 1.8;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, var(--r) calc(100% - .25em), 0 50%, var(--r) .25em);
+  background: radial-gradient(.2em 50% at right, #000a, #0000) border-box, #099090d7 padding-box;
+}
+
+.ribbon::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 0;  
+  border-color: #b82e56 transparent; 
+}
+
+.ribbon::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  border-style: solid;
+  border-color: transparent #b82e56;
+}
+
+
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 60px;
+  }
+.about-video{
+  display: none;
+}
+.about-p{
+  font-size: 4px;
+}
+  .image-container {
+    margin-right: 0;
+    margin-bottom: 20px;
+    min-height: 200px; 
+  }
+
+  .text-container {
+    text-align: center;
+  }
+
+  .text-container h1 {
+    font-size: 2rem;
+  }
+
+  .text-container p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .text-container p {
+    font-size: 1rem;
+  }
+
+  .about-section {
+    padding: 10px;
+  }
+}

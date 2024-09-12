@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
 
 :root {
-  font-family: "SUSE", sans-serif;  line-height: 1.5;
+  font-family: "SUSE", sans-serif;
+  line-height: 1.5;
   font-weight: 400;
 
   /* color-scheme: light dark; */
@@ -12,12 +13,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
+}
 
-  
-}
-*{
+* {
   font-family: "SUSE", sans-serif;
+  box-sizing: border-box;
+
 }
+
 body {
   margin: 0;
   box-sizing: border-box;
@@ -37,33 +40,38 @@ button:focus-visible {
   }
 }
 
-*{
+* {
   box-sizing: border-box;
 }
 
 
 /* Style the scrollbar track */
 ::-webkit-scrollbar {
-  width: 6px; /* Width of the scrollbar */
+  width: 6px;
+  /* Width of the scrollbar */
 }
 
 /* Style the part of the scrollbar not covered by the thumb */
 ::-webkit-scrollbar-track {
-  background: var(--background); /* Background color of the track */
+  background: var(--background);
+  /* Background color of the track */
 }
 
 /* Style the draggable part of the scrollbar */
 ::-webkit-scrollbar-thumb {
   background-color: #4159d0aa;
   background-image: linear-gradient(43deg, #4159d084 0%, #c850c077 46%, #ffcd7083 100%);
-  border-radius: 10px; /* Optional: Adds rounded corners to the thumb */
+  border-radius: 10px;
+  /* Optional: Adds rounded corners to the thumb */
 }
 
 /* Optional: Style the thumb on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--background); /* Change color when hovered */
+  background: var(--background);
+  /* Change color when hovered */
 }
 
 ::-webkit-scrollbar {
-height: 4px; /* Width of the horizontal scrollbar */
+  height: 4px;
+  /* Width of the horizontal scrollbar */
 }
