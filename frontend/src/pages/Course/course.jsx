@@ -21,7 +21,7 @@ const Course = React.forwardRef((props, ref) => {
     };
 
     return (
-        <section ref={ref} id="courses" data-aos="fade-up">
+        <section ref={ref} id="courses">
             <h1>Our Courses</h1>
             <div className='total-course'>
                 <div className="courses-container">

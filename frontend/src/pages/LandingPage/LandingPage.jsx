@@ -350,7 +350,7 @@ const LandingPage = () => {
                 <br />
                 <hr></hr>
                 <br />
-                <Course ref={sectionRefs.course} />
+                {/* <Course ref={sectionRefs.course} /> */}
                 <br />
                 <br />
                 <Contact ref={sectionRefs.contact} />

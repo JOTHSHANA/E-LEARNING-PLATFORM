@@ -12,7 +12,7 @@ const Home = React.forwardRef((props, ref) => (
   >
     <div className="total-home">
       <div className="content">
-        <h1 className="home-h1"data-aos="fade-up">Learn Beyond Boundaries, gain <span style={{color:'var(--text-1)', fontWeight:'400'}}>knowledge</span> Without Limits!</h1>
+        <h1 className="home-h1" data-aos="fade-up">Learn Beyond Boundaries, gain <span style={{color:'var(--text-1)', fontWeight:'400'}}>knowledge</span> Without Limits!</h1>
         <p className="home-p" data-aos="fade-down">Empower your learning journey with us.</p>
       </div>
       {/* <div className="video-container">
