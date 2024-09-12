@@ -11,17 +11,20 @@
 .intro-div {
     display: flex;
     min-height: 88.7vh;
-    background-color: var(--border-color);
+    /* background-color: red; */
     gap: 2px;
 }
 
 .about-div {
-    background-color: var(--background);
-    padding: 20px;
-    flex: 5;
+    /* background-color: red; */
+    padding: 0px 150px;
+    flex: 3;
     display: flex;
     flex-direction: column;
     gap: 15px;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .TechLehren {
@@ -116,17 +119,14 @@
 }
 
 .quote {
-    padding: 10px 30px;
-    box-sizing: border-box;
-    flex: 4;
-    border-radius: 5px;
-    background-color: #4159d0aa;
-    background-image: linear-gradient(43deg, #4159d084 0%, #c850c077 46%, #ffcd7083 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    font-size: 50px;
 }
-
+.user-text{
+    font-size: 16px;
+    font-weight: 500;
+    color: #737373;
+    padding-right: 20px;
+}
 .learning-image {
     display: flex;
     border-radius: 5px;

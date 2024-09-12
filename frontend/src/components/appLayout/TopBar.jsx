@@ -22,10 +22,10 @@ function TopBar(props) {
             style={{
                 backgroundColor: "var(--background)",
                 display: "flex",
-                padding: "7px 7px",
+                padding: "7px 90px",
                 justifyContent: "space-between",
                 alignItems: "center",
-                borderBottom: "2px solid var(--border-color)",
+                // borderBottom: "2px solid var(--border-color)",
                 gap: 20,
                 // boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
             }}
@@ -42,13 +42,13 @@ function TopBar(props) {
                 <div onClick={props.sidebar} className="sidebar-menu">
                     <MenuIcon />
                 </div>
-                <div style={{ display: "flex", justifyContent: "center" }}>
+                <div style={{ display: "flex", justifyContent: "center", alignItems:"center" }}>
                     <MilitaryTechIcon sx={{ fontSize: "35px" }} className="techLehren-icon" />
-                    <div style={{ lineHeight: "18px" }}>
+                    <div style={{display:"flex", flexDirection:"column",lineHeight:"10px"}}>
 
-                        <b className="app-name gradient-text">TechLehren</b>
+                        <h1 className="app-name gradient-text">TechLehren</h1>
                         <br />
-                        <p style={{ fontSize: "12px", fontWeight: "700", color: "gray" }}>&nbsp;Limitless learning</p>
+                        <p style={{ fontSize: "12px", fontWeight: "700", color: "gray", flex:"1"}}>&nbsp;Limitless learning</p>
                     </div>
                 </div>
 
