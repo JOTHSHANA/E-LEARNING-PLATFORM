@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { getCourses } = require('../controllers/courses/course');
 
-// Define the route for fetching course list
 router.get('/course-list', async (req, res) => {
   try {
     const courses = await getCourses();  

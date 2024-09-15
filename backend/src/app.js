@@ -6,6 +6,7 @@ const cors = require('cors');
 
 const { User, Course } = require('./models')
 const courseRoutes = require('./routes/courses')
+const authRouters = require('./routes/auth')
 
 const app = express();
 const PORT = process.env.DB_PORT;
@@ -15,6 +16,7 @@ app.use(express.json());
 
 // routes
 app.use('/api', courseRoutes);
+app.use('/api', authRouters)
 
 
 const startServer = async () => {
@@ -23,7 +25,7 @@ const startServer = async () => {
     await sequelize.authenticate();
     console.log('Database connection established successfully.');
 
-    await sequelize.sync({ alter: true });
+    await sequelize.sync(); 
     console.log('Models synchronized successfully.');
 
     app.listen(PORT, () => {
