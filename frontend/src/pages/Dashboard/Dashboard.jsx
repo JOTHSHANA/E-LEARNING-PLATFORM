@@ -6,6 +6,7 @@ import CustomSelect from "../../components/Select/Select";
 import customStyles from "../../components/appLayout/selectTheme";
 import InputBox from "../../components/InputBox/InputBox";
 import CalendarHeatmap from 'react-calendar-heatmap';
+import { getDecryptedCookie } from "../../components/utils/encrypt";
 import 'react-calendar-heatmap/dist/styles.css';
 
 function Dashboard() {
@@ -13,6 +14,7 @@ function Dashboard() {
 }
 
 function Body() {
+    const name = getDecryptedCookie("name")
     const handleClick = () => { };
 
     const [selectedOption, setSelectedOption] = useState(null);
@@ -134,7 +136,7 @@ function Body() {
                         Profile
                         <hr style={{ width: "100%" }} />
                         <div className="pic-container">
-                            JOTHSHANA S M
+                            {name}
                         </div>
                     </div>
                 </div>

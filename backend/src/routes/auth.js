@@ -21,7 +21,7 @@ router.post('/login', async(req, res)=>{
         return res.status(400).json({ message: result.message });
       }
     
-      res.status(200).json({ message: result.message, user: result.user });
+      res.status(200).json({ message: result.message, user: result.user, token: result.token });
 })
 
 

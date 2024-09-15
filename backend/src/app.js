@@ -3,6 +3,7 @@ const sequelize = require('./config/database');
 const path = require('path');
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 const cors = require('cors');
+const authenticateJWT = require('./middleware/authenticate')
 
 const { User, Course } = require('./models')
 const courseRoutes = require('./routes/courses')
@@ -15,8 +16,8 @@ app.use(cors());
 app.use(express.json());
 
 // routes
-app.use('/api', courseRoutes);
 app.use('/api', authRouters)
+app.use('/api',authenticateJWT, courseRoutes);
 
 
 const startServer = async () => {
