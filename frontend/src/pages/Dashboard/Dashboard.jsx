@@ -8,13 +8,15 @@ import InputBox from "../../components/InputBox/InputBox";
 import CalendarHeatmap from 'react-calendar-heatmap';
 import { getDecryptedCookie } from "../../components/utils/encrypt";
 import 'react-calendar-heatmap/dist/styles.css';
+import Tooltip from '@mui/material/Tooltip';
+import { styled } from '@mui/material/styles';
 
 function Dashboard() {
     return <Layout rId={1} body={<Body />} />;
 }
 
 function Body() {
-    const name = getDecryptedCookie("name")
+    const name = getDecryptedCookie("name");
     const handleClick = () => { };
 
     const [selectedOption, setSelectedOption] = useState(null);
@@ -71,47 +73,8 @@ function Body() {
     return (
         <>
             <div className="total-dashboard">
-                {/* <Button
-                    color="#fff"
-                    backgroundColor="#007bff"
-                    text="Click Me"
-                    onClick={handleClick}
-                />
-
-                <CustomSelect
-                    style={customStyles}
-                    options={options}
-                    value={selectedOption}
-                    onChange={handleSelectChange}
-                    placeholder="Select an option"
-                />
-
-                <InputBox
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    placeholder="Enter text here"
-                /> */}
-
-                {/* <h3>Student Activity</h3>
-                <div style={{ backgroundColor: "var(--background)", padding: "20px", borderRadius: "5px", border: "2px solid var(--border-color)" }}>
-                    <CalendarHeatmap
-                        startDate={startDate}
-                        endDate={endDate}
-                        values={allDates}
-                        classForValue={(value) => {
-                            if (!value || value.count === -1) {
-                                return 'color-skipped';  // Special class for skipped dates (yellow)
-                            } else if (value.count === 0) {
-                                return 'color-empty';  // No activity (light gray)
-                            } else {
-                                return `color-scale-${Math.min(value.count, 4)}`;  // Assign color based on activity count
-                            }
-                        }}
-                    />
-                </div> */}
-
                 <div className="dashboard-content">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus voluptatum dolorum, quod, fugiat modi exercitationem nam ullam totam et reprehenderit nulla. Voluptatibus deserunt at consequuntur maiores, totam, minima fugit eligendi ipsum corporis consectetur hic quis minus quaerat? Officiis, vitae ipsa, dolores natus explicabo architecto reiciendis esse delectus distinctio consequatur nam repudiandae doloribus excepturi minima fugiat perferendis! Optio facilis rem ut animi quo temporibus incidunt excepturi doloremque asperiores, eaque dolor, accusamus alias quos eum tenetur nesciunt? Excepturi modi ipsa quod esse adipisci nesciunt architecto ducimus, impedit, neque maiores cumque assumenda perferendis commodi magnam, eligendi consequuntur? Consequuntur at pariatur reiciendis. Eaque, quae expedita facere impedit beatae ab reprehenderit error voluptas id dolor atque cupiditate quia aliquam minima. Culpa maxime aut dolorem pariatur earum inventore ex repudiandae temporibus alias maiores. Dolore, blanditiis corrupti! Pariatur nesciunt, adipisci dignissimos, quo et molestiae corrupti natus tempora tenetur est, rerum illo quibusdam suscipit? Possimus quam quasi enim sint obcaecati inventore expedita totam et. Exercitationem itaque sequi tenetur consequatur voluptatem. Voluptatem quisquam quidem rem laboriosam ex distinctio! Eius laborum tenetur quasi dolor, optio dolores quibusdam officia. Veritatis, ad unde. Mollitia perspiciatis quibusdam soluta odit quia veritatis maiores dolores voluptate voluptatibus, maxime dolorem eum ea nam explicabo consequuntur reiciendis veniam cupiditate a? Harum, dolor? Doloremque totam harum, perspiciatis reiciendis, quos sed accusamus labore omnis provident, ducimus recusandae voluptatem odio expedita unde nemo! Expedita harum tempore debitis? Corrupti praesentium perferendis nam placeat odio cumque aliquid, reiciendis totam, fugit delectus itaque eum recusandae, ipsum fuga. Alias doloremque ullam vero facere suscipit minus qui dolore consequatur, officia exercitationem deserunt reprehenderit dolores magnam quam, ducimus a possimus velit natus eos autem dignissimos illum quod expedita minima. Accusantium nostrum, quam aspernatur nisi quibusdam quae mollitia facere at dolores sequi error ullam minima eius dolore, quod laudantium. Officia, accusamus harum numquam eos nulla velit reiciendis, quo, excepturi quis earum repudiandae? Dignissimos dolore ex beatae odit pariatur eum! Ipsum doloribus, error asperiores mollitia vel ut dolor dolorem vitae obcaecati vero aut. A placeat alias soluta ab fugiat ipsum sit aliquid, quas iure deleniti. Ipsa reprehenderit voluptate cumque tempora iste sed, voluptatibus similique autem numquam ex enim porro explicabo nemo ullam blanditiis. Debitis et ad perferendis ullam tenetur, ipsum beatae praesentium itaque, porro dolore accusantium repellat sapiente libero. Quisquam facilis alias obcaecati ab ducimus veniam veritatis incidunt, assumenda placeat corrupti dolores earum adipisci distinctio consectetur! Sequi ad alias voluptates laboriosam. Fuga, facilis doloremque quis explicabo vitae saepe quae repudiandae, rem, expedita vero placeat nostrum dolorum obcaecati quisquam ullam molestias? Repellendus reprehenderit molestiae vero magnam eum dicta consequuntur nobis aperiam! Doloremque quo labore officiis dolore. Possimus nemo et esse odio non. Eius architecto dignissimos voluptatibus culpa, explicabo quaerat doloremque reprehenderit ipsa quo perspiciatis? Provident, vel atque. Officia architecto nihil eveniet perspiciatis perferendis, neque nesciunt temporibus ipsa libero unde, ex, sint velit tempore ad aliquam recusandae mollitia omnis nobis corporis fugiat eos eum earum doloremque. Ad exercitationem vero harum qui? Atque saepe exercitationem aut tempore delectus similique qui corporis explicabo quae aperiam unde, modi incidunt laboriosam quas illum necessitatibus officiis omnis, enim cupiditate ratione ut dolor praesentium cumque? Corrupti obcaecati officiis eius alias praesentium quod? Quo corrupti saepe repudiandae perferendis dolores, voluptates molestiae neque similique iure ducimus inventore sed animi quis error nostrum, minima nihil. Doloremque architecto rem voluptatem dignissimos unde eveniet in vitae, optio est veritatis voluptatum totam at vero fugiat incidunt animi ullam facere voluptatibus provident nam! Quasi ducimus voluptates nemo veniam tempora at, qui unde, fugit totam eius nobis. Possimus quasi facilis deserunt laborum iste. Exercitationem ad quibusdam nihil? Aliquam quo commodi quod vel reiciendis? Debitis architecto in unde quod quisquam rem consectetur quis iusto, ipsa, at sapiente cum eveniet! Laborum sint illum itaque atque, aut ex ratione cupiditate odit similique cum quae exercitationem ut obcaecati earum quo modi architecto aspernatur voluptas laudantium vel excepturi sed. Labore optio id temporibus quam quia. Sapiente adipisci earum consectetur laudantium distinctio nobis alias quo, officiis dolores totam cupiditate! Dolorum architecto qui esse atque sunt sapiente neque a expedita. Accusamus in eius animi perferendis dolor fuga quas. Obcaecati, cumque natus et corrupti fugiat quo error doloremque excepturi quidem quod maxime fugit nihil deserunt explicabo consequatur necessitatibus! Mollitia et sint quisquam quos qui similique nesciunt, nobis iste optio ut eum adipisci ad ratione laborum saepe quibusdam praesentium assumenda rerum deleniti. Laborum iste corrupti sint itaque, laboriosam, inventore illo similique vel maiores quos unde mollitia voluptates labore ut quia optio ea placeat odio debitis temporibus! Vitae harum similique nisi ab repellat accusantium iusto, asperiores nulla voluptatem cupiditate rerum? Obcaecati ipsum quae cumque neque illum, nihil maxime possimus illo doloremque ratione quidem quam deserunt dolorem fugit quos a fuga in distinctio quisquam, maiores repellendus quod error! Excepturi aperiam inventore animi quasi deserunt hic quibusdam fugit temporibus illo eum. Ad, atque. Eligendi, id ab? Similique voluptate nulla temporibus? Ad sed rerum praesentium placeat nulla quos aut. Delectus labore corrupti dicta nulla molestiae cum eius maxime sint sequi dignissimos sit ipsum possimus dolores autem blanditiis impedit voluptatibus, enim minus minima facilis voluptates quos eveniet perspiciatis! Voluptate officia in cumque quo nulla provident sed nostrum ad expedita ut magnam dignissimos autem quibusdam voluptas, repellat, illum, repellendus voluptatibus quia harum veritatis molestiae excepturi similique. Hic magni quibusdam, laudantium voluptatum minima rem totam sint tempore alias odio? Corrupti id aliquid veritatis harum voluptatum at officiis quibusdam atque quia maiores praesentium qui molestias cumque ipsum vitae eveniet aperiam, laboriosam eaque facilis! Saepe corrupti odit voluptatum quia neque facilis ut eligendi architecto quo. Excepturi aliquid illum aspernatur similique, magnam quas repellendus maxime. Similique quas provident laboriosam, aspernatur iusto delectus iure quisquam facere mollitia vitae obcaecati voluptate recusandae, ipsum omnis accusamus consequuntur magni quibusdam animi id laudantium! Adipisci at, velit distinctio ex accusamus amet possimus. Enim repellendus quisquam perferendis totam hic deleniti non maiores consequatur nemo harum dolorum tempora voluptatem vitae, sunt quibusdam sequi quas in consectetur provident delectus mollitia qui. Dolores temporibus repellat eligendi ratione quo minus vero incidunt, fuga dicta facilis enim pariatur architecto cumque vitae? Beatae similique delectus ab magni minima, quod quibusdam, nostrum cupiditate nobis, ratione consectetur!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia maxime eligendi repellendus. Reprehenderit quas fugiat libero magnam at officiis nihil numquam. Laborum eaque magnam incidunt soluta ipsum modi tempore beatae veniam sint, dolore molestiae cumque quisquam. Cumque maxime, ex maiores quo non nulla perferendis aperiam, vitae sed repellendus voluptatem ducimus ipsa quas laborum eligendi id! Quibusdam nihil maxime voluptatum consectetur deserunt consequatur esse excepturi eligendi aspernatur velit, corrupti deleniti asperiores! Soluta dolorum reiciendis quam pariatur quod adipisci excepturi a iste, repellendus dolor quasi voluptate quaerat! Officiis, iste veritatis quae nostrum, libero saepe at distinctio tempora repellat error ipsam nisi. Ex labore est neque! Excepturi ratione fugit quo sed consequuntur architecto eligendi odio, animi, nisi hic voluptatibus nemo praesentium enim. Nobis quo optio alias reiciendis numquam quae accusantium omnis aliquam cum odit, ea placeat quibusdam culpa quam nostrum, ullam voluptatibus. Dolorum quas reprehenderit recusandae sint blanditiis, nulla nobis fugiat delectus, voluptates error sed tempore inventore facere corrupti facilis hic aspernatur placeat cupiditate doloremque esse. Nesciunt ratione non illum voluptas impedit veniam sed eaque deserunt nihil, nobis excepturi dolorem facilis numquam debitis quod possimus placeat. Iure reprehenderit est dicta, ad illum amet nulla a, aliquam repellat id aliquid similique itaque quia quod fugiat voluptates neque laboriosam porro nostrum magni accusamus vitae natus, officia rem. In ipsa rem repellat deleniti dignissimos dolore? Labore numquam omnis optio molestiae consequatur sint distinctio maxime, maiores aliquid rem saepe fugiat provident impedit fuga quaerat asperiores ea eligendi quis, blanditiis dolor magnam commodi quibusdam at unde! Error expedita blanditiis doloremque! Corrupti vel aspernatur deserunt! At nemo sunt et totam earum illum reiciendis quisquam voluptatem sapiente fugiat, dolorem non accusantium, quia soluta culpa sequi harum, cum magni. Nostrum possimus corrupti distinctio nesciunt cum saepe, sit facilis aspernatur debitis id? Ipsum nihil asperiores laboriosam exercitationem nesciunt quod maxime sit nam quaerat cupiditate odit minus, dicta alias earum minima ab tempora facere. Et ullam distinctio aperiam est tempore ratione quidem quam cupiditate cumque illo eaque doloribus quisquam debitis tempora quasi dolores voluptate porro rerum, quaerat quos libero dignissimos possimus. Non minus repudiandae odit ipsum, quasi doloribus rerum amet? Iste ab eos iure. Quisquam dolorum sed odio ducimus, laboriosam possimus voluptatum minus sit tempora cumque? Animi id atque impedit quia iste? Dicta, ipsam culpa, quia illo porro illum debitis voluptate rem voluptates consequatur sunt nemo placeat alias cumque possimus voluptas hic modi impedit eum doloribus consequuntur quod accusamus. Quae quasi dolorum iusto minus? Incidunt, ipsam cum? Aliquam natus maxime fugiat, sed distinctio accusamus! At enim ratione ad iste dicta architecto non excepturi atque beatae tenetur dolore illo corrupti totam praesentium alias recusandae sit quae delectus, esse, officia molestiae accusamus quas earum. Necessitatibus harum error eum minima dignissimos perferendis odit. Vitae error facere distinctio, perspiciatis hic quis a eos quod quibusdam recusandae ratione. Alias facere omnis dicta aliquid maxime architecto veritatis maiores consequuntur asperiores tenetur officiis iure quia inventore optio esse ipsa aut expedita, at error. Earum non cum ullam, dignissimos alias quas. Eaque fuga quis quibusdam earum nobis pariatur dolores corrupti sed similique atque architecto maiores, velit odit nisi laudantium ut cumque tenetur, dolorem impedit enim quod! Nemo officiis soluta totam, repudiandae commodi excepturi? Cupiditate consequatur quidem dignissimos vitae et maxime. Culpa voluptatem mollitia quisquam numquam quaerat omnis labore perspiciatis quam tempore dolores velit dolorem excepturi quae voluptatum assumenda perferendis, nam obcaecati autem unde dicta odio maxime harum quas! At asperiores nesciunt necessitatibus adipisci repellendus accusantium, enim assumenda ex quasi et odit vitae dolorem modi. Aut, similique vero consectetur aspernatur accusantium dolore quaerat culpa, rerum maiores enim sequi sint voluptatem, esse modi quibusdam cumque optio! Voluptates saepe ad rem corrupti officia voluptatibus. Quas sapiente asperiores harum minima, dolorem error omnis molestias unde eligendi reiciendis provident beatae, dicta explicabo totam cum ducimus repudiandae adipisci eos dignissimos illum? Praesentium quibusdam esse sequi enim! Repellat veritatis autem consequatur quaerat libero dolor. Quam dolore ullam quas. Mollitia corporis doloribus dolore accusamus cumque voluptas earum nam quo suscipit maiores totam est, optio maxime natus voluptate numquam, laudantium delectus harum animi vel aspernatur sed. Animi explicabo hic maxime accusantium ab ex dolorum, perferendis sed? Ipsa fuga fugit, minus nulla atque asperiores obcaecati eveniet dolore tenetur, sed provident nam iste natus maiores aliquam accusamus a odio nobis aliquid minima. Laboriosam quibusdam dolor est libero rem dolorum animi iusto reiciendis. Reprehenderit quo minima aliquid mollitia quisquam at vel dicta. Nihil fuga qui excepturi repellendus natus ut architecto nobis soluta quam unde sapiente, corporis praesentium eaque voluptate corrupti reprehenderit quisquam molestias, mollitia tempora quibusdam saepe! Nostrum, consequatur autem veritatis omnis quisquam minima sequi eum suscipit alias unde quis laudantium id voluptas, nemo sit sed commodi eligendi enim. Tempora, a eius aperiam voluptates repellat eveniet animi id vitae, magnam optio omnis quo, earum rem ipsum! Quaerat, placeat? Deleniti placeat consequuntur maxime perspiciatis reiciendis ipsum beatae, veritatis, aspernatur atque laudantium dolores. Dicta nam corporis hic? Laudantium quia illo perferendis odit excepturi ducimus praesentium repellendus dolores est dolore! Cum necessitatibus modi amet? Suscipit, enim. Odit laudantium eos quaerat maxime perferendis quasi harum temporibus repellendus asperiores sed modi aut alias ipsum neque ipsa eum adipisci iusto facilis, iure sunt. Nihil rem eius minus voluptatum quae reprehenderit quaerat velit hic consequatur alias ratione natus sunt repudiandae commodi fugiat ea, quisquam quod culpa numquam aperiam delectus voluptatem corrupti asperiores eos? Beatae provident in ab ullam perspiciatis modi consequuntur at consequatur rerum sequi? Mollitia molestias quidem repudiandae facere corporis laborum magni odio aliquam dolor amet aliquid quos a eaque omnis autem dicta minus, quisquam laboriosam iste soluta! Explicabo a tempora obcaecati qui maiores quibusdam rerum quos aspernatur perferendis, quis placeat facere velit officiis quam quidem? Exercitationem deserunt veniam iste qui consequuntur, mollitia eum illum ea, soluta ab porro quidem veritatis adipisci vitae odit doloremque voluptates obcaecati optio est hic voluptatem eaque provident. Placeat eaque consectetur id veritatis repellat eveniet, autem reprehenderit quae non dolor modi labore magnam praesentium minima doloremque tempore atque. Et tenetur recusandae expedita error, sunt dicta corrupti id porro alias ipsum aspernatur incidunt nulla consequuntur reiciendis minus maxime necessitatibus commodi? Adipisci unde obcaecati consequatur mollitia?
                     <h3>Student Activity</h3>
                     <div style={{ backgroundColor: "var(--background)", padding: "20px", borderRadius: "5px", border: "2px solid var(--border-color)" }}>
                         <CalendarHeatmap
@@ -126,6 +89,47 @@ function Body() {
                                 } else {
                                     return `color-scale-${Math.min(value.count, 4)}`;  // Assign color based on activity count
                                 }
+                            }}
+                            tooltipDataAttrs={(value) => {
+                                // Only show tooltip for valid dates
+                                if (value.count !== -1) {
+                                    return {
+                                        'data-tip': `${value.date}: ${value.count} activity`,
+                                    };
+                                }
+                            }}
+                            transformDayElement={(rect, value) => {
+                                // Only show tooltip for valid dates
+                                if (value && value.count !== -1) {
+                                    return (
+                                        <Tooltip
+                                            title={`${value.date}: ${value.count} activities`}
+                                            arrow
+                                            placement="top"
+                                            componentsProps={{
+                                                tooltip: {
+                                                    sx: {
+                                                        bgcolor: '#333',
+                                                        color: '#fff',
+                                                        fontSize: '12px',
+                                                        p: '8px',
+                                                        borderRadius: '4px',
+                                                        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.2)',
+                                                        textAlign: 'center',
+                                                    },
+                                                },
+                                                arrow: {
+                                                    sx: {
+                                                        color: '#333',
+                                                    },
+                                                },
+                                            }}
+                                        >
+                                            {rect}
+                                        </Tooltip>
+                                    );
+                                }
+                                return rect;
                             }}
                         />
                     </div>

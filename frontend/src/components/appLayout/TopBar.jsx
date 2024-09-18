@@ -25,7 +25,7 @@ function TopBar(props) {
                 padding: "3px 90px",
                 justifyContent: "space-between",
                 alignItems: "center",
-                // borderBottom: "2px solid var(--border-color)",
+                borderBottom: "2px solid var(--border-color)",
                 gap: 20,
                 // boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
             }}
