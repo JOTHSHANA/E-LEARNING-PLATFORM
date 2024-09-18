@@ -1,16 +1,45 @@
-// LoginDialog.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Dialog, DialogTitle, DialogContent, Button, Checkbox, FormControlLabel, Divider } from '@mui/material';
-import InputBox from '../../components/InputBox/InputBox'; // Adjust the path as necessary
+import InputBox from '../../components/InputBox/InputBox'; 
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import requestApi from '../../components/utils/axios';
+import { setEncryptedCookie } from '../../components/utils/encrypt'; 
 
 export default function LoginDialog({ open, onClose }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [rememberMe, setRememberMe] = useState(false);
+    const navigate = useNavigate()
 
     const handleInputChange = (event, setter) => {
         setter(event.target.value);
+    };
+
+    const handleLogin = async () => {
+        try {
+            const response = await requestApi("POST",'/login', {
+                username,
+                password,
+            });
+
+            const { message, user, token } = response.data;
+
+            if (message === 'Login successful') {
+                setEncryptedCookie('token', token);
+                setEncryptedCookie('name', user.name);
+                setEncryptedCookie('email', user.email);
+
+                console.log('Login successful');
+                navigate('/dashboard')
+                onClose();
+            } else {
+                console.error('Login failed:', message);
+            }
+        } catch (error) {
+            console.error('Error during login:', error.message);
+        }
     };
 
     return (
@@ -25,11 +54,11 @@ export default function LoginDialog({ open, onClose }) {
 
             <DialogContent>
                 <div style={{ marginBottom: '7px' }}>
-                    <label style={{ display: 'block', marginBottom: '5px' }}>Username or Email</label>
+                    <label style={{ display: 'block', marginBottom: '5px' }}>Username</label>
                     <InputBox
                         value={username}
                         onChange={(e) => handleInputChange(e, setUsername)}
-                        placeholder="Username or Email"
+                        placeholder="Username"
                     />
                 </div>
                 <div style={{ marginBottom: '7px' }}>
@@ -41,12 +70,16 @@ export default function LoginDialog({ open, onClose }) {
                         type="password"
                     />
                 </div>
-                <FormControlLabel control={<Checkbox />} label="Remember me" />
+                <FormControlLabel
+                    control={<Checkbox checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} />}
+                    label="Remember me"
+                />
                 <Button
                     variant="contained"
                     color="primary"
                     fullWidth
                     style={{ marginTop: '10px' }}
+                    onClick={handleLogin} 
                 >
                     Login
                 </Button>
@@ -67,7 +100,6 @@ export default function LoginDialog({ open, onClose }) {
                         Sign in with Facebook
                     </Button>
                 </div>
-
             </DialogContent>
         </Dialog>
     );

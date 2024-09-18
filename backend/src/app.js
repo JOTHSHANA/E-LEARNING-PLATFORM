@@ -4,10 +4,11 @@ const path = require('path');
 const morgan = require('morgan');
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 const cors = require('cors');
+const authenticateJWT = require('./middleware/authenticate')
 
 const { User, Course } = require('./models')
 const courseRoutes = require('./routes/courses')
-const authRoutes = require('./routes/auth')
+const authRouters = require('./routes/auth')
 
 const app = express();
 const PORT = process.env.DB_PORT;
@@ -17,9 +18,8 @@ app.use(express.json());
 app.use(morgan('dev')); 
 
 // routes
-app.use('/api', courseRoutes);
-app.use('/api', authRoutes);
-
+app.use('/api', authRouters)
+app.use('/api',authenticateJWT, courseRoutes);
 
 
 const startServer = async () => {
@@ -28,7 +28,7 @@ const startServer = async () => {
     await sequelize.authenticate();
     console.log('Database connection established successfully.');
 
-    await sequelize.sync({ alter: true });
+    await sequelize.sync(); 
     console.log('Models synchronized successfully.');
 
     app.listen(PORT, () => {

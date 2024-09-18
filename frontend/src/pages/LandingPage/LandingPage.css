@@ -1,4 +1,4 @@
-.landing-page {
+/* .landing-page {
     background-color: var(--background);
     height: auto;
     min-height: 100vh;
@@ -11,12 +11,10 @@
 .intro-div {
     display: flex;
     min-height: 88.7vh;
-    /* background-color: red; */
     gap: 2px;
 }
 
 .about-div {
-    /* background-color: red; */
     padding: 0px 150px;
     flex: 3;
     display: flex;
@@ -175,4 +173,256 @@ h6 {
 
 .social-container a img:hover {
     transform: scale(1.1);
+} */
+
+
+.navbar {
+    position: sticky;
+    top: 0;
+    background-color: transparent;
+    border-radius: 0px 0px 5px 5px;
+    color: #099090;
+    z-index: 1000;
+    transition: background-color 0.3s;
+}
+
+.navbar nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.navbar nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 20;
+    justify-content: center;
+}
+
+.navbar.transparent {
+    background-color: transparent;
+}
+
+.navbar.solid {
+    background-color: var(--text-r);
+    color: var(--text);
+
+}
+
+.navbar nav ul li {
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 18px 20px;
+    transition: background-color 0.3s;
+    font-weight: 700;
+}
+
+.navbar nav ul li:hover {
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+
+.navbar nav ul li::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: #099090;
+    transition: width 0.4s ease, left 0.4s ease;
+    border-radius: 10px;
+}
+
+.navbar nav ul li:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.hamburger-icon {
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+    font-size: 1.5rem;
+    display: none;
+}
+
+.hamburger-icon.icon-transparent i {
+    color: black;
+}
+
+.hamburger-icon.icon-solid i {
+    color: #ffffff;
+}
+
+.nav-open {
+    display: flex;
+}
+
+.sign-in-button {
+    background-color: #09909000;
+    color: #099090;
+    border: none;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin: 0 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.sign-in-button.icon-solid {
+    color: #ffffff;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 6;
+}
+
+@media (max-width: 768px) {
+    .navbar nav ul {
+        display: none;
+        flex-direction: column;
+        background-color: #098f90;
+        position: absolute;
+        text-align: center;
+        top: 100%;
+    }
+
+    .navbar.solid {
+        background-color: #099090;
+        color: white;
+
+    }
+
+    .navbar {
+        background-color: #099090;
+        color: white;
+    }
+
+    .hamburger-icon {
+        display: block;
+    }
+
+    .sign-in-button {
+        margin-right: 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .navbar nav ul li {
+        padding: 10px;
+        text-align: center;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        border-radius: 10px 0px 0px 10px;
+    }
+
+    nav ul.nav-open {
+        display: flex;
+    }
+
+
+
+}
+
+.modal-content {
+    background-color: #3fa1a1ea;
+    padding: 2rem;
+    border-radius: 4px;
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.google-sign-in-button {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 1rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.google-sign-in-button img {
+    height: 24px;
+    margin-right: 0.5rem;
+}
+
+.google-sign-in-button {
+    padding: 0.5rem;
+}
+
+.total-background {
+    position: relative;
+    z-index: 0;
+}
+
+@media (max-width: 768px) {
+    .navbar ul {
+        display: none;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.9);
+        position: fixed;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 1rem;
+    }
+
+    .nav-open {
+        display: flex;
+    }
+
+    .total-background {
+        overflow: hidden;
+    }
+
+    .circles {
+        width: 100vw;
+        height: 120vh;
+    }
+
+    .area {
+        height: 120%;
+    }
+}
+
+.app-name {
+    color: var(--text);
+    letter-spacing: 5.5px;
 }

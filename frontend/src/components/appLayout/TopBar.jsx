@@ -42,13 +42,13 @@ function TopBar(props) {
                 <div onClick={props.sidebar} className="sidebar-menu">
                     <MenuIcon />
                 </div>
-                <div style={{ display: "flex", justifyContent: "center", alignItems:"center" }}>
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                     <MilitaryTechIcon sx={{ fontSize: "35px" }} className="techLehren-icon" />
-                    <div style={{display:"flex", flexDirection:"column",lineHeight:"10px"}}>
+                    <div style={{ display: "flex", flexDirection: "column", lineHeight: "10px" }}>
 
                         <h1 className="app-name gradient-text">TechLehren</h1>
                         <br />
-                        <p style={{ fontSize: "12px", fontWeight: "700", color: "gray", flex:"1"}}>&nbsp;Limitless learning</p>
+                        <p style={{ fontSize: "12px", fontWeight: "700", color: "gray", flex: "1" }}>&nbsp;Limitless learning</p>
                     </div>
                 </div>
 

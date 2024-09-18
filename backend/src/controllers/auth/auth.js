@@ -1,8 +1,9 @@
-const { User } = require('../../models');
 const bcrypt = require('bcrypt');
+const { User } = require('../../models');
 const { Op } = require('sequelize');
 
-const saltRounds = 10;
+const saltRounds = 10; 
+
 const PostUser = async (user) => {
   try {
     const existingUser = await User.findOne({
@@ -19,7 +20,11 @@ const PostUser = async (user) => {
     }
 
     const hashedPassword = await bcrypt.hash(user.password, saltRounds);
-    const newUser = await User.create({...user, password: hashedPassword,});
+
+    const newUser = await User.create({
+      ...user,
+      password: hashedPassword, 
+    });
 
     return { status: 'success', user: newUser };
 

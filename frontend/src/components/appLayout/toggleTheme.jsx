@@ -13,10 +13,13 @@ const theme = createTheme({
     },
 });
 
+
 const lightModeProperties = {
     "--background": "#f9f9f9",
     "--background-1": "#ffffff",
     "--text": "#1f1f1f",
+    "--text-1": "#353f80",
+    "--text-r": "white",
     "--select": "#fbfbfb",
     "--border-color": "#cbcccd",
     "--menu-hover": "#ecebf3",
@@ -33,6 +36,8 @@ const darkModeProperties = {
     "--background": "#0f0f0f",
     "--background-1": "#000000",
     "--text": "white",
+    "--text-1": "#b8b8ef",
+    "--text-r": "#1f1f1f",
     "--select": "#0f1015",
     "--border-color": "#3d444d",
     "--menu-hover": "#0f1015",
@@ -43,6 +48,7 @@ const darkModeProperties = {
     "--card": "#1d1f22",
     "footer": "#eef0fe",
 };
+
 
 // Set custom properties based on theme mode
 const setCustomProperties = (mode) => {
