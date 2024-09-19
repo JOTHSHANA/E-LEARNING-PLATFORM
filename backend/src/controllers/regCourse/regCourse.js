@@ -9,8 +9,8 @@ exports.getRegCourse = async (user) => {
             },
             include: [
                 {
-                    model: Course, 
-                    attributes: ['name', 'img', 'description', 'rating'] 
+                    model: Course,
+                    attributes: ['name', 'img', 'description', 'rating']
                 }
             ]
         });
@@ -40,7 +40,7 @@ exports.registerCourse = async (user, course) => {
 exports.deleteRegistration = async (user, course) => {
     try {
         const result = await RegCourse.update(
-            { status: '0' }, 
+            { status: '0' },
             {
                 where: {
                     user: user,
