@@ -1,17 +1,12 @@
-
 .footer {
-  background-color: #5e9ea0;
+  background-color: #676fb2;
   padding: 20px;
-  border-radius: 10px;
   bottom: 0;
   text-align: center;
-  /* position: sticky; */
-  /* bottom: 0; */
 
 }
 
 .footer-content {
-  /* max-width: 800px; */
   margin: 0 auto;
   color: white;
 }
@@ -35,7 +30,6 @@
   font-size: 24px;
 }
 
-a{
-color: white;
+a {
+  color: white;
 }
-

@@ -6,9 +6,7 @@ const Home = React.forwardRef((props, ref) => (
     ref={ref}
     id="home"
     className="home-section"
-    style={{
-      height: "100vh",
-    }}
+    
   >
     <div className="total-home">
       <div className="content" >

@@ -7,13 +7,13 @@ const Contact = React.forwardRef((props, ref) => (
 
     <div className="footer" >
       <div className="footer-content">
-        <h2 data-aos="fade-up">Contact Us</h2>
+        <h2 >Contact Us</h2>
         <div className="contact-info">
-          <div className="contact-item" data-aos="fade-down">
+          <div className="contact-item" >
             <Email className="icon" />
             <a href="mailto:example@example.com">sample@sample.com</a>
           </div>
-          <div className="contact-item" data-aos="fade-down">
+          <div className="contact-item">
             <Phone className="icon" />
             <a href="tel:+1234567890">+1 234 567 890</a>
           </div>

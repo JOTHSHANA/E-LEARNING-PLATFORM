@@ -5,6 +5,7 @@
 }
 
 .about-section {
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -130,4 +131,41 @@
   .about-section {
     padding: 10px;
   }
+}
+
+
+.each-about-card{
+  background-color: #1f1f1f;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: flex;
+  gap: 10px;
+  position: relative;
+}
+
+.about-card-image{
+  flex: 1;
+  background-color: white;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+.about-card-content{
+  flex: 3;
+  padding: 5px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: first baseline;
+  text-align: left;
+}
+
+.about-card-image img{
+  height: 110px;
+}
+
+.about-card-content p{
+  color: rgb(160, 160, 160);
 }

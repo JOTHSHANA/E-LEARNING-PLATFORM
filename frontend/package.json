@@ -13,6 +13,7 @@
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^6.0.1",
+    "@mui/lab": "^6.0.0-beta.10",
     "@mui/material": "^6.0.1",
     "@mui/styled-engine-sc": "^6.0.1",
     "aos": "^2.3.4",
@@ -28,6 +29,7 @@
     "react-router-dom": "^6.26.1",
     "react-select": "^5.8.0",
     "react-tooltip": "^5.28.0",
+    "reactflow": "^11.11.4",
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
