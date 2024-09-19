@@ -9,6 +9,7 @@ const authenticateJWT = require('./middleware/authenticate')
 const { User, Course } = require('./models')
 const courseRoutes = require('./routes/courses')
 const authRouters = require('./routes/auth')
+const regCourseRoutes = require('./routes/regCourse')
 
 const app = express();
 const PORT = process.env.DB_PORT;
@@ -19,7 +20,9 @@ app.use(morgan('dev'));
 
 // routes
 app.use('/api', authRouters)
-app.use('/api', courseRoutes);
+app.use('/api', regCourseRoutes)
+
+app.use('/api',authenticateJWT, courseRoutes);
 
 
 const startServer = async () => {
