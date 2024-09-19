@@ -1,6 +1,7 @@
 const express = require('express');
 const sequelize = require('./config/database');
 const path = require('path');
+const morgan = require('morgan');
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 const cors = require('cors');
 const authenticateJWT = require('./middleware/authenticate')
@@ -15,6 +16,7 @@ const PORT = process.env.DB_PORT;
 app.use(cors());
 
 app.use(express.json());
+app.use(morgan('dev')); 
 
 // routes
 app.use('/api', authRouters)

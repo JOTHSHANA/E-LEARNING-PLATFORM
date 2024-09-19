@@ -5,7 +5,7 @@ import InputBox from '../../components/InputBox/InputBox';
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import requestApi from '../../components/utils/axios';
-import { setEncryptedCookie } from '../../components/utils/encrypt'; // Import your custom cookie functions
+import { setEncryptedCookie } from '../../components/utils/encrypt'; 
 
 export default function LoginDialog({ open, onClose }) {
     const [username, setUsername] = useState('');
