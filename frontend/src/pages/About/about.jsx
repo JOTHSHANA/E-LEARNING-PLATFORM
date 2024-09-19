@@ -4,7 +4,7 @@ import "./about.css";
 const About = React.forwardRef((props, ref) => (
   <section ref={ref} id="about" className="about-section">
     <div className="about-content">
-      <div className="ribbon" data-aos="zoom-out">About Us</div>
+      <div className="ribbon" >About Us</div>
       {/* <video autoPlay muted loop className="about-video" data-aos="fade-right" data-aos-delay="100">
         
         Your browser does not support the video tag.
