@@ -10,14 +10,14 @@ const About = React.forwardRef((props, ref) => (
         Your browser does not support the video tag.
       </video> */}
       <div className="text-container">
-        
-        <p className="about-p">
+
+        <p className="about-p" >
           Learn more about our mission and values. Lorem ipsum dolor sit amet,
           consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed
           cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum
           imperdiet. Duis sagittis ipsum.
         </p>
-        <p className="about-p" >
+        <p className="about-p">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
           odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla
           quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent
