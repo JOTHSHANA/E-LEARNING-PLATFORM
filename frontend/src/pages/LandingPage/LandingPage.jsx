@@ -216,6 +216,7 @@ import LoginDialog from "../../pages/Login/Login";
 import SignupDialog from "../../pages/Login/Signup";
 import Button from "../../components/Button/Button";
 import "./LandingPage.css";
+import { Email, Phone } from '@mui/icons-material';
 
 const useNavbarScroll = () => {
     const sectionRefs = {
@@ -352,12 +353,12 @@ const LandingPage = () => {
                 <br />
                 <Course ref={sectionRefs.course} />
                 <br />
-                <br />
-                <Contact ref={sectionRefs.contact} />
-                <br />
             </main>
             <LoginDialog open={openLogin} onClose={handleLoginClose} />
             <SignupDialog open={openSignup} onClose={handleSignupClose} />
+
+            <Contact ref={sectionRefs.contact} />
+            
         </>
     );
 };

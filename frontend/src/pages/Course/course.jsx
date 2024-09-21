@@ -63,7 +63,6 @@ const Course = React.forwardRef((props, ref) => {
 
     return (
         <section ref={ref} id="courses">
-            <h1>Our Courses</h1>
             <div className='total-course'>
                 <div className="avail-courses">
                     {courses.map((course, index) => (
@@ -83,11 +82,6 @@ const Course = React.forwardRef((props, ref) => {
                             </div>
                         </div>
                     ))}
-                </div>
-                <div>
-                    <button className='view-more'>
-                        View More..
-                    </button>
                 </div>
             </div>
         </section>
