@@ -5,6 +5,7 @@ import Button from "../Button/Button";
 import LoginDialog from "../../pages/Login/Login";
 import SignupDialog from "../../pages/Login/Signup";
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
+import html from '../../assets/html.png'
 
 
 function TopBar(props) {
@@ -20,12 +21,12 @@ function TopBar(props) {
         <div
             className="app-topbar"
             style={{
-                backgroundColor: "var(--background)",
+                backgroundColor: "var(--background-1)",
                 display: "flex",
-                padding: "3px 90px",
+                padding: "3px 7px",
                 justifyContent: "space-between",
                 alignItems: "center",
-                borderBottom: "2px solid var(--border-color)",
+                borderBottom: "1px solid var(--border-color)",
                 gap: 20,
                 // boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
             }}
@@ -52,18 +53,13 @@ function TopBar(props) {
 
                 <div className="top-bar-menus">
                     <CustomizedSwitches />
-                    {/* <Button
-                        color="#fff"
-                        backgroundColor="#5c89aa"
-                        text="Log In"
-                        onClick={handleLoginOpen}
-                    />
-                    <Button
-                        color="#fff"
-                        backgroundColor="#007bff"
-                        text="Sign Up"
-                        onClick={handleSignupOpen}
-                    /> */}
+                    <div className="profile-section">
+                        <img style={{ width: "45px", height: "45px", borderRadius: "50%" }} src={html} alt="" />
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                            <b>DisplayName</b>
+                            <p style={{fontSize:"14px", fontWeight:"600", color:"gray"}}>student</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             {/* Dialogs */}

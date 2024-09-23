@@ -36,9 +36,9 @@ function Body() {
     };
 
     return (
-        <>
-            Discussion Forum
-        </>
+       <>
+       
+       </>
     );
 }
 
