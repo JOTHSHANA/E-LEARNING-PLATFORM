@@ -16,13 +16,14 @@ const PORT = process.env.DB_PORT;
 app.use(cors());
 
 app.use(express.json());
-app.use(morgan('dev'));
+app.use(morgan('dev')); 
 
 // routes
 app.use('/api', authRouters)
+// app.use(authenticateJWT)
+app.use('/api', courseRoutes);
 app.use('/api', regCourseRoutes)
 
-app.use('/api', courseRoutes);
 
 
 const startServer = async () => {
@@ -31,7 +32,7 @@ const startServer = async () => {
     await sequelize.authenticate();
     console.log('Database connection established successfully.');
 
-    await sequelize.sync();
+    await sequelize.sync(); 
     console.log('Models synchronized successfully.');
 
     app.listen(PORT, () => {
@@ -43,5 +44,3 @@ const startServer = async () => {
 };
 
 startServer();
-
-
