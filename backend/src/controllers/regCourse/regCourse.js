@@ -10,7 +10,7 @@ exports.getRegCourse = async (user) => {
             include: [
                 {
                     model: Course,
-                    attributes: ['name', 'img', 's_description','f_description', 'rating']
+                    attributes: ['name', 'img', 's_description','f_description', 'c_type','rating']
                 }
             ]
         });

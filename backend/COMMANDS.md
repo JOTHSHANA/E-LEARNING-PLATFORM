@@ -6,7 +6,8 @@ If you want a dedicated file for listing all the commands, you can create a `COM
 Example `COMMANDS.md`:
 ```markdown
 # Common Commands
-
+- **Create Migration**:`npx sequelize-cli migration:generate --name create-{table_name}`
+- **Create Seeders**:`npx sequelize-cli seed:generate --name {table_name}-seeder`
 ## Server Commands
 
 - **Install Dependencies**: `npm install`
