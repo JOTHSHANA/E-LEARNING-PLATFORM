@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 const apiHost = import.meta.env.VITE_API_HOST;
 
 const requestApi = async (method, url, data) => {
-
   try {
     const token = getDecryptedCookie("token");
 
@@ -20,7 +19,8 @@ const requestApi = async (method, url, data) => {
         response = await axios.post(apiHost + url, data, { headers });
         break;
       case "GET":
-        response = await axios.get(apiHost + url, { headers });
+        // Pass data as query parameters in GET request
+        response = await axios.get(apiHost + url, { headers, params: data });
         break;
       case "PUT":
         response = await axios.put(apiHost + url, data, { headers });

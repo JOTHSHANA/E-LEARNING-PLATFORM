@@ -6,6 +6,8 @@ import LoginDialog from "../../pages/Login/Login";
 import SignupDialog from "../../pages/Login/Signup";
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import html from '../../assets/html.png'
+import { getDecryptedCookie } from "../../components/utils/encrypt";
+
 
 
 function TopBar(props) {
@@ -17,6 +19,8 @@ function TopBar(props) {
 
     const handleSignupOpen = () => setOpenSignup(true);
     const handleSignupClose = () => setOpenSignup(false);
+
+    const name = getDecryptedCookie("name");
     return (
         <div
             className="app-topbar"
@@ -56,8 +60,8 @@ function TopBar(props) {
                     <div className="profile-section">
                         <img style={{ width: "45px", height: "45px", borderRadius: "50%" }} src={html} alt="" />
                         <div style={{ display: "flex", flexDirection: "column" }}>
-                            <b>DisplayName</b>
-                            <p style={{fontSize:"14px", fontWeight:"600", color:"gray"}}>student</p>
+                            <b>{name}</b>
+                            <p style={{ fontSize: "14px", fontWeight: "600", color: "gray" }}>student</p>
                         </div>
                     </div>
                 </div>

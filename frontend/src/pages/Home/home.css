@@ -1,50 +1,50 @@
 #home {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-  }
- 
-  
-  .total-home{
-    display: flex;
-    flex-direction: row;
-    border-radius: 10px;
-    padding: 80px;
-    box-sizing: border-box;
-    align-items: center;
-    height: 100vh;
-  }
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
 
-  
-  
-  .content {
-    position: flex;
-    z-index: 3;
-    padding: 20px 40px;
-    border-radius: 10px;
-    flex: 2;
 
-  }
-  
-  .home-h1 {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-    color: var(--text);
-  }
-  
-  .home-p {
-    font-size: 1.5rem;
-    line-height: 1.6;
-    color: var(--text-1);
-    margin-bottom: 100px;
-    font-family: "Playpen Sans", cursive;
-  }
+.total-home {
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  padding: 80px;
+  box-sizing: border-box;
+  align-items: center;
+  min-height: 100vh;
+}
 
- 
+
+
+.content {
+  position: flex;
+  z-index: 3;
+  padding: 20px 40px;
+  border-radius: 10px;
+  flex: 2;
+
+}
+
+.home-h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.home-p {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: var(--text-1);
+  margin-bottom: 100px;
+  font-family: "Playpen Sans", cursive;
+}
+
+
 
 .video-container {
   display: flex;
@@ -54,35 +54,38 @@
   width: 70%;
   flex: 1;
 
-  animation: floating 4s infinite ease-in-out, enlarge 5s infinite linear ;
+  animation: floating 4s infinite ease-in-out, enlarge 5s infinite linear;
 }
 
 .home-video {
   width: 100%;
   height: auto;
-  clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%);  /* mix-blend-mode:darken; */
+  clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%);
+  /* mix-blend-mode:darken; */
 
 }
 
-  
-  @media (max-width: 768px) {
-    .home-h1 {
-      font-size: 3em;
-    }
-    .total-home{
-      padding: 10px;
-    }
-  
-    .home-p {
-      font-size: 2em;
-    }
-    .video-container{
-      display: none;
-    }
-    #home{
-      height: 50vh;
-      position: relative;
-    }
-    
+
+@media (max-width: 768px) {
+  .home-h1 {
+    font-size: 3em;
   }
-  
+
+  .total-home {
+    padding: 10px;
+  }
+
+  .home-p {
+    font-size: 2em;
+  }
+
+  .video-container {
+    display: none;
+  }
+
+  #home {
+    height: 50vh;
+    position: relative;
+  }
+
+}

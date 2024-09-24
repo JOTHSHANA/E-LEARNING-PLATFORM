@@ -7,6 +7,7 @@ import { LandingPage } from "./pages/LandingPage/LandingPage";
 import Course from "./pages/Course/course";
 import Courses from "./pages/Courses/Courses";
 import Forum from "./pages/DiscussionForum/Forum";
+import CourseDetails from "./pages/CourseDetails/CourseDetails";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/landingPage" element={<LandingPage />} />
               <Route path="/courses" element={<Courses />} />
+              <Route path="/courseDetails" element={<CourseDetails />} />
               <Route path="/forum" element={<Forum />} />
             </Routes>
             <div className="area">
