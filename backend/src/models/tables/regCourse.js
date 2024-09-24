@@ -27,6 +27,12 @@ const RegCourse = sequelize.define(
         },
         allowNull:false,
     },
+    progress:{
+      type:DataTypes.INTEGER,
+      allowNull:false,
+      defaultValue:50
+    },
+
     status: {
       type: DataTypes.ENUM("0", "1"),
       defaultValue: "1",

@@ -11,9 +11,13 @@ const Course = sequelize.define('Course', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  description: {
+  s_description: {
     type: DataTypes.TEXT,
-    allowNull: false,
+    allowNull: true,
+  },
+  f_description: {
+    type: DataTypes.TEXT,
+    allowNull: true,
   },
   img: {
     type: DataTypes.TEXT,
@@ -26,7 +30,7 @@ const Course = sequelize.define('Course', {
   status: {
     type: DataTypes.ENUM('0', '1'),
     defaultValue: '1',
-  },
+  }, 
 }, {
   tableName: 'courses',
   timestamps: false,
