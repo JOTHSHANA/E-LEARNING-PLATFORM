@@ -1,6 +1,7 @@
 const {DataTypes} = require('sequelize')
 const sequelize = require('../../config/database');
 const Course = require('./course')
+
 const Topic = sequelize.define('Topic', {
     id:{
         type:DataTypes.BIGINT,

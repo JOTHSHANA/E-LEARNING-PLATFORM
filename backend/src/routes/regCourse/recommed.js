@@ -4,7 +4,7 @@ const {getRecommendCourse, getReg_count} = require('../../controllers/regCourse/
 
 
 router.get('/rec-courses', async (req, res) => {
-    const  user  = req.query.user;
+    const  user = req.query.user;
     if(!user){
       return res.status(400).json({error:"user id is required.."})
     }

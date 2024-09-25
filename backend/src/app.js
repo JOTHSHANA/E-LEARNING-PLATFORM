@@ -11,6 +11,7 @@ const courseRoutes = require('./routes/course/courses')
 const authRouters = require('./routes/auth/auth')
 const regCourseRoutes = require('./routes/regCourse/regCourse')
 const recommendCourses = require('./routes/regCourse/recommed')
+const topic = require('./routes/course/topic')
 
 const app = express();
 const PORT = process.env.DB_PORT;
@@ -25,6 +26,7 @@ app.use('/api', authRouters)
 app.use('/api', courseRoutes);
 app.use('/api', regCourseRoutes)
 app.use('/api', recommendCourses)
+app.use('/api', topic)
 
 
 
