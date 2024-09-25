@@ -22,7 +22,7 @@ app.use(morgan('dev'));
 app.use('/api', authRouters)
 app.use('/api', regCourseRoutes)
 
-app.use('/api',authenticateJWT, courseRoutes);
+app.use('/api', courseRoutes);
 
 
 const startServer = async () => {
