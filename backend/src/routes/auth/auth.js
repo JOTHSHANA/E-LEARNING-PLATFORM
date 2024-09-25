@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { PostUser } = require('../controllers/auth/auth');
-const {LoginUser} = require('../controllers/auth/allowuser')
+const { PostUser } = require('../../controllers/auth/auth');
+const {LoginUser} = require('../../controllers/auth/allowuser')
 
 router.post('/add-user', async (req, res) => {
   const user = req.body;
+  if(!user.email || !user.username){
+    return res.status(400).json({error:"email and username is required..."})
+  }
   const result = await PostUser(user);
 
   if (result.status === 'error') {

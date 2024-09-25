@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getCourses, getCoursebyId } = require('../controllers/courses/course');
+const { getCourses, getCoursebyId } = require('../../controllers/courses/course');
 
 router.get('/course-list', async (req, res) => {
   try {
@@ -12,7 +12,7 @@ router.get('/course-list', async (req, res) => {
 });
 
 router.get('/course-id', async(req, res)=>{
-  const {id} = req.body;
+  const id = req.query.id;
   if(!id){
     return res.status(400).json({error:"course id is required..."})
   }

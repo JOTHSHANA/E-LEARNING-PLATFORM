@@ -1,4 +1,4 @@
-const { RegCourse, Course } = require('../../models'); // Ensure this path is correct
+const { RegCourse, Course } = require('../../models'); 
 
 exports.getRegCourse = async (user) => {
     try {
@@ -10,7 +10,7 @@ exports.getRegCourse = async (user) => {
             include: [
                 {
                     model: Course,
-                    attributes: ['name', 'img', 's_description','f_description', 'c_type','rating']
+                    attributes: ['id','name', 'img', 's_description','f_description', 'c_type','rating']
                 }
             ]
         });
@@ -24,17 +24,36 @@ exports.getRegCourse = async (user) => {
 
 exports.registerCourse = async (user, course) => {
     try {
+        const existingRegistration = await RegCourse.findOne({
+            where: {
+                user: user,
+                course: course
+            }
+        });
+
+        if (existingRegistration) {
+            return {
+                success: false,
+                message: 'User is already registered for this course',
+                status: 'already_registered'
+            };
+        }
         const newRegistration = await RegCourse.create({
             user: user,
             course: course,
             status: '1'
         });
 
-        return newRegistration;
+        return {
+            success: true,
+            data: newRegistration
+        };
+
     } catch (error) {
         throw new Error('Error registering for course: ' + error.message);
     }
 };
+
 
 
 exports.deleteRegistration = async (user, course) => {

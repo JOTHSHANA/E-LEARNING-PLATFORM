@@ -7,9 +7,10 @@ const cors = require('cors');
 const authenticateJWT = require('./middleware/authenticate')
 
 const { User, Course } = require('./models')
-const courseRoutes = require('./routes/courses')
-const authRouters = require('./routes/auth')
-const regCourseRoutes = require('./routes/regCourse')
+const courseRoutes = require('./routes/course/courses')
+const authRouters = require('./routes/auth/auth')
+const regCourseRoutes = require('./routes/regCourse/regCourse')
+const recommendCourses = require('./routes/regCourse/recommed')
 
 const app = express();
 const PORT = process.env.DB_PORT;
@@ -23,8 +24,8 @@ app.use('/api', authRouters)
 // app.use(authenticateJWT)
 app.use('/api', courseRoutes);
 app.use('/api', regCourseRoutes)
+app.use('/api', recommendCourses)
 
-app.use('/api',authenticateJWT, courseRoutes);
 
 
 const startServer = async () => {
@@ -33,7 +34,9 @@ const startServer = async () => {
     await sequelize.authenticate();
     console.log('Database connection established successfully.');
 
-    await sequelize.sync(); 
+    await sequelize.sync(
+      // {alter:true}
+    ); 
     console.log('Models synchronized successfully.');
 
     app.listen(PORT, () => {
