@@ -5,6 +5,7 @@ import LoginSignup from "./pages/Login/Login";
 import { ThemeProviderComponent } from "./components/appLayout/muiTheme";
 import { LandingPage } from "./pages/LandingPage/LandingPage";
 import Course from "./pages/Course/course";
+import Courses from "./pages/Courses/Courses";
 import Forum from "./pages/DiscussionForum/Forum";
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/" element={<LandingPage />} />
               <Route path="/landingPage" element={<LandingPage />} />
-              <Route path="/courses" element={<Course />} />
+              <Route path="/courses" element={<Courses />} />
               <Route path="/forum" element={<Forum />} />
             </Routes>
             <div className="area">

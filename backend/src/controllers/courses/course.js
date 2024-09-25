@@ -13,6 +13,22 @@ const getCourses = async () => {
   }
 };
 
+const getCoursebyId = async(id)=>{
+  try{
+    const course = await Course.findOne({
+      where: {
+        id,
+        status: '1' 
+      }    })
+    return course
+  }
+  catch(error){
+    throw new Error('Error fetching Reg courses: ' + error.message);
+  }
+}
+
+
 module.exports = {
   getCourses,
+  getCoursebyId,
 };

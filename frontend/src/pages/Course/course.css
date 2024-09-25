@@ -144,7 +144,6 @@
 
 .course-cards img {
   height: auto;
-  padding: 10px;
   background-color: var(--background);
   border-radius: 10px;
 }

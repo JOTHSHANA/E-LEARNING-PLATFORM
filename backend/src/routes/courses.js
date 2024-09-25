@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getCourses } = require('../controllers/courses/course');
+const { getCourses, getCoursebyId } = require('../controllers/courses/course');
 
 router.get('/course-list', async (req, res) => {
   try {
@@ -10,5 +10,18 @@ router.get('/course-list', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+router.get('/course-id', async(req, res)=>{
+  const {id} = req.body;
+  if(!id){
+    return res.status(400).json({error:"course id is required..."})
+  }
+  try{
+    const courses = await getCoursebyId(id)
+    res.status(200).json(courses)
+  }catch(error){
+    res.status(500).json({error:error.message})
+  }
+})
 
 module.exports = router;

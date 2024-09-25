@@ -10,13 +10,13 @@ exports.getRegCourse = async (user) => {
             include: [
                 {
                     model: Course,
-                    attributes: ['name', 'img', 'description', 'rating']
+                    attributes: ['name', 'img', 's_description','f_description', 'c_type','rating']
                 }
             ]
         });
-        const courseDetails = rCourses.map((regCourse) => regCourse.Course);
-        return courseDetails;
-        // return rCourses
+        // const courseDetails = rCourses.map((regCourse) => regCourse.Course);
+        // return courseDetails;
+        return rCourses
     } catch (error) {
         throw new Error('Error fetching Reg courses: ' + error.message);
     }

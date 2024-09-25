@@ -57,17 +57,6 @@ function Body() {
         react: react
     };
 
-    // Array of course data
-    // const courses = [
-    //     { name: "C PROGRAMMING", img: "c", description: "Learn the basics of C programming.", rating: 2.5 },
-    //     { name: "C++ PROGRAMMING", img: "cpp", description: "Learn the basics of C++ programming.", rating: 5 },
-    //     { name: "JAVA PROGRAMMING", img: "java", description: "Learn Java programming from scratch.", rating: 3.2 },
-    //     { name: "PYTHON PROGRAMMING", img: "python", description: "Master Python programming.", rating: 4.8 },
-    //     { name: "HTML", img: "html", description: "Learn the basics of HTML.", rating: 4.1 },
-    //     { name: "CSS", img: "css", description: "Learn how to style websites with CSS.", rating: 4.3 },
-    //     { name: "JAVASCRIPT", img: "js", description: "Become proficient in JavaScript.", rating: 4.6 },
-    //     { name: "REACT JS", img: "react", description: "Master front-end development with React.", rating: 4.3 }
-    // ];
 
 
     useEffect(() => {
@@ -88,23 +77,38 @@ function Body() {
     };
 
     return (
-        <div className="courses-container">
+        <div className="container-course">
 
             {courses.map((course, index) => (
                 <div className="course-card" key={index}>
-                    <div className="course-img-flex">
+                    <div className="course-img-style">
                         <img style={{ height: "100px" }} src={courseImages[course.img]} alt={course.name} />
-                        <div style={{ padding: "10px 0px" }}>
-                            <div style={{ fontSize: "18px" }}>{course.name}</div>
-                            <Box sx={{ '& > legend': { mt: 2 } }}>
-                                <Rating name="read-only" value={course.rating} precision={0.1} readOnly sx={{ fontSize: '18px' }} />
-                            </Box>
-                            <p style={{ fontSize: "12px", color: "gray", fontWeight: "600" }}>{course.rating}</p>
-                        </div>
                     </div>
                     <div className="course-description">
-                        <h4>{course.name}</h4>
-                        <p>{course.description}</p>
+                        <div>
+                            <div className="labels">
+                                <div className="label1">Live</div>
+                                <div className="label2">Free</div>
+                                <div className="label3">Public</div>
+                            </div>
+                            <div style={{ fontSize: "24px", fontWeight: "700" }}>{course.name}</div>
+                            <p>{course.description}</p>
+
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                            <div className="rating-box">
+                                <b>Ratings:</b>
+                                <p style={{ fontSize: "12px", color: "gray", fontWeight: "600" }}>{course.rating}</p>
+                                <Box sx={{ '& > legend': { mt: 2 } }}>
+                                    <Rating name="read-only" value={course.rating} precision={0.1} readOnly sx={{ fontSize: '18px' }} />
+                                </Box>
+
+                            </div>
+                            <div className="rating-box enrolled">
+                                <b>Enrollments:</b>
+                                <p style={{ fontWeight: "700", fontSize: "20px" }}>9765</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             ))}

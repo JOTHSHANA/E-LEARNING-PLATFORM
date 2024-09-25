@@ -15,13 +15,13 @@ const theme = createTheme({
 
 
 const lightModeProperties = {
-    "--background": "#f9f9f9",
+    "--background": "#ecedf1",
     "--background-1": "#ffffff",
     "--text": "#1f1f1f",
     "--text-1": "#353f80",
     "--text-r": "white",
     "--select": "#fbfbfb",
-    "--border-color": "#cbcccd",
+    "--border-color": "rgba(128, 128, 128, 0.233)",
     "--menu-hover": "#ecebf3",
     "--active-bg": "#ffffff",
     "--shadow": "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
@@ -29,24 +29,26 @@ const lightModeProperties = {
     "--icons-bg": "#e5e3f3",
     "--card": "#c4c5cb",
     "--footer": "#eef0fe",
+    "--trans":"rgba(255, 255, 255, 0.5)"
 
 };
 
 const darkModeProperties = {
-    "--background": "#0f0f0f",
-    "--background-1": "#000000",
+    "--background": "#09090b",
+    "--background-1": "#18181b",
     "--text": "white",
     "--text-1": "#b8b8ef",
     "--text-r": "#1f1f1f",
     "--select": "#0f1015",
-    "--border-color": "#3d444d",
+    "--border-color": "rgba(128, 128, 128, 0.233)",
     "--menu-hover": "#0f1015",
     "--active-bg": "#2a2d3b",
     "--shadow": "0px 0px 0px solid black",
     "--icons-rev": "#025a63",
     "--icons-bg": "#2a2d3b",
     "--card": "#1d1f22",
-    "footer": "#eef0fe",
+    "--footer": "#eef0fe",
+    "--trans":"rgba(0, 0, 0, 0.5)"
 };
 
 

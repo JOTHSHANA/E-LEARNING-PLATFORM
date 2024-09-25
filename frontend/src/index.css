@@ -59,8 +59,7 @@ button:focus-visible {
 
 /* Style the draggable part of the scrollbar */
 ::-webkit-scrollbar-thumb {
-  background-color: #4159d0aa;
-  background-image: linear-gradient(43deg, #4159d084 0%, #c850c077 46%, #ffcd7083 100%);
+  background-color: var(--background-1);
   border-radius: 10px;
   /* Optional: Adds rounded corners to the thumb */
 }
