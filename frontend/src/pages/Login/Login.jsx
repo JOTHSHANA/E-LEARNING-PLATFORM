@@ -31,6 +31,8 @@ export default function LoginPopup({ open, onClose }) {
                 setEncryptedCookie('token', token);
                 setEncryptedCookie('name', user.name);
                 setEncryptedCookie('email', user.email);
+                setEncryptedCookie('id', user.id);
+
 
                 navigate('/dashboard');
                 onClose();

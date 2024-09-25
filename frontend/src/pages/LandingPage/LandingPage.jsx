@@ -11,6 +11,7 @@ import SignupDialog from "../../pages/Login/Signup";
 import Button from "../../components/Button/Button";
 import "./LandingPage.css";
 import { Email, Phone } from '@mui/icons-material';
+import { getDecryptedCookie } from "../../components/utils/encrypt";
 
 const useNavbarScroll = () => {
     const sectionRefs = {
@@ -72,12 +73,15 @@ const LandingPage = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    
+
     return (
         <>
             <header
                 className={`navbar ${navbarTransparent ? "transparent" : "solid"}`}
             >
                 <nav>
+                    
                     <div
                         className={`hamburger-icon ${navbarTransparent ? "icon-transparent" : "icon-solid"
                             }`}

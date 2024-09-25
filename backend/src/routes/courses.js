@@ -4,23 +4,23 @@ const { getCourses, getCoursebyId } = require('../controllers/courses/course');
 
 router.get('/course-list', async (req, res) => {
   try {
-    const courses = await getCourses();  
-    res.status(200).json(courses); 
+    const courses = await getCourses();
+    res.status(200).json(courses);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-router.get('/course-id', async(req, res)=>{
-  const {id} = req.body;
-  if(!id){
-    return res.status(400).json({error:"course id is required..."})
+router.get('/course-id', async (req, res) => {
+  const id = req.query.id;
+  if (!id) {
+    return res.status(400).json({ error: "course id is required..." })
   }
-  try{
+  try {
     const courses = await getCoursebyId(id)
     res.status(200).json(courses)
-  }catch(error){
-    res.status(500).json({error:error.message})
+  } catch (error) {
+    res.status(500).json({ error: error.message })
   }
 })
 

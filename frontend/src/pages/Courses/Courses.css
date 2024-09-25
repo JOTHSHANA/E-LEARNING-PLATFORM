@@ -32,9 +32,9 @@
 
 .course-description {
     flex: 1;
-    display: flex;
     gap: 10px;
     justify-content: space-between;
+    display: flex;
 }
 
 .labels {

@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Layout from "../../components/appLayout/Layout";
-import './CourseDetails.css';
+import './CourseDetails.css'; // Import the new CSS
 import Button from "../../components/Button/Button";
-import CustomSelect from "../../components/Select/Select";
-import customStyles from "../../components/appLayout/selectTheme";
-import InputBox from "../../components/InputBox/InputBox";
 import html from '../../assets/html.png';
 import css from '../../assets/css.png';
 import js from '../../assets/js.png';
@@ -14,20 +11,19 @@ import cpp from '../../assets/cpp.png';
 import java from '../../assets/java.png';
 import python from '../../assets/python.png';
 import react from '../../assets/react.png';
-import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
-import axios from 'axios'
-import apiHost from "../../components/utils/api";
 import requestApi from "../../components/utils/axios";
-// import html from '../../assets/html.png'
+import { getDecryptedCookie } from "../../components/utils/encrypt";
 
 function CourseDetails() {
     return <Layout rId={1} body={<Body />} />;
 }
 
 function Body() {
+    const [course, setCourse] = useState();
+    const [isRegistered, setIsRegistered] = useState(false);
 
-
+    // Course images mapping
     const courseImages = {
         c: c,
         cpp: cpp,
@@ -39,46 +35,79 @@ function Body() {
         react: react
     };
 
-    const location = useLocation(); // Access the location object
-    const { courseId } = location.state || {}; // Destructure the passed state
-
-
+    const location = useLocation();
+    const { courseId } = location.state || {};
+    const { registerStatus } = location.state || {};
+    const userId = getDecryptedCookie("id");
     const fetchCourseDetails = async (courseId) => {
         try {
-            const response = await requestApi("GET", `/api/courseDetails`, {
-            });
-            console.log(response.data);
+            const response = await requestApi("GET", `/course-id?id=${courseId}`);
+            setCourse(response.data);
         } catch (error) {
             console.error('Error fetching course details:', error);
         }
-    }
+    };
 
-    // Check if the course data is available
-    // if (courseId) {
-    //     return <div>No course data available</div>;
-    // } else {
-    //     fetchcourseDetails();
-    // }
+    const registerCourse = async (user, course) => {
+        setIsRegistered(true);
+        try {
+            const response = await requestApi("POST", `/reg-course`, { user, course });
+            if (response.success) {
+                console.log('Course registered successfully:', response.data);
+            } else {
+                console.error('Error registering course:', response.error);
+            }
+        } catch (error) {
+            console.error('Error in registerCourse:', error);
+        }
+    };
+
 
     useEffect(() => {
         if (courseId) {
-            fetchCourseDetails(courseId); // Fetch course details only if courseId exists
+            fetchCourseDetails(courseId);
         }
     }, [courseId]);
 
-    return (
-        <div>
-            {/* <h1>Course Details for {course.name}</h1>
-            <p>Description: {course.description}</p>
-            <p>Rating: {course.rating}</p>
-            <p>Enrollments: {course.enrollments}</p>
-            <img style={{
-                width: "100%",   // Make the width 100% of the container
-                height: "200px", // Set a fixed height
-                objectFit: "cover" // Ensures the image covers the area without stretching
-            }} src={courseImages[course.img]} alt={course.name} /> */}
+    if (!course) {
+        return <div>Loading...</div>;
+    }
 
-        </div>
+    return (
+        <div className="course-details-container">
+            <div className="course-information">
+                <div className="course-rating-card">
+                    <span style={{ color: "var(--text)" }}>Rating: </span>
+                    <span style={{ fontSize: "16px", color: "var(--text)" }}>{course.rating}</span><Rating value={parseFloat(course.rating)} readOnly precision={0.1} />
+                </div>
+                <p>Enrollments: {course.enrollments || "No data available"}</p>
+            </div>
+            <div className="course-headers">
+
+                <img className="course-images" src={courseImages[course.img]} alt={course.name} />
+                <div>
+                    <h1 style={{ color: "var(--text)" }}>{course.name}</h1>
+                    <p>{course.s_description || course.f_description || "No description available."}</p>
+
+                </div>
+                {registerStatus === '1' ? (
+                    <button className="register-button">Continue Watching</button>
+                ) : (
+                    isRegistered ? (
+                        <button className="register-button registered">Registered Successfully</button>
+                    ) : (
+                        <button onClick={() => registerCourse(userId, courseId)} className="register-button">Register Course</button>
+                    )
+                )}
+            </div>
+
+            <div className="course-description-card">
+                <h2 style={{ color: "var(--text)" }}>About Course</h2>
+                <p>{course.f_description}</p>
+            </div>
+
+
+        </div >
     );
 }
 

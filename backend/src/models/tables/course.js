@@ -23,14 +23,14 @@ const Course = sequelize.define('Course', {
     type: DataTypes.TEXT,
     allowNull: true,
   },
-  rating:{
-    type:DataTypes.DECIMAL(2,1),
-    defaultValue:'1'
+  rating: {
+    type: DataTypes.DECIMAL(2, 1),
+    defaultValue: '1'
   },
   status: {
     type: DataTypes.ENUM('0', '1'),
     defaultValue: '1',
-  }, 
+  },
 }, {
   tableName: 'courses',
   timestamps: false,

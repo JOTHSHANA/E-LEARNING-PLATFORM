@@ -72,8 +72,8 @@ function Body() {
     const fetchCourses = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`${apiHost}/api/course-list`);
-            console.log(response.data);
+            const response = await requestApi("GET", `/course-list`);
+
             setCourses(response.data);
         } catch (error) {
             console.error('Error fetching courses:', error);
@@ -92,8 +92,9 @@ function Body() {
     };
 
     // Function to handle course card click
-    const handleCourseClick = (courseId) => {
-        navigate('/courseDetails', { state: { courseId } }); // Pass the entire course object or just courseId via state
+    const handleCourseClick = (courseId, registerStatus) => {
+        console.log(courseId, registerStatus)
+        navigate('/courseDetails', { state: { courseId, registerStatus } }); // Pass the entire course object or just courseId via state
     };
 
     return (
@@ -102,45 +103,65 @@ function Body() {
             <div className="container-course">
 
                 {registeredCourses.map((registeredCourse, index) => (
-
-                    <div className="course-card" key={index}>
+                    <div className="course-card" onClick={() => handleCourseClick(registeredCourse.Course.id, registeredCourse.status)} key={index}>
                         <div className="course-img-style">
-                            <img style={{ height: "100px" }} src={courseImages[registeredCourse.img]} alt={registeredCourse.name} />
+                            <img style={{ height: "100px" }} src={courseImages[registeredCourse.Course.img]} alt={registeredCourse.Course.name} />
                         </div>
                         <div className="course-description">
-                            <div>
+                            <div style={{ width: "100%" }}>
                                 <div className="labels">
                                     <div className="label1">Live</div>
                                     <div className="label2">Free</div>
                                     <div className="label3">Public</div>
                                 </div>
-                                <div style={{ fontSize: "24px", fontWeight: "700" }}>{registeredCourse.name}</div>
-                                <p>{registeredCourse.description}</p>
+                                <div style={{ fontSize: "24px", fontWeight: "700" }}>{registeredCourse.Course.name}</div>
+                                <p>{registeredCourse.Course.s_description}</p>
 
+                                {/* Progress Bar */}
+                                <div style={{ marginTop: "7px" }}>
+
+                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "5px" }}>
+                                        <b>Progress:</b>
+                                        {/* <button style={{ backgroundColor: "#1572b7", border: "none", color: "white", borderRadius: "5px", cursor: "pointer", padding: "5px 10px" }}>continue learning</button> */}
+                                    </div>
+                                    <div style={{ width: "100%", backgroundColor: "#e0e0e0", borderRadius: "5px", overflow: "hidden" }}>
+                                        <div
+                                            style={{
+                                                width: `${registeredCourse.progress}%`,
+                                                height: "10px",
+                                                backgroundColor: "#4caf50",
+                                                transition: "width 0.5s",
+                                            }}
+                                        />
+                                    </div>
+                                    <p style={{ fontSize: "12px", color: "gray", fontWeight: "600" }}>{registeredCourse.progress}% Completed</p>
+                                </div>
                             </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                            <div style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center", justifyContent: "center" }}>
                                 <div className="rating-box">
                                     <b>Ratings:</b>
-                                    <p style={{ fontSize: "12px", color: "gray", fontWeight: "600" }}>{registeredCourse.rating}</p>
+                                    <p style={{ fontSize: "12px", color: "gray", fontWeight: "600" }}>{registeredCourse.Course.rating}</p>
                                     <Box sx={{ '& > legend': { mt: 2 } }}>
-                                        <Rating name="read-only" value={registeredCourse.rating} precision={0.1} readOnly sx={{ fontSize: '18px' }} />
+                                        <Rating name="read-only" value={Number(registeredCourse.Course.rating)} precision={0.1} readOnly sx={{ fontSize: '18px' }} />
                                     </Box>
                                 </div>
                                 <div className="rating-box enrolled">
                                     <b>Enrollments:</b>
-                                    <p style={{ fontWeight: "700", fontSize: "20px" }}>9765</p>
+                                    <p style={{ fontWeight: "700", fontSize: "20px" }}>9834</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 ))}
+
+
             </div>
             <p style={{ margin: "0px 10px", fontWeight: "600", fontSize: "16px" }}>Recommanded Courses:</p>
             <div className="container-course">
 
                 {courses.map((course, index) => (
 
-                    <div className="course-card" key={index} onClick={() => handleCourseClick(course.id)}> {/* Add onClick */}
+                    <div className="course-card" key={index} onClick={() => handleCourseClick(course.id, '0')}> {/* Add onClick */}
                         <div className="course-img-style">
                             <img style={{ height: "100px" }} src={courseImages[course.img]} alt={course.name} />
                         </div>
@@ -152,7 +173,7 @@ function Body() {
                                     <div className="label3">Public</div>
                                 </div>
                                 <div style={{ fontSize: "24px", fontWeight: "700" }}>{course.name}</div>
-                                <p>{course.description}</p>
+                                <p>{course.s_description}</p>
 
                             </div>
                             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
