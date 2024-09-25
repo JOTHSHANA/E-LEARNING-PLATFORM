@@ -8,6 +8,7 @@ import Course from "./pages/Course/course";
 import Courses from "./pages/Courses/Courses";
 import Forum from "./pages/DiscussionForum/Forum";
 import CourseDetails from "./pages/CourseDetails/CourseDetails";
+import Learning from "./pages/learning/learning";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path="/courses" element={<Courses />} />
               <Route path="/courseDetails" element={<CourseDetails />} />
               <Route path="/forum" element={<Forum />} />
+              <Route path="/learning" element={<Learning />} />
             </Routes>
             <div className="area">
               <ul className="circles">

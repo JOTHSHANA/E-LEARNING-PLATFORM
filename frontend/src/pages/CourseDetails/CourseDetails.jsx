@@ -14,6 +14,7 @@ import react from '../../assets/react.png';
 import Rating from '@mui/material/Rating';
 import requestApi from "../../components/utils/axios";
 import { getDecryptedCookie } from "../../components/utils/encrypt";
+import { useNavigate } from "react-router-dom"; 
 
 function CourseDetails() {
     return <Layout rId={1} body={<Body />} />;
@@ -22,7 +23,7 @@ function CourseDetails() {
 function Body() {
     const [course, setCourse] = useState();
     const [isRegistered, setIsRegistered] = useState(false);
-
+    const navigate = useNavigate(); 
     // Course images mapping
     const courseImages = {
         c: c,
@@ -46,6 +47,12 @@ function Body() {
         } catch (error) {
             console.error('Error fetching course details:', error);
         }
+    };
+
+
+    const handleLearnClick = (courseId) => {
+        console.log(courseId)
+        navigate('/learning', { state: { courseId } });
     };
 
     const registerCourse = async (user, course) => {
@@ -78,20 +85,20 @@ function Body() {
             <div className="course-information">
                 <div className="course-rating-card">
                     <span style={{ color: "var(--text)" }}>Rating: </span>
-                    <span style={{ fontSize: "16px", color: "var(--text)" }}>{course.rating}</span><Rating value={parseFloat(course.rating)} readOnly precision={0.1} />
+                    <span style={{ fontSize: "16px", color: "var(--text)" }}>{course.course.rating}</span><Rating value={parseFloat(course.course.rating)} readOnly precision={0.1} />
                 </div>
-                <p>Enrollments: {course.enrollments || "No data available"}</p>
+                <p>Enrollments: {course.count || "No data available"}</p>
             </div>
             <div className="course-headers">
 
-                <img className="course-images" src={courseImages[course.img]} alt={course.name} />
+                <img className="course-images" src={courseImages[course.course.img]} alt={course.course.name} />
                 <div>
-                    <h1 style={{ color: "var(--text)" }}>{course.name}</h1>
-                    <p>{course.s_description || course.f_description || "No description available."}</p>
+                    <h1 style={{ color: "var(--text)" }}>{course.course.name}</h1>
+                    <p>{course.course.s_description || course.course.f_description || "No description available."}</p>
 
                 </div>
                 {registerStatus === '1' ? (
-                    <button className="register-button">Continue Watching</button>
+                    <button onClick={() => handleLearnClick(courseId)} className="register-button">Continue Watching</button>
                 ) : (
                     isRegistered ? (
                         <button className="register-button registered">Registered Successfully</button>
@@ -103,7 +110,7 @@ function Body() {
 
             <div className="course-description-card">
                 <h2 style={{ color: "var(--text)" }}>About Course</h2>
-                <p>{course.f_description}</p>
+                <p>{course.course.f_description}</p>
             </div>
 
 

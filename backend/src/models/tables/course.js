@@ -27,6 +27,10 @@ const Course = sequelize.define('Course', {
     type: DataTypes.DECIMAL(2, 1),
     defaultValue: '1'
   },
+  c_type:{
+    type:DataTypes.ENUM('Technology','Programming'),
+    defaultValue:'Programming',
+  },
   status: {
     type: DataTypes.ENUM('0', '1'),
     defaultValue: '1',

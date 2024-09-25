@@ -72,8 +72,7 @@ function Body() {
     const fetchCourses = async () => {
         setLoading(true);
         try {
-            const response = await requestApi("GET", `/course-list`);
-
+            const response = await requestApi("GET", `/rec-courses?user=${userId}`);
             setCourses(response.data);
         } catch (error) {
             console.error('Error fetching courses:', error);
