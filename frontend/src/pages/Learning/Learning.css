@@ -2,7 +2,6 @@
     display: flex;
     justify-content: space-between;
     height: 100%;
-    overflow: hidden;
 }
 
 .learning-content {
@@ -15,6 +14,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: var(--background-1);
+    padding: 0px 10px;
+    border-radius: 10px;
+    position: sticky;
+    top: 0px;
 }
 
 .menu-icon {
@@ -69,12 +73,16 @@
 
 /* Topic content area styles */
 .topic-content {
-    margin-top: 20px;
     padding: 15px;
-    border: 1px solid #ccc;
     border-radius: 8px;
 }
 
 .topic-content h3 {
     margin-top: 0;
+}
+
+.video-embed-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -50,9 +50,9 @@ function Body() {
     };
 
 
-    const handleLearnClick = (courseId) => {
-        console.log(courseId)
-        navigate('/learning', { state: { courseId } });
+    const handleLearnClick = (courseId, c_name) => {
+        console.log(courseId, c_name)
+        navigate('/learning', { state: { courseId, c_name } });
     };
 
     const registerCourse = async (user, course) => {
@@ -98,7 +98,7 @@ function Body() {
 
                 </div>
                 {registerStatus === '1' ? (
-                    <button onClick={() => handleLearnClick(courseId)} className="register-button">Continue Watching</button>
+                    <button onClick={() => handleLearnClick(courseId, course.course.name)} className="register-button">Continue Watching</button>
                 ) : (
                     isRegistered ? (
                         <button className="register-button registered">Registered Successfully</button>

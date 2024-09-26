@@ -3,7 +3,7 @@ const router = express.Router();
 const {getContent, postContent} = require('../../controllers/courses/content')
 
 router.get('/c_content', async(req, res)=>{
-    const {course, topic} = req.body
+    const {course, topic} = req.query
     if(!course || !topic){
         return res.status(400).json({error:"course and topic id are required..."})
     }
