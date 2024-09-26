@@ -69,12 +69,12 @@
 .course-description-card h2 {
     font-size: 1.8rem;
     margin-bottom: 10px;
-    color: #444;
+    color: gray;
 }
 
 .course-description-card p {
     font-size: 1.1rem;
-    color: #666;
+    color: gray;
     line-height: 1.6;
 }
 

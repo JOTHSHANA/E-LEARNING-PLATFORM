@@ -1,0 +1,44 @@
+.learning-page-container {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    overflow: hidden;
+}
+
+.learning-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.learning-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-icon {
+    cursor: pointer;
+}
+
+.course-content {
+    margin-top: 20px;
+}
+
+.sidebar-content {
+    width: 250px;
+    padding: 20px;
+}
+
+.sidebar-content h3 {
+    margin-bottom: 10px;
+}
+
+.sidebar-content ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sidebar-content ul li {
+    margin: 10px 0;
+}

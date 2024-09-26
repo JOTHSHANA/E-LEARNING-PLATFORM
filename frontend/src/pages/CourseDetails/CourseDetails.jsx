@@ -94,7 +94,7 @@ function Body() {
                 <img className="course-images" src={courseImages[course.course.img]} alt={course.course.name} />
                 <div>
                     <h1 style={{ color: "var(--text)" }}>{course.course.name}</h1>
-                    <p>{course.course.s_description || course.course.f_description || "No description available."}</p>
+                    <p style={{color:"gray"}}>{course.course.s_description || "No description available."}</p>
 
                 </div>
                 {registerStatus === '1' ? (

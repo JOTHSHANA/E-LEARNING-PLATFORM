@@ -38,7 +38,7 @@ const startServer = async () => {
 
     await sequelize.sync(
       // {alter:true}
-    ); 
+    );
     console.log('Models synchronized successfully.');
 
     app.listen(PORT, () => {
