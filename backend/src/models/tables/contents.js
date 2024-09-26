@@ -1,12 +1,21 @@
 const {DataTypes} = require('sequelize')
 const sequelize = require('../../config/database');
 const Topic = require('./topic')
+const Course = require('./course')
 
 const Content = sequelize.define('Content',{
     id:{
         type:DataTypes.BIGINT,
         autoIncrement:true,
         primaryKey:true
+    },
+    course:{
+        type:DataTypes.BIGINT,
+        references:{
+            model:Course,
+            key:'id',
+        },
+        allowNull:false 
     },
     topic:{
         type:DataTypes.BIGINT,

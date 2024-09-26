@@ -104,7 +104,7 @@ function Body() {
                 {registeredCourses.map((registeredCourse, index) => (
                     <div className="course-card" onClick={() => handleCourseClick(registeredCourse.Course.id, registeredCourse.status)} key={index}>
                         <div className="course-img-style">
-                            <img style={{ height: "100px" }} src={courseImages[registeredCourse.Course.img]} alt={registeredCourse.Course.name} />
+                            <img  src={courseImages[registeredCourse.Course.img]} alt={registeredCourse.Course.name} />
                         </div>
                         <div className="course-description">
                             <div style={{ width: "100%" }}>
@@ -136,7 +136,7 @@ function Body() {
                                     <p style={{ fontSize: "12px", color: "gray", fontWeight: "600" }}>{registeredCourse.progress}% Completed</p>
                                 </div>
                             </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center", justifyContent: "center" }}>
+                            <div className="ratings" >
                                 <div className="rating-box">
                                     <b>Ratings:</b>
                                     <p style={{ fontSize: "12px", color: "gray", fontWeight: "600" }}>{registeredCourse.Course.rating}</p>
