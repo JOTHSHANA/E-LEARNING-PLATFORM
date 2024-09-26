@@ -26,9 +26,13 @@
 }
 
 .sidebar-content {
-    width: 250px;
+    width: 320px;
     padding: 20px;
+    background-color: var(--background-1);
+    height: 100%;
+    color: var(--text);
 }
+
 
 .sidebar-content h3 {
     margin-bottom: 10px;
@@ -39,6 +43,38 @@
     padding-left: 0;
 }
 
-.sidebar-content ul li {
+.sidebar-content ul {
     margin: 10px 0;
+}
+
+.topic-item {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--background);
+    border-radius: 10px;
+    margin: 10px 0px;
+}
+
+
+.topic-item.active {
+    background-color: #007bff;
+    /* Highlight active topic */
+    font-weight: bold;
+    /* Change color when active */
+}
+
+.topic-item:hover {
+    background-color: #237ce84f;
+}
+
+/* Topic content area styles */
+.topic-content {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.topic-content h3 {
+    margin-top: 0;
 }

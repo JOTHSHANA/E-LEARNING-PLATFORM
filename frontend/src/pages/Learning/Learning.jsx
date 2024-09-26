@@ -10,41 +10,6 @@ import IconButton from '@mui/material/IconButton';
 import requestApi from "../../components/utils/axios";
 import { getDecryptedCookie } from "../../components/utils/encrypt";
 
-// Dummy data simulating backend response
-const courseData = {
-    html: {
-        name: "HTML Course",
-        topics: [
-            "Introduction to HTML",
-            "HTML Tags",
-            "HTML Forms",
-            "HTML Media",
-            "HTML APIs",
-        ],
-    },
-    css: {
-        name: "CSS Course",
-        topics: [
-            "Introduction to CSS",
-            "CSS Selectors",
-            "Box Model",
-            "Flexbox and Grid",
-            "CSS Animations",
-        ],
-    },
-    js: {
-        name: "JavaScript Course",
-        topics: [
-            "Introduction to JavaScript",
-            "DOM Manipulation",
-            "ES6+ Features",
-            "Asynchronous JS",
-            "APIs and AJAX",
-        ],
-    },
-    // Add more course data as needed
-};
-
 function Learning() {
     return <Layout rId={1} body={<Body />} />;
 }
@@ -54,13 +19,44 @@ function Body() {
     const { courseId } = location.state || "html"; // Use 'html' as default courseId
     const [open, setOpen] = useState(false); // State to control drawer visibility
     const userId = getDecryptedCookie("id");
-
-    // Fetch course data based on courseId (using dummy data here)
-    const course = courseData[courseId] || {};
+    const [CourseTopics, setCourseTopics] = useState([]);
+    const [activeTopic, setActiveTopic] = useState(1); // Track the active topic
+    const [topicContent, setTopicContent] = useState(null);
 
     const toggleDrawer = () => {
         setOpen(!open);
     };
+
+    const fetchCourseTopics = async (courseId) => {
+        try {
+            const response = await requestApi("GET", `/c_topic?course=${courseId}`);
+            setCourseTopics(response.data);
+        } catch (error) {
+            console.error('Error fetching course details:', error);
+        }
+    };
+
+
+    const fetchTopicContent = async (topicId) => {
+        try {
+            const response = await requestApi("GET", `/c_content?topic=${topicId}`);
+            setTopicContent(response.data); // Save the fetched content
+        } catch (error) {
+            console.error('Error fetching topic content:', error);
+        }
+    };
+
+    const handleTopicClick = (topicId) => {
+        setActiveTopic(topicId); // Set the clicked topic as active
+        fetchTopicContent(activeTopic); // Fetch the content for the clicked topic
+    };
+
+    useEffect(() => {
+        if (courseId) {
+            fetchCourseTopics(courseId);
+            fetchTopicContent(activeTopic);
+        }
+    }, [courseId, activeTopic]);
 
     return (
         <div className="learning-page-container">
@@ -72,32 +68,58 @@ function Body() {
                 className="learning-sidebar"
             >
                 <div className="sidebar-content">
-                    <h3>{course.name} Topics</h3>
+                    <h3>Table of contents</h3>
                     <ul>
-                        {course.topics && course.topics.map((topic, index) => (
-                            <li key={index}>{topic}</li>
+                        {/* Map through CourseTopics array to render each topic */}
+                        {CourseTopics.map((topic, index) => (
+                            <li
+                                key={topic.id}
+                                className={`topic-item ${activeTopic === topic.id ? 'active' : ''}`}
+                                onClick={() => handleTopicClick(topic.id)} // Handle topic click
+                            >
+                                <h4>{`${index + 1}. ${topic.title}`}</h4>
+                            </li>
                         ))}
+
                     </ul>
                 </div>
             </Drawer>
 
-            {/* Main content area */}
             <div className="learning-content">
                 <div className="learning-header">
-                    <h2>{course.name}</h2>
+                    <h2>Course Details</h2>
                     {/* Sidebar toggle button */}
                     <IconButton onClick={toggleDrawer} className="menu-icon">
                         <MenuIcon />
                     </IconButton>
                 </div>
                 <div className="course-content">
-                    {/* You can add more detailed content here */}
-                    <p>Welcome to the {course.name}. Here you will learn the following topics:</p>
+                    {/* <p>Welcome to the course. Here you will learn the following topics:</p>
                     <ul>
-                        {course.topics && course.topics.map((topic, index) => (
-                            <li key={index}>{topic}</li>
+                        {CourseTopics.map((topic) => (
+                            <li key={topic.id}>{topic.title}</li>
                         ))}
-                    </ul>
+                    </ul> */}
+
+                    {topicContent ? (
+                        <div className="topic-content">
+                            <p dangerouslySetInnerHTML={{ __html: topicContent[0].document }}></p>
+                            {topicContent[0].image && (
+                                <div>
+                                    <h4>Image:</h4>
+                                    <p>{topicContent[0].image}</p>
+                                </div>
+                            )}
+                            {topicContent[0].video && (
+                                <div>
+                                    <h4>Video:</h4>
+                                    <p>{topicContent[0].video}</p>
+                                </div>
+                            )}
+                        </div>
+                    ) : (
+                        <p>Select a topic to view its content.</p> // Placeholder when no topic is selected
+                    )}
                 </div>
             </div>
         </div>
