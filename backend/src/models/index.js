@@ -13,6 +13,8 @@ RegCourse.belongsTo(Course, {foreignKey:'course'})
 Course.hasMany(Topic,{foreignKey:'course'})
 Topic.belongsTo(Course, {foreignKey:'course'})
 // mapping-content
+Course.hasMany(Content, {foreignKey:'course'})
+Content.belongsTo(Course,{foreignKey:'course'})
 Topic.hasMany(Content,{foreignKey:'topic'})
 Content.belongsTo(Topic, {foreignKey:'topic'})
 

@@ -1,9 +1,10 @@
 const {Content} = require('../../models')
 
-exports.getContent = async(topic)=>{
+exports.getContent = async(course, topic)=>{
     try{
         const getCourseContent = await Content.findAll({
             where:{
+                course:course,
                 topic:topic,
                 status:'1'
             }
@@ -15,9 +16,10 @@ exports.getContent = async(topic)=>{
 }
 
 
-exports.postContent = async(topic, document,image, order)=>{
+exports.postContent = async(course, topic, document,image, order)=>{
     try{
         const postCourseContent = await Content.create({
+            course:course,
             topic:topic,
             document:document, 
             image:image,
