@@ -3,7 +3,11 @@ import './Login.css'; // CSS file for SignUp page
 import InputBox from '../../components/InputBox/InputBox'; // Adjust the path as necessary
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import loginImage from '../../assets/loginImage.jpg'
+import loginImage from '../../assets/loginImage.jpg';
+import requestApi from '../../components/utils/axios';
+import toast from 'react-hot-toast';  // Import react-hot-toast
+import { useNavigate } from 'react-router-dom';
+
 
 export default function SignUpPopup({ open, onClose }) {
     const [name, setName] = useState('');
@@ -11,9 +15,57 @@ export default function SignUpPopup({ open, onClose }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const navigate = useNavigate();
+
 
     const handleInputChange = (event, setter) => {
         setter(event.target.value);
+    };
+
+    const handleSignUp = async () => {
+
+        if (!name || !username || !email || !password || !confirmPassword) {
+            toast.error('Fill up all the fields.');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            toast.error(`passwords doesn't match`);
+            return;
+        }
+        const payload = {
+            email,
+            username,
+            password,
+            name,
+        };
+
+        console.log('Payload being sent:', payload);
+
+        try {
+            const response = await requestApi("POST", "/add-user", payload);
+
+            if (response.success) {
+                const { message, user } = response.data;
+
+                // Log the success response
+                console.log("Sign-up successful:", message, user);
+                navigate('/dashboard');
+                toast.success(`Welcome ${user.name}! Account created successfully.`);
+            } else {
+                // Log the error response
+                console.error("Sign-up failed:", response.error);
+
+                // Show an error toast with the backend error message
+                toast.error(response.error || "Sign-up failed. Please try again.");
+            }
+        } catch (error) {
+            // Log the error
+            console.error("Error during sign-up:", error.message);
+
+            // Show an error toast
+            toast.error("Something went wrong. Please try again.");
+        }
     };
 
     if (!open) return null;
@@ -85,7 +137,7 @@ export default function SignUpPopup({ open, onClose }) {
                             />
                         </div>
 
-                        <button className="signup-button">Sign Up</button>
+                        <button className="signup-button" onClick={handleSignUp}>Sign Up</button>
 
                         <div className="social-signup">
                             <button className="google-signup">

@@ -81,7 +81,7 @@ const Course = React.forwardRef((props, ref) => {
                                     <div className="price-ratings">
                                         <div className="price">FREE</div>
                                         <div className="ratings">
-                                            <Box sx={{display:"flex", alignItems:"center", gap:"10px"}}>
+                                            <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
                                                 {course.rating}
                                                 <Rating name="read-only" value={course.rating} precision={0.1} readOnly />
                                             </Box>

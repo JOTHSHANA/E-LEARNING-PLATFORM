@@ -44,11 +44,10 @@ const Contact = React.forwardRef((props, ref) => (
 
         {/* Newsletter Subscription Section */}
         <div className="footer-section">
-          <h2>Newsletter</h2>
-          <p>Subscribe to get the latest updates and offers.</p>
+          <h2>Email us</h2>
           <form className="newsletter-form">
-            <input type="email" placeholder="Enter your email" required />
-            <button type="submit">Subscribe</button>
+            <input type="email" placeholder="Enter your message" required />
+            <button type="submit">Send</button>
           </form>
         </div>
       </div>

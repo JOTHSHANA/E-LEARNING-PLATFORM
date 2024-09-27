@@ -9,10 +9,13 @@ import Courses from "./pages/Courses/Courses";
 import Forum from "./pages/DiscussionForum/Forum";
 import CourseDetails from "./pages/CourseDetails/CourseDetails";
 import Learning from "./pages/learning/learning";
+import { Toaster } from 'react-hot-toast';
+
 
 function App() {
   return (
     <div>
+      <Toaster />
       <ThemeProviderComponent>
         <BrowserRouter>
           <div className="App">

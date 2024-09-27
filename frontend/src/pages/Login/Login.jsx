@@ -7,6 +7,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import requestApi from '../../components/utils/axios';
 import { setEncryptedCookie } from '../../components/utils/encrypt';
 import loginImage from '../../assets/loginImage.jpg'
+import toast from 'react-hot-toast';
 
 export default function LoginPopup({ open, onClose }) {
     const [username, setUsername] = useState('');
@@ -19,6 +20,10 @@ export default function LoginPopup({ open, onClose }) {
     };
 
     const handleLogin = async () => {
+        if (!username || !password) {
+            toast.error('Fill up all the fields.');
+            return;
+        }
         try {
             const response = await requestApi("POST", '/login', {
                 username,
@@ -35,14 +40,16 @@ export default function LoginPopup({ open, onClose }) {
 
 
                 navigate('/dashboard');
+                toast.success("login successful!")
                 onClose();
             } else {
-                console.error('Login failed:', message);
+                console.error('Username or Password is wrong.', message);
             }
         } catch (error) {
             console.error('Error during login:', error.message);
         }
     };
+
 
     if (!open) return null;
 
