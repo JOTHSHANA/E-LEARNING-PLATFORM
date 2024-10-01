@@ -1,0 +1,174 @@
+/* General container for the course details page */
+.course-details-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--background-1);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Header section for course name and short description */
+.course-headers {
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+.course-headers h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.course-headers p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* Styling the course image */
+.course-images {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Course rating and enrollment section */
+.course-information {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(58, 211, 134, 0.264);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+.course-rating-card {
+    font-size: 1.2rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.course-rating-card span {
+    font-weight: bold;
+}
+
+/* Full course description section */
+.course-description-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: gray;
+}
+
+.course-description-card p {
+    font-size: 1.1rem;
+    color: gray;
+    line-height: 1.6;
+}
+
+/* Action button for registering */
+.course-actions {
+    text-align: end;
+    margin-top: 30px;
+}
+
+.register-button {
+    background-color: #0072c3;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.register-button:hover {
+    background-color: #0072c3dc;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .course-headers h1 {
+        font-size: 1.6rem;
+        /* Smaller font size for mobile */
+    }
+
+    .course-headers p {
+        font-size: 1rem;
+        /* Smaller font size for mobile */
+    }
+
+    .course-information {
+        flex-direction: column;
+        /* Stack info vertically */
+        align-items: flex-start;
+        /* Align items to the start */
+    }
+
+    .course-rating-card {
+        margin-bottom: 10px;
+        /* Space between elements */
+    }
+
+    .course-images {
+        max-height: 200px;
+        /* Reduce image height on mobile */
+    }
+
+    .course-description-card h2 {
+        font-size: 1.5rem;
+        /* Smaller heading for mobile */
+    }
+
+    .course-description-card p {
+        font-size: 1rem;
+        /* Smaller paragraph font for mobile */
+    }
+
+    .register-button {
+        width: 100%;
+        /* Full width button */
+        padding: 12px;
+        /* More padding for better touch targets */
+        font-size: 1.2rem;
+        /* Bigger text for button */
+    }
+}
+
+@media (max-width: 480px) {
+    .course-headers h1 {
+        font-size: 1.4rem;
+        /* Even smaller for very small screens */
+    }
+
+    .course-headers p {
+        font-size: 0.9rem;
+        /* Smaller description for very small screens */
+    }
+
+    .course-information {
+        padding: 10px;
+        /* Reduce padding for mobile */
+    }
+
+    .register-button {
+        font-size: 1rem;
+        /* Adjust button text for very small screens */
+    }
+}

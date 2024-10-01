@@ -11,17 +11,25 @@ const Course = sequelize.define('Course', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  description: {
+  s_description: {
     type: DataTypes.TEXT,
-    allowNull: false,
+    allowNull: true,
+  },
+  f_description: {
+    type: DataTypes.TEXT,
+    allowNull: true,
   },
   img: {
     type: DataTypes.TEXT,
     allowNull: true,
   },
-  rating:{
-    type:DataTypes.DECIMAL(2,1),
-    defaultValue:'1'
+  rating: {
+    type: DataTypes.DECIMAL(2, 1),
+    defaultValue: '1'
+  },
+  c_type:{
+    type:DataTypes.ENUM('Technology','Programming'),
+    defaultValue:'Programming',
   },
   status: {
     type: DataTypes.ENUM('0', '1'),

@@ -23,6 +23,7 @@
     transition: all 10s ease-in;
     font-weight: var(--f-weight);
     white-space: nowrap;
+    color: var(--text);
 }
 
 .app-sidebar:hover {
@@ -43,6 +44,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
 }
 
 .app-name {
@@ -152,11 +154,11 @@ p {
     /* background-color: var(--menu-hover); */
     color: rgb(30, 146, 224);
     box-sizing: border-box;
-    border-left: 2px solid white;
+    border-left: 2px solid var(--text);
 }
 
 .list-items.active .menu-names {
-    color: white;
+    color: var(--text);
 }
 
 .list-items.active .custom-sidebar-icon,
@@ -165,7 +167,7 @@ p {
 .list-items.active .custom-sidebar-icon3 {
     /* background-color: var(--active-bg); */
     color: rgb(30, 146, 224);
-    box-shadow: var(--shadow);
+    /* box-shadow: var(--shadow); */
 }
 
 
@@ -198,4 +200,12 @@ p {
 
 .techLehren-icon{
     color: gold;
+}
+
+.profile-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-right: 10px;
 }

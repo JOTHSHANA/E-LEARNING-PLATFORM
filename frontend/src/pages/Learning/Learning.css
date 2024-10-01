@@ -1,0 +1,88 @@
+.learning-page-container {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.learning-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.learning-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-1);
+    padding: 0px 10px;
+    border-radius: 10px;
+    position: sticky;
+    top: 0px;
+}
+
+.menu-icon {
+    cursor: pointer;
+}
+
+.course-content {
+    margin-top: 20px;
+}
+
+.sidebar-content {
+    width: 320px;
+    padding: 20px;
+    background-color: var(--background-1);
+    height: 100%;
+    color: var(--text);
+}
+
+
+.sidebar-content h3 {
+    margin-bottom: 10px;
+}
+
+.sidebar-content ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sidebar-content ul {
+    margin: 10px 0;
+}
+
+.topic-item {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--background);
+    border-radius: 10px;
+    margin: 10px 0px;
+}
+
+
+.topic-item.active {
+    background-color: #007bff;
+    /* Highlight active topic */
+    font-weight: bold;
+    /* Change color when active */
+}
+
+.topic-item:hover {
+    background-color: #237ce84f;
+}
+
+/* Topic content area styles */
+.topic-content {
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.topic-content h3 {
+    margin-top: 0;
+}
+
+.video-embed-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

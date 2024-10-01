@@ -5,11 +5,17 @@ import LoginSignup from "./pages/Login/Login";
 import { ThemeProviderComponent } from "./components/appLayout/muiTheme";
 import { LandingPage } from "./pages/LandingPage/LandingPage";
 import Course from "./pages/Course/course";
+import Courses from "./pages/Courses/Courses";
 import Forum from "./pages/DiscussionForum/Forum";
+import CourseDetails from "./pages/CourseDetails/CourseDetails";
+import Learning from "./pages/learning/learning";
+import { Toaster } from 'react-hot-toast';
+
 
 function App() {
   return (
     <div>
+      <Toaster />
       <ThemeProviderComponent>
         <BrowserRouter>
           <div className="App">
@@ -18,8 +24,10 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/" element={<LandingPage />} />
               <Route path="/landingPage" element={<LandingPage />} />
-              <Route path="/courses" element={<Course />} />
+              <Route path="/courses" element={<Courses />} />
+              <Route path="/courseDetails" element={<CourseDetails />} />
               <Route path="/forum" element={<Forum />} />
+              <Route path="/learning" element={<Learning />} />
             </Routes>
             <div className="area">
               <ul className="circles">

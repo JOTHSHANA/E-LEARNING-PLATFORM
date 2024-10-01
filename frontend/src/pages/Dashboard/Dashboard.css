@@ -1,14 +1,18 @@
 .total-dashboard {
     display: flex;
     background-color: var(--border-color);
+    border-radius: 5px;
     gap: 2px;
+
 
 }
 
 .dashboard-content {
     flex: 3.5;
-    background-color: rgb(79, 78, 78);
+    /* background-color: rgb(79, 78, 78); */
+    color: var(--text);
     padding: 10px;
+
 }
 
 .profile-container {
@@ -31,13 +35,13 @@
 
 .pic-container {
     padding: 10px;
-    background-color: red;
+    background-color: var(--background-1);
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #4159d0aa;
-    background-image: linear-gradient(43deg, #4159d084 0%, #c850c077 46%, #ffcd7083 100%);
+    /* background-color: #4159d0aa; */
+    /* background-image: linear-gradient(43deg, #4159d084 0%, #c850c077 46%, #ffcd7083 100%); */
     border-radius: 5px;
 
 }
