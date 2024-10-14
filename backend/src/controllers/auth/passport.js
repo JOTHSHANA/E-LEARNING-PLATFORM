@@ -2,6 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('../../models/tables/users');
 const path = require('path');
+const generateToken = require('./jwt')
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 
 
@@ -25,9 +26,19 @@ passport.use(new GoogleStrategy({
         } else {
             console.log('Existing user found:', user);
         }
+        const token = generateToken({
+            username: user.username,
+            email: user.email,
+            name: user.name,
+            profilePhoto: profile.photos[0].value 
+        });
         
-        done(null, { ...user.get(), profilePhoto: profile.photos[0].value }); 
-    } catch (err) {
+        done(null, { 
+            ...user.get(),
+            profilePhoto: profile.photos[0].value, 
+            token 
+        });
+        } catch (err) {
         done(err, null);
     }
 }));

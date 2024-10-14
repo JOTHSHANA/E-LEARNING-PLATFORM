@@ -41,9 +41,6 @@ app.use('/api', recommendCourses)
 app.use('/api', topic)
 app.use('/api', content)
 
-
-
-
 const startServer = async () => {
   try {
     console.log('Attempting to connect to the database...');

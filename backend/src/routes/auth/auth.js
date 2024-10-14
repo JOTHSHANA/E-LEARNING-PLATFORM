@@ -3,8 +3,7 @@ const router = express.Router();
 const passport = require('passport')
 const { PostUser } = require('../../controllers/auth/auth');
 const {LoginUser} = require('../../controllers/auth/allowuser')
-const generateToken = require('../../controllers/auth/jwt')
-const CryptoJS = require('crypto-js');
+const {encryptData, setEncryptedCookie} = require('../../config/encrypt')
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 
@@ -39,13 +38,14 @@ router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 
 router.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: process.env.CLIENT_URL+'/login' }),
   (req, res) => {
-    const token = req.user.token;
-    const secretKey = process.env.SECRET_KEY; 
-    console.log(secretKey)
+    const { name, email, profilePhoto, token } = req.user;
 
-    const encryptedToken = CryptoJS.AES.encrypt(token, secretKey).toString();
-
-    res.cookie('token', encryptedToken);
+    setEncryptedCookie(res, 'userData', {
+      name,
+      email,
+      profilePhoto,
+      token
+    });
 
     res.redirect(process.env.CLIENT_URL+'/dashboard'); 
 }
