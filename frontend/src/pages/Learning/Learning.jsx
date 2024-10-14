@@ -37,9 +37,9 @@ function Body() {
             const response = await requestApi("GET", `/c_topic?course=${courseId}`);
             setCourseTopics(response.data);
 
-            // Set the first topic as active once topics are fetched
+           
             if (response.data.length > 0) {
-                setActiveTopic(response.data[0].id); // Set first topic id as active
+                setActiveTopic(response.data[0].id); 
             }
         } catch (error) {
             console.error('Error fetching course details:', error);
@@ -57,7 +57,7 @@ function Body() {
 
     const handleTopicClick = (topicId) => {
         setActiveTopic(topicId);
-        fetchTopicContent(topicId, courseId); // Fetch content based on the clicked topic
+        fetchTopicContent(topicId, courseId);
     };
 
     useEffect(() => {
@@ -67,7 +67,6 @@ function Body() {
     }, [courseId]);
 
     useEffect(() => {
-        // Fetch content only when activeTopic is set
         if (activeTopic) {
             fetchTopicContent(activeTopic, courseId);
         }
@@ -77,14 +76,14 @@ function Body() {
         return (
             <div
                 className="video-embed-container"
-                dangerouslySetInnerHTML={{ __html: videoEmbedCode }} // Render the iframe
+                dangerouslySetInnerHTML={{ __html: videoEmbedCode }} 
             />
         );
     };
 
     return (
         <div className="learning-page-container">
-            {/* Sidebar drawer */}
+      
             <Drawer
                 anchor="right"
                 open={open}
@@ -118,24 +117,15 @@ function Body() {
             <div className="learning-content">
                 <div className="learning-header">
                     <h2>{c_name}</h2>
-                    {/* Sidebar toggle button */}
                     <IconButton onClick={toggleDrawer} className="menu-icon">
                         <MenuOpenSharpIcon />
                     </IconButton>
                 </div>
                 <div className="course-content">
-                    {/* <p>Welcome to the course. Here you will learn the following topics:</p>
-                    <ul>
-                        {CourseTopics.map((topic) => (
-                            <li key={topic.id}>{topic.title}</li>
-                        ))}
-                    </ul> */}
                     {topicContent && topicContent.length > 0 ? (
                         <div className="topic-content">
-                            {/* Loop through each topicContent item and render the details */}
                             {topicContent.map((content, index) => (
                                 <div key={content.id}>
-                                    {/* Render the document as HTML */}
                                     <p dangerouslySetInnerHTML={{ __html: content.document }}></p>
 
                                     {content.image && (
@@ -155,7 +145,7 @@ function Body() {
                             ))}
                         </div>
                     ) : (
-                        <p>Select a topic to view its content.</p> // Placeholder when no topic is selected
+                        <p>Select a topic to view its content.</p> 
                     )}
 
                 </div>
