@@ -18,9 +18,6 @@ function Body() {
     const location = useLocation();
     // const { courseId, c_name } = location.state || "html"; // Use 'html' as default courseId
     const { courseId, c_name } = location.state || {}; // Destructure courseId and c_name
-
-    console.log("Received courseId:", courseId);
-    console.log("Received c_name:", c_name);
     const [open, setOpen] = useState(false);
     const userId = getDecryptedCookie("id");
     const [CourseTopics, setCourseTopics] = useState([]);
@@ -30,16 +27,16 @@ function Body() {
         setOpen(!open);
     };
 
-    console.log(courseId, c_name)
+    // console.log(courseId, c_name)
 
     const fetchCourseTopics = async (courseId) => {
         try {
             const response = await requestApi("GET", `/c_topic?course=${courseId}`);
             setCourseTopics(response.data);
 
-           
+
             if (response.data.length > 0) {
-                setActiveTopic(response.data[0].id); 
+                setActiveTopic(response.data[0].id);
             }
         } catch (error) {
             console.error('Error fetching course details:', error);
@@ -76,14 +73,14 @@ function Body() {
         return (
             <div
                 className="video-embed-container"
-                dangerouslySetInnerHTML={{ __html: videoEmbedCode }} 
+                dangerouslySetInnerHTML={{ __html: videoEmbedCode }}
             />
         );
     };
 
     return (
         <div className="learning-page-container">
-      
+
             <Drawer
                 anchor="right"
                 open={open}
@@ -108,8 +105,6 @@ function Body() {
                         ) : (
                             <p>No topics available</p>
                         )}
-
-
                     </ul>
                 </div>
             </Drawer>
@@ -136,16 +131,18 @@ function Body() {
                                     )}
 
                                     {content.video && (
-                                        <div style={{marginBottom:"100px"}}>
+                                        <div style={{ marginBottom: "100px" }}>
                                             <h4>Video {index + 1}:</h4>
                                             {renderVideo(content.video)}
                                         </div>
                                     )}
+                                    {/* <button>pre</button>
+                                    <button>next</button> */}
                                 </div>
                             ))}
                         </div>
                     ) : (
-                        <p>Select a topic to view its content.</p> 
+                        <p>Select a topic to view its content.</p>
                     )}
 
                 </div>
