@@ -1,5 +1,5 @@
-
 .learning-page-container {
+    display: flex;
     justify-content: space-between;
     height: 100%;
 }
@@ -10,9 +10,23 @@
     flex-direction: column;
 }
 
+.learning-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-1);
+    padding: 0px 10px;
+    border-radius: 10px;
+    position: sticky;
+    top: 0px;
+}
 
 .menu-icon {
     cursor: pointer;
+}
+
+.course-content {
+    margin-top: 20px;
 }
 
 .sidebar-content {
@@ -37,92 +51,38 @@
     margin: 10px 0;
 }
 
-
 .topic-item {
     padding: 10px;
     border-bottom: 1px solid var(--border-color);
     background-color: var(--background);
-    border-radius: 5px;
+    border-radius: 10px;
     margin: 10px 0px;
 }
 
 
-
+.topic-item.active {
+    background-color: #007bff;
+    /* Highlight active topic */
+    font-weight: bold;
+    /* Change color when active */
+}
 
 .topic-item:hover {
     background-color: #237ce84f;
 }
 
-
-.learning-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--background-1);
-    padding: 0px 10px;
-    border-radius: 5px;
-    position: sticky;
-    top: 0px;
-    border: 1px solid var(--border-color);
-}
-
-
-.course-content {
-    margin-top: 10px;
-}
-
-
+/* Topic content area styles */
 .topic-content {
-    padding: 15px 50px 15px 50px;
+    padding: 15px;
     border-radius: 8px;
-    line-height: 30px;
-    background-color: var(--background-1);
-    box-sizing: border-box;
 }
-
-
 
 .topic-content h3 {
     margin-top: 0;
-    color: var(--text)
 }
 
-.topic-content h1{
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    color: var(--text);
-    border-bottom: 1px solid gray;
-}
-
-.topic-content h2{
-    margin-bottom: 10px;
-    color: var(--text);
-}
-
-.topic-content p{
-    font-weight: 500;
-    color: rgb(99, 99, 99);
-    font-size: 18px;
-    padding: 0px 10px 0px 10px;
-}
-
-iframe {
-    display: block;
-    margin: 20px auto;
-    max-width: 100%;
-    border-radius: 10px;
-} 
-
-
-.topic-item.active {
-    background-color: #007bff;
-    font-weight: bold;
-}
-
-pre{
-    padding: 0px 20px 0px 20px;
-    margin: 5px;
-    border: 1px solid gainsboro;
-    background-color: rgb(237, 237, 237);
-    border-radius: 20px;
+.video-embed-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -105,7 +105,7 @@ function SideBar(props) {
 
             <div className="list-div">
                 <div className="list-items">
-                    {/* <hr style={{ borderColor: "#000000", borderWidth: "2px" }} /> */}
+                    <hr style={{ borderColor: "#000000", borderWidth: "2px" }} />
                     <div className="link"><ExitToAppRoundedIcon className="custom-sidebar-icon3" /> <div className="menu-names">logout</div></div>
                 </div>
             </div>
