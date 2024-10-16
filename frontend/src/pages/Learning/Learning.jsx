@@ -9,6 +9,8 @@ import MenuOpenSharpIcon from '@mui/icons-material/MenuOpenSharp';
 import IconButton from '@mui/material/IconButton';
 import requestApi from "../../components/utils/axios";
 import { getDecryptedCookie } from "../../components/utils/encrypt";
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 
 function Learning() {
     return <Layout rId={1} body={<Body />} />;
@@ -37,9 +39,9 @@ function Body() {
             const response = await requestApi("GET", `/c_topic?course=${courseId}`);
             setCourseTopics(response.data);
 
-           
+
             if (response.data.length > 0) {
-                setActiveTopic(response.data[0].id); 
+                setActiveTopic(response.data[0].id);
             }
         } catch (error) {
             console.error('Error fetching course details:', error);
@@ -50,6 +52,7 @@ function Body() {
         try {
             const response = await requestApi("GET", `/c_content?topic=${topic}&course=${course}`);
             setTopicContent(response.data);
+            console.log(topicContent)
         } catch (error) {
             console.error('Error fetching topic content:', error);
         }
@@ -76,14 +79,42 @@ function Body() {
         return (
             <div
                 className="video-embed-container"
-                dangerouslySetInnerHTML={{ __html: videoEmbedCode }} 
+                dangerouslySetInnerHTML={{ __html: videoEmbedCode }}
             />
         );
     };
 
+    const handleNextTopic = () => {
+        if (CourseTopics.length > 0) {
+            const currentIndex = CourseTopics.findIndex(topic => topic.id === activeTopic);
+            const nextIndex = currentIndex + 1;
+
+            if (nextIndex < CourseTopics.length) {
+                const nextTopicId = CourseTopics[nextIndex].id;
+                handleTopicClick(nextTopicId);
+            }
+        }
+    };
+
+    const handlePrevTopic = () => {
+        if (CourseTopics.length > 0) {
+            const currentIndex = CourseTopics.findIndex(topic => topic.id === activeTopic);
+            const prevIndex = currentIndex - 1;
+
+            if (prevIndex >= 0) {
+                const prevTopicId = CourseTopics[prevIndex].id;
+                handleTopicClick(prevTopicId);
+            }
+        }
+    };
+
+    const currentIndex = CourseTopics.findIndex(topic => topic.id === activeTopic);
+    const isFirstTopic = currentIndex === 0;
+    const isLastTopic = currentIndex === CourseTopics.length - 1;
+
     return (
         <div className="learning-page-container">
-      
+
             <Drawer
                 anchor="right"
                 open={open}
@@ -136,16 +167,32 @@ function Body() {
                                     )}
 
                                     {content.video && (
-                                        <div style={{marginBottom:"100px"}}>
+                                        <div style={{ marginBottom: "10px" }}>
                                             <h4>Video {index + 1}:</h4>
                                             {renderVideo(content.video)}
                                         </div>
                                     )}
+                                    <div className="navigation-buttons">
+                                        {!isFirstTopic && (
+                                            <button onClick={handlePrevTopic}>
+                                                <KeyboardDoubleArrowLeftIcon /> Prev
+                                            </button>
+                                        )}
+
+                                        <div className="spacer"></div> {/* Spacer div to fill the space */}
+
+                                        {!isLastTopic && (
+                                            <button onClick={handleNextTopic}>
+                                                Next <KeyboardDoubleArrowRightIcon />
+                                            </button>
+                                        )}
+                                    </div>
+
                                 </div>
                             ))}
                         </div>
                     ) : (
-                        <p>Select a topic to view its content.</p> 
+                        <p>Select a topic to view its content.</p>
                     )}
 
                 </div>

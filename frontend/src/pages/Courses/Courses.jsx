@@ -84,8 +84,9 @@ function Body() {
         console.log(userId);
         try {
             const response = await requestApi("GET", `/reg-course?user=${userId}`);
-            console.log(response.data);
+            
             setRegisteredCourses(response.data);
+            // console.log(registeredCourses)
         } catch (error) {
             console.error('Error fetching registered courses:', error);
         }

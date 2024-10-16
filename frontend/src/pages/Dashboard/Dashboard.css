@@ -7,12 +7,14 @@
 
 }
 
+.profile {
+    color: var(--text);
+}
+
 .dashboard-content {
     flex: 3.5;
-    /* background-color: rgb(79, 78, 78); */
     color: var(--text);
-    padding: 10px;
-
+    background-color: var(--background);
 }
 
 .profile-container {
@@ -40,8 +42,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: #4159d0aa; */
-    /* background-image: linear-gradient(43deg, #4159d084 0%, #c850c077 46%, #ffcd7083 100%); */
+
     border-radius: 5px;
 
 }
@@ -52,31 +53,180 @@
 
 .color-empty {
     fill: #eeeeee;
-    /* Light gray for no activity */
 }
 
 .color-skipped {
     fill: var(--card);
-    /* Yellow for skipped dates */
 }
 
 .color-scale-1 {
     fill: #c6e48b;
-    /* Light green */
 }
 
 .color-scale-2 {
     fill: #7bc96f;
-    /* Medium green */
 }
 
 .color-scale-3 {
     fill: #239a3b;
-    /* Dark green */
 }
 
 .color-scale-4 {
     fill: #196127;
-    /* Darkest green */
 }
+
+.profile-activity {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+
+}
+
+.profile-info {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: var(--background-1);
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.activity-map {
+    flex: 2;
+    background-color: var(--background-1);
+    border-radius: 5px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    flex: 1;
+}
+
+
+
+.progress-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.progress-card {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    flex-direction: column;
+    flex: 2;
+    background-color: var(--background-1);
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+
+}
+
+.course-image img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.course-detail {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+}
+
+.course-detail h4 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--text);
+}
+
+.progress-bar {
+    background-color: #e0e0e0;
+    height: 10px;
+    flex-grow: 1;
+    margin-right: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.filler {
+    background-color: #4caf50;
+    height: 100%;
+    border-radius: inherit;
+}
+
+.progress-percentage {
+    font-size: 16px;
+    color: var(--text);
+}
+
+
+.each-course {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.count-activity {
+    display: flex;
+    gap: 10px;
+}
+
+.count-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+@media (max-width: 768px) {
+    .count-info {
+        grid-template-columns: 1fr;
+        /* Single column on small screens */
+    }
+}
+
+.each-count-box {
+    background-color: var(--background-1);
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid var(--border-color);
+}
+
+.count-icon {
+    font-size: 40px;
+    margin-right: 20px;
+    color: var(--primary-color);
+}
+
+.count-details h4 {
+    font-size: 16px;
+    margin: 0;
+    color: var(--text-dark);
+}
+
+.count-details span {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
 

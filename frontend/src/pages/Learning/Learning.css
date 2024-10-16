@@ -1,4 +1,3 @@
-
 .learning-page-container {
     justify-content: space-between;
     height: 100%;
@@ -69,6 +68,7 @@
 
 .course-content {
     margin-top: 10px;
+    margin-bottom: 70px;
 }
 
 
@@ -87,19 +87,19 @@
     color: var(--text)
 }
 
-.topic-content h1{
+.topic-content h1 {
     padding-bottom: 20px;
     margin-bottom: 20px;
     color: var(--text);
     border-bottom: 1px solid gray;
 }
 
-.topic-content h2{
+.topic-content h2 {
     margin-bottom: 10px;
     color: var(--text);
 }
 
-.topic-content p{
+.topic-content p {
     font-weight: 500;
     color: rgb(99, 99, 99);
     font-size: 18px;
@@ -111,7 +111,7 @@ iframe {
     margin: 20px auto;
     max-width: 100%;
     border-radius: 10px;
-} 
+}
 
 
 .topic-item.active {
@@ -119,10 +119,53 @@ iframe {
     font-weight: bold;
 }
 
-pre{
+pre {
     padding: 0px 20px 0px 20px;
     margin: 5px;
     border: 1px solid gainsboro;
     background-color: rgb(237, 237, 237);
     border-radius: 20px;
+}
+
+@media (max-width: 888px) {
+    .course-content {
+        margin-bottom: 10px;
+    }
+}
+
+.navigation-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Spread the buttons apart */
+    width: 100%;
+    /* Ensures the full width is used */
+}
+
+.navigation-buttons button {
+    background-color: purple;
+    padding: 5px 10px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+}
+
+.navigation-buttons .spacer {
+    flex-grow: 1;
+    /* Takes up remaining space to push buttons apart */
+}
+
+.navigation-buttons button:first-child {
+    margin-right: auto;
+    /* Ensures "Prev" button stays on the left */
+}
+
+.navigation-buttons button:last-child {
+    margin-left: auto;
+    /* Ensures "Next" button stays on the right */
 }
