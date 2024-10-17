@@ -4,6 +4,8 @@ const path = require('path');
 const morgan = require('morgan');
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 const cors = require('cors');
+const passport = require('passport');
+const session = require('express-session');
 const authenticateJWT = require('./middleware/authenticate')
 
 const { User, Course } = require('./models')
@@ -16,7 +18,16 @@ const content = require('./routes/course/content')
 
 const app = express();
 const PORT = process.env.DB_PORT;
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'someSecretKey',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false } 
+}));
+
 app.use(cors());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.json());
 app.use(morgan('dev'));
@@ -29,9 +40,6 @@ app.use('/api', regCourseRoutes)
 app.use('/api', recommendCourses)
 app.use('/api', topic)
 app.use('/api', content)
-
-
-
 
 const startServer = async () => {
   try {

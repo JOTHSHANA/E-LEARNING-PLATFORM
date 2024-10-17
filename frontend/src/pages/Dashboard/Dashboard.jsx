@@ -16,7 +16,8 @@ function Dashboard() {
 }
 
 function Body() {
-  const name = getDecryptedCookie("name");
+  const Data = getDecryptedCookie("userData");
+  const name = Data.name
   const handleClick = () => {};
 
   const [selectedOption, setSelectedOption] = useState(null);

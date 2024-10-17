@@ -18,9 +18,6 @@ function Body() {
     const location = useLocation();
     // const { courseId, c_name } = location.state || "html"; // Use 'html' as default courseId
     const { courseId, c_name } = location.state || {}; // Destructure courseId and c_name
-
-    console.log("Received courseId:", courseId);
-    console.log("Received c_name:", c_name);
     const [open, setOpen] = useState(false);
     const userId = getDecryptedCookie("id");
     const [CourseTopics, setCourseTopics] = useState([]);
@@ -30,7 +27,7 @@ function Body() {
         setOpen(!open);
     };
 
-    console.log(courseId, c_name)
+    // console.log(courseId, c_name)
 
     const fetchCourseTopics = async (courseId) => {
         try {
@@ -109,8 +106,6 @@ function Body() {
                         ) : (
                             <p>No topics available</p>
                         )}
-
-
                     </ul>
                 </div>
             </Drawer>
@@ -146,11 +141,13 @@ function Body() {
                                     )}
 
                                     {content.video && (
-                                        <div style={{marginBottom:"100px"}}>
+                                        <div style={{ marginBottom: "100px" }}>
                                             <h4>Video {index + 1}:</h4>
                                             {renderVideo(content.video)}
                                         </div>
                                     )}
+                                    {/* <button>pre</button>
+                                    <button>next</button> */}
                                 </div>
                             ))}
                         </div>
