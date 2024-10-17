@@ -17,7 +17,7 @@ const theme = createTheme({
 const lightModeProperties = {
     "--background": "#ecedf1",
     "--background-1": "#ffffff",
-    "--text": "#1f1f1f",
+    "--text": "#18181b",
     "--text-1": "#353f80",
     "--text-r": "white",
     "--select": "#fbfbfb",
@@ -29,7 +29,8 @@ const lightModeProperties = {
     "--icons-bg": "#e5e3f3",
     "--card": "#c4c5cb",
     "--footer": "#eef0fe",
-    "--trans":"rgba(255, 255, 255, 0.5)"
+    "--trans": "rgba(255, 255, 255, 0.5)",
+    "--lbg": "linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)"
 
 };
 
@@ -48,7 +49,8 @@ const darkModeProperties = {
     "--icons-bg": "#2a2d3b",
     "--card": "#1d1f22",
     "--footer": "#eef0fe",
-    "--trans":"rgba(0, 0, 0, 0.5)"
+    "--trans": "rgba(0, 0, 0, 0.5)",
+    "--lbg": "linear-gradient(to right, #434343 0%, #18181b 100%)"
 };
 
 

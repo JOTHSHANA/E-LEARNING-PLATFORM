@@ -186,6 +186,7 @@
 .count-activity {
     display: flex;
     gap: 10px;
+    margin-bottom: 10px;
 }
 
 .count-info {
@@ -230,3 +231,29 @@
 }
 
 
+.problem-solving {
+    display: flex;
+    gap: 10px;
+}
+
+.overall-count {
+    background-color: var(--background-1);
+    flex: 1;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+}
+
+.indiv-count {
+    flex: 2;
+    display: flex;
+    gap: 10px;
+}
+
+.each-indiv-count {
+    background-color: var(--background-1);
+    flex: 1;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+}

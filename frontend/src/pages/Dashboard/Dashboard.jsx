@@ -23,6 +23,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import BadgeIcon from '@mui/icons-material/Badge';
 import requestApi from "../../components/utils/axios";
+import SolvedProgress from "./SolvedProgress";
 
 
 function Dashboard() {
@@ -182,13 +183,15 @@ function Body() {
     fetchRegisteredCoursesCount();
   }, []);
 
+  
+
   return (
     <>
       <div className="total-dashboard">
         <div className="dashboard-content">
           <div className="profile-activity">
             <div className="profile-info">
-              <img style={{ width: "150px", height: "150px", borderRadius: "50%" }} src={profile} alt="" />
+              <img style={{ width: "150px", height: "150px", borderRadius: "50%", border: "5px solid #1e92e0", borderStyle: "dashed" }} src={profile} alt="" />
               <div className="profile-details">
                 <h2>{name}</h2>
                 <p>{registeredCount} ongoing courses</p>
@@ -331,6 +334,18 @@ function Body() {
                 />
               </div>
             </div>
+          </div>
+          <div className="problem-solving">
+              <div className="overall-count">
+<SolvedProgress />
+              </div>
+              <div className="indiv-count">
+                  <div className="each-indiv-count">awsv</div>
+                  <div className="each-indiv-count">v</div>
+                  <div className="each-indiv-count">wv</div>
+                  <div className="each-indiv-count">asdv</div>
+                  <div className="each-indiv-count">asv</div>
+              </div>
           </div>
         </div>
       </div>

@@ -11,6 +11,7 @@ import SpeakerNotesRoundedIcon from '@mui/icons-material/SpeakerNotesRounded';
 import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
+import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 // Dummy JSON data for sidebar items
 const sidebarData = [
     {
@@ -24,9 +25,9 @@ const sidebarData = [
         icon_path: 'SchoolRoundedIcon'
     },
     {
-        name: 'Recycling',
-        path: '/recycling',
-        icon_path: 'RecyclingSharpIcon'
+        name: 'Practice',
+        path: '/practice',
+        icon_path: 'SettingsSuggestIcon'
     },
     {
         name: 'Discussion Forum',
@@ -40,8 +41,8 @@ function getIconComponent(iconPath) {
     switch (iconPath) {
         case 'SchoolRoundedIcon':
             return <SchoolRoundedIcon className="custom-sidebar-icon" />;
-        case 'RecyclingSharpIcon':
-            return <RecyclingSharpIcon className="custom-sidebar-icon1" />;
+        case 'SettingsSuggestIcon':
+            return <SettingsSuggestIcon sx={{ fontSize: "27px" }} className="custom-sidebar-icon1" />;
         case 'ForumRoundedIcon':
             return <ForumRoundedIcon className="custom-sidebar-icon2" />;
         case 'GridViewRoundedIcon':
@@ -59,14 +60,10 @@ function SideBar(props) {
     useEffect(() => {
         const pathname = location.pathname;
 
-        // Check if the current path is for `/subjects` or `/levels`
-        if (pathname.startsWith("/levels")) {
-            setActiveItem("Subjects"); // Set "Subjects" as active when the path starts with `/levels`
-        } else {
-            const activeItem = sidebarData.find(item => item.path === pathname);
-            if (activeItem) {
-                setActiveItem(activeItem.name);
-            }
+
+        const activeItem = sidebarData.find(item => item.path === pathname);
+        if (activeItem) {
+            setActiveItem(activeItem.name);
         }
     }, [location]);
 
@@ -92,7 +89,7 @@ function SideBar(props) {
                 {sidebarData.map(item => (
                     <li
                         key={item.path}
-                        className={`list-items ${location.pathname.startsWith(item.path) || (item.path === "/subjects" && location.pathname.startsWith("/levels")) ? "active" : ""}`}
+                        className={`list-items ${location.pathname.startsWith(item.path) ? "active" : ""}`}
                         onClick={() => { setActiveItem(item.name); props.handleSideBar(); }}
                     >
                         <Link className="link" to={item.path}>
@@ -105,7 +102,6 @@ function SideBar(props) {
 
             <div className="list-div">
                 <div className="list-items">
-                    {/* <hr style={{ borderColor: "#000000", borderWidth: "2px" }} /> */}
                     <div className="link"><ExitToAppRoundedIcon className="custom-sidebar-icon3" /> <div className="menu-names">logout</div></div>
                 </div>
             </div>

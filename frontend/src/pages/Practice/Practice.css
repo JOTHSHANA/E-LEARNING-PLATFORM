@@ -1,0 +1,127 @@
+.welcome-container {
+    padding: 20px;
+    border-radius: 10px;
+    width: fit-content;
+    background-image: var(--lbg)
+}
+
+.welcome-container .MuiTypography-root {
+    margin-bottom: 20px;
+}
+
+
+
+
+.question-page {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.question-content {
+    width: 40%;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+}
+
+.editor-container {
+    width: 60%;
+}
+
+.welcome-msg {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1e92e0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.coder-quote {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.prblm-button {
+    background-color: #007ac6;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    color: white;
+}
+
+.prblm-button:hover {
+    background-color: rgb(17, 180, 221);
+}
+
+#topic-select-label {
+    left: 10px;
+    top: 15px;
+    background-color: var(--background-1);
+    color: #1e92e0;
+}
+
+.question-list ul {
+    padding: 0px;
+}
+
+.question-list li {
+    list-style: none;
+}
+
+.question-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0px;
+
+}
+
+.ques-box {
+    background-color: var(--background-1);
+    padding: 15px 15px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.ques {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.star-difficulty {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.question-page {
+    display: flex;
+}
+
+.questions-div {
+    flex: 1;
+}
+
+.question-user-info {
+    flex: 1;
+}
+
+.solve-button {
+    background-color: #007ac6;
+    padding: 7px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    margin: 10px 0px 0px 0px;
+    float: right;
+    cursor: pointer;
+}
