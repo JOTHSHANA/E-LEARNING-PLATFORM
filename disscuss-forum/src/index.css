@@ -1,0 +1,92 @@
+/* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Add global font styling */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f6f9; /* Light gray background */
+  color: #333; /* Dark gray text for better readability */
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* General container styling */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: #3f51b5; /* MUI primary blue color */
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Customizing buttons */
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3f51b5;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #303f9f;
+}
+
+/* Card styles for questions and replies */
+.MuiCard-root {
+  margin-bottom: 20px;
+  border-radius: 10px; /* Rounder corners for modern look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadows */
+}
+
+/* Paper component styling */
+.MuiPaper-root {
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Reply form input styles */
+.MuiTextField-root {
+  margin-bottom: 20px;
+}
+
+.MuiTextField-root input {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Avatar and author name styling */
+.MuiAvatar-root {
+  background-color: #673ab7; /* Purple color for avatar */
+  font-size: 1.5rem;
+}
+
+/* General styling for lists and items */
+.MuiListItem-root {
+  margin-bottom: 15px;
+}
+
+/* Replies styling */
+.reply-author {
+  font-weight: bold;
+  color: #555;
+}
+
+.reply-body {
+  margin-top: 5px;
+  font-size: 1rem;
+  color: #333;
+}

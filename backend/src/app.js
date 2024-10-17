@@ -40,7 +40,7 @@ const startServer = async () => {
     console.log('Database connection established successfully.');
 
     await sequelize.sync(
-      // {alter:true}
+      {alter:true}
     );
     console.log('Models synchronized successfully.');
 
