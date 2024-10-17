@@ -20,9 +20,6 @@ function Body() {
     const location = useLocation();
     // const { courseId, c_name } = location.state || "html"; // Use 'html' as default courseId
     const { courseId, c_name } = location.state || {}; // Destructure courseId and c_name
-
-    console.log("Received courseId:", courseId);
-    console.log("Received c_name:", c_name);
     const [open, setOpen] = useState(false);
     const userId = getDecryptedCookie("id");
     const [CourseTopics, setCourseTopics] = useState([]);
@@ -32,7 +29,7 @@ function Body() {
         setOpen(!open);
     };
 
-    console.log(courseId, c_name)
+    // console.log(courseId, c_name)
 
     const fetchCourseTopics = async (courseId) => {
         try {
@@ -60,7 +57,7 @@ function Body() {
 
     const handleTopicClick = (topicId) => {
         setActiveTopic(topicId);
-        fetchTopicContent(topicId, courseId);
+        fetchTopicContent(topicId, courseId); // Fetch content based on the clicked topic
     };
 
     useEffect(() => {
@@ -70,6 +67,7 @@ function Body() {
     }, [courseId]);
 
     useEffect(() => {
+        // Fetch content only when activeTopic is set
         if (activeTopic) {
             fetchTopicContent(activeTopic, courseId);
         }
@@ -114,7 +112,6 @@ function Body() {
 
     return (
         <div className="learning-page-container">
-
             <Drawer
                 anchor="right"
                 open={open}
@@ -139,8 +136,6 @@ function Body() {
                         ) : (
                             <p>No topics available</p>
                         )}
-
-
                     </ul>
                 </div>
             </Drawer>
@@ -148,15 +143,24 @@ function Body() {
             <div className="learning-content">
                 <div className="learning-header">
                     <h2>{c_name}</h2>
+                    {/* Sidebar toggle button */}
                     <IconButton onClick={toggleDrawer} className="menu-icon">
                         <MenuOpenSharpIcon />
                     </IconButton>
                 </div>
                 <div className="course-content">
+                    {/* <p>Welcome to the course. Here you will learn the following topics:</p>
+                    <ul>
+                        {CourseTopics.map((topic) => (
+                            <li key={topic.id}>{topic.title}</li>
+                        ))}
+                    </ul> */}
                     {topicContent && topicContent.length > 0 ? (
                         <div className="topic-content">
+                            {/* Loop through each topicContent item and render the details */}
                             {topicContent.map((content, index) => (
                                 <div key={content.id}>
+                                    {/* Render the document as HTML */}
                                     <p dangerouslySetInnerHTML={{ __html: content.document }}></p>
 
                                     {content.image && (

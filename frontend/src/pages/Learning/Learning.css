@@ -1,4 +1,5 @@
 .learning-page-container {
+    display: flex;
     justify-content: space-between;
     height: 100%;
 }
@@ -9,9 +10,23 @@
     flex-direction: column;
 }
 
+.learning-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-1);
+    padding: 0px 10px;
+    border-radius: 10px;
+    position: sticky;
+    top: 0px;
+}
 
 .menu-icon {
     cursor: pointer;
+}
+
+.course-content {
+    margin-top: 20px;
 }
 
 .sidebar-content {
@@ -36,17 +51,21 @@
     margin: 10px 0;
 }
 
-
 .topic-item {
     padding: 10px;
     border-bottom: 1px solid var(--border-color);
     background-color: var(--background);
-    border-radius: 5px;
+    border-radius: 10px;
     margin: 10px 0px;
 }
 
 
-
+.topic-item.active {
+    background-color: #007bff;
+    /* Highlight active topic */
+    font-weight: bold;
+    /* Change color when active */
+}
 
 .topic-item:hover {
     background-color: #237ce84f;
@@ -73,18 +92,12 @@
 
 
 .topic-content {
-    padding: 15px 50px 15px 50px;
+    padding: 15px;
     border-radius: 8px;
-    line-height: 30px;
-    background-color: var(--background-1);
-    box-sizing: border-box;
 }
-
-
 
 .topic-content h3 {
     margin-top: 0;
-    color: var(--text)
 }
 
 .topic-content h1 {

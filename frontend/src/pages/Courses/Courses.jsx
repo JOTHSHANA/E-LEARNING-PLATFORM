@@ -31,7 +31,7 @@ function Body() {
     const [courses, setCourses] = useState([]);
     const [registeredCourses, setRegisteredCourses] = useState([]);
     const [loading, setLoading] = useState(false);
-    const userId = getDecryptedCookie("id");
+    const userId = 7;
     const navigate = useNavigate(); // For navigation
 
     const handleSelectChange = (selectedOption) => {
@@ -81,7 +81,6 @@ function Body() {
     };
 
     const fetchRegisteredCourses = async () => {
-        console.log(userId);
         try {
             const response = await requestApi("GET", `/reg-course?user=${userId}`);
             
@@ -103,7 +102,7 @@ function Body() {
             <p style={{ margin: "0px 10px", fontWeight: "600", fontSize: "16px" }}>Registered Courses:</p>
             <div className="container-course">
 
-                {registeredCourses.length > 0 ? (registeredCourses.map((registeredCourse, index) => (
+                {registeredCourses.map((registeredCourse, index) => (
                     <div className="course-card" onClick={() => handleCourseClick(registeredCourse.Course.id, registeredCourse.status)} key={index}>
                         <div className="course-img-style">
                             <img src={courseImages[registeredCourse.Course.img]} alt={registeredCourse.Course.name} />
@@ -153,16 +152,14 @@ function Body() {
                             </div>
                         </div>
                     </div>
-                ))) : (
-                    <p>No courses Registered</p>
-                )}
+                ))}
 
 
             </div>
             <p style={{ margin: "0px 10px", fontWeight: "600", fontSize: "16px" }}>Recommanded Courses:</p>
             <div className="container-course">
 
-                {courses.length > 0 ? (courses.map((course, index) => (
+                {courses.map((course, index) => (
 
                     <div className="course-card" key={index} onClick={() => handleCourseClick(course.id, '0')}> {/* Add onClick */}
                         <div className="course-img-style">
@@ -193,9 +190,7 @@ function Body() {
                             </div>
                         </div>
                     </div>
-                ))) : (
-                    <p>All courses registered.</p>
-                )}
+                ))}
             </div>
         </div>
     );
