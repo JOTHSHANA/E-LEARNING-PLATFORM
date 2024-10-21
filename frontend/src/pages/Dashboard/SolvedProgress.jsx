@@ -1,49 +1,58 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
 function SolvedProgress() {
     const [chartData] = useState({
-        series: [76, 67, 61, 90],
+        series: [{
+            data: [76, 67, 61, 90, 70]
+        }],
         options: {
             chart: {
                 height: 390,
-                type: 'radialBar',
+                type: 'bar',
             },
             plotOptions: {
-                radialBar: {
-                    offsetY: 0,
-                    startAngle: 0,
-                    endAngle: 270,
-                    hollow: {
-                        margin: 5,
-                        size: '30%',
-                        background: 'transparent',
-                        image: undefined,
-                    },
+                bar: {
+                    horizontal: true, // Set to false for vertical bars
                     dataLabels: {
-                        name: {
-                            show: false,
-                        },
-                        value: {
-                            show: false,
-                        }
-                    },
-                    barLabels: {
-                        enabled: true,
-                        useSeriesColors: true,
-                        offsetX: -8,
-                        fontSize: '16px',
-                        formatter: function (seriesName, opts) {
-                            return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex];
-                        },
+                        position: 'top', // Options: 'top', 'center', 'bottom'
                     },
                 }
             },
-            colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5'],
-            labels: ['Vimeo', 'Messenger', 'Facebook', 'LinkedIn'],
+            dataLabels: {
+                enabled: true,
+                formatter: (val) => `${val}%`,
+                offsetY: 0,
+                offsetX: 20,
+                style: {
+                    fontSize: '12px',
+                    colors: ["var(--text)"]
+                }
+            },
+            xaxis: {
+                categories: ['C', 'C++', 'Java', 'Python', 'SQL'],
+                labels: {
+                    style: {
+                        colors: 'var(--text)',
+                        fontWeight: 'bold',
+                    }
+                }
+            },
+            yaxis: {
+                labels: {
+                    style: {
+                        colors: 'var(--text)', // Add this line
+                        fontWeight: 'bold',
+                    }
+                }
+            },
+            colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5', '#39539E'],
             responsive: [{
                 breakpoint: 480,
                 options: {
+                    chart: {
+                        height: 300,
+                    },
                     legend: {
                         show: false
                     }
@@ -51,14 +60,14 @@ function SolvedProgress() {
             }]
         }
     });
+
     return (
         <div>
             <div id="chart">
-                <ReactApexChart options={chartData.options} series={chartData.series} type="radialBar" height={390} />
+                <ReactApexChart options={chartData.options} series={chartData.series} type="bar" height={290} />
             </div>
-            <div id="html-dist"></div>
         </div>
     )
 }
 
-export default SolvedProgress
+export default SolvedProgress;

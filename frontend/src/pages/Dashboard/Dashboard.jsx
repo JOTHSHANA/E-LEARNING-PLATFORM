@@ -24,7 +24,25 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import BadgeIcon from '@mui/icons-material/Badge';
 import requestApi from "../../components/utils/axios";
 import SolvedProgress from "./SolvedProgress";
+import { LinearProgress, Box, Typography } from '@mui/material';
 
+
+
+const ProgressWithLabel = ({ value, total, label, color }) => {
+  const progress = (value / total) * 100;
+  return (
+    <Box sx={{ width: '100%', mb: 0 }}>
+      <p style={{ fontSize: "14px" }} className="heading1">
+        <b>{label}:</b> {value} / {total}
+      </p>
+      <LinearProgress variant="determinate" value={progress} sx={{
+        '& .MuiLinearProgress-bar': {
+          backgroundColor: color,
+        },
+      }} />
+    </Box>
+  );
+};
 
 function Dashboard() {
   return <Layout rId={1} body={<Body />} />;
@@ -183,7 +201,34 @@ function Body() {
     fetchRegisteredCoursesCount();
   }, []);
 
-  
+
+  const problemSolvingData = {
+    "C": {
+      "easy": { "solved": 10, "total": 40 },
+      "medium": { "solved": 20, "total": 30 },
+      "hard": { "solved": 10, "total": 30 },
+    },
+    "C++": {
+      "easy": { "solved": 15, "total": 50 },
+      "medium": { "solved": 10, "total": 25 },
+      "hard": { "solved": 5, "total": 20 },
+    },
+    "Java": {
+      "easy": { "solved": 25, "total": 50 },
+      "medium": { "solved": 15, "total": 30 },
+      "hard": { "solved": 5, "total": 20 },
+    },
+    "Python": {
+      "easy": { "solved": 20, "total": 40 },
+      "medium": { "solved": 10, "total": 30 },
+      "hard": { "solved": 5, "total": 30 },
+    },
+    "SQL": {
+      "easy": { "solved": 30, "total": 50 },
+      "medium": { "solved": 15, "total": 25 },
+      "hard": { "solved": 10, "total": 20 },
+    },
+  };
 
   return (
     <>
@@ -336,16 +381,41 @@ function Body() {
             </div>
           </div>
           <div className="problem-solving">
-              <div className="overall-count">
-<SolvedProgress />
-              </div>
-              <div className="indiv-count">
-                  <div className="each-indiv-count">awsv</div>
-                  <div className="each-indiv-count">v</div>
-                  <div className="each-indiv-count">wv</div>
-                  <div className="each-indiv-count">asdv</div>
-                  <div className="each-indiv-count">asv</div>
-              </div>
+            <div className="overall-count">
+              <p className="heading">Problems Solved</p>
+              <hr />
+              <SolvedProgress />
+            </div>
+            <div className="problem-solving-charts">
+              {Object.entries(problemSolvingData).map(([language, levels]) => (
+                <div className="radial-chart" key={language}>
+                  <p className="heading">
+                    {language}
+                  </p>
+                  <hr />
+                  <div className="difficulty-level">
+                    <ProgressWithLabel
+                      value={levels.easy.solved}
+                      total={levels.easy.total}
+                      label="Easy"
+                      color="green" // Color for Easy
+                    />
+                    <ProgressWithLabel
+                      value={levels.medium.solved}
+                      total={levels.medium.total}
+                      label="Medium"
+                      color="orange" // Color for Medium
+                    />
+                    <ProgressWithLabel
+                      value={levels.hard.solved}
+                      total={levels.hard.total}
+                      label="Hard"
+                      color="red" // Color for Hard
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

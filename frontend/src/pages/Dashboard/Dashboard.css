@@ -244,7 +244,7 @@
     border: 1px solid var(--border-color);
 }
 
-.indiv-count {
+.problem-solving-charts {
     flex: 2;
     display: flex;
     gap: 10px;
@@ -256,4 +256,49 @@
     padding: 20px;
     border-radius: 5px;
     border: 1px solid var(--border-color);
+}
+
+
+
+.problem-solving-charts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 boxes in a row */
+    gap: 10px;
+}
+
+.radial-chart {
+    background-color: var(--background-1);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 20px;
+    flex: 1;
+}
+
+.radial-chart h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.difficulty-level p {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+    .problem-solving-charts {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 boxes in a row for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .problem-solving-charts {
+        grid-template-columns: 1fr;
+        /* 1 box in a row for small screens */
+    }
+}
+
+.heading {
+    font-weight: 600;
 }

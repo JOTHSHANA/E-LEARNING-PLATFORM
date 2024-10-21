@@ -1,5 +1,5 @@
 .learning-page-container {
-    display: flex;
+    /* display: flex; */
     justify-content: space-between;
     height: 100%;
 }
@@ -8,6 +8,7 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    background-color: var(--background-1);
 }
 
 .learning-header {

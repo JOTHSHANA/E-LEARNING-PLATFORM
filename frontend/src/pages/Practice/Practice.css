@@ -15,18 +15,26 @@
 .question-page {
     display: flex;
     flex-direction: row;
-    height: 100vh;
+    box-sizing: border-box;
+    gap: 5px;
+
 }
 
 .question-content {
     width: 40%;
     padding: 20px;
     overflow-y: auto;
-    background-color: #f5f5f5;
+    background-color: var(--background-1);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 .editor-container {
     width: 60%;
+    padding: 10px;
+    background-color: #1e1e1e;
+    border-radius: 5px;
 }
 
 .welcome-msg {
@@ -87,7 +95,7 @@
 .ques-box {
     background-color: var(--background-1);
     padding: 15px 15px;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 1px solid var(--border-color);
 }
 
@@ -124,4 +132,108 @@
     margin: 10px 0px 0px 0px;
     float: right;
     cursor: pointer;
+}
+
+
+.topic-and-search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--background-1);
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.search-and-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+}
+
+.search-box {
+    width: 100%;
+    padding: 8px 12px 8px 35px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+    box-sizing: border-box;
+    background-color: var(--background);
+    color: var(--text);
+}
+
+.search-box:focus {
+    border-color: #007bff41;
+}
+
+.search-box::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 20px;
+}
+
+.filter-icon {
+    font-size: 30px;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.3s;
+}
+
+.filter-icon:hover {
+    color: #007bff;
+}
+
+.difficulty-filter-menu {
+    position: absolute;
+    top: 120px;
+    right: 50%;
+    background-color: var(--background-1);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 10;
+    width: 200px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.difficulty-filter-menu .flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.close-filter {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.close-filter:hover {
+    background-color: #d32f2f;
+}
+
+
+.flex {
+    display: flex;
+    flex-direction: column;
 }

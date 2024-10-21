@@ -13,7 +13,7 @@ function QuestionPage({ question }) {
     return (
         <div className="question-page">
             <div className="question-content">
-                <Typography variant="h5">{question.question}</Typography>
+                <Typography variant="h6">{question.question}</Typography>
             </div>
             <div className="editor-container">
                 <Editor
@@ -23,8 +23,10 @@ function QuestionPage({ question }) {
                     theme="vs-dark"
                     onChange={handleEditorChange}
                     value={code}
+                    style={{ padding: '20px' }}
                 />
             </div>
+
         </div>
     );
 }
