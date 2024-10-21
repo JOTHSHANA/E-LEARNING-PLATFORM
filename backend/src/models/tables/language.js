@@ -1,20 +1,16 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../config/database");
 
-const QTopic = sequelize.define(
-    "QTopic",
+const Language = sequelize.define(
+    "Language",
     {
         id:{
             type: DataTypes.BIGINT,
             autoIncrement: true,
             primaryKey: true,
         },
-        name:{
+        language:{
             type:DataTypes.STRING,
-            allowNull:false
-        },
-        languages:{
-            type:DataTypes.TEXT,
             allowNull:false
         },
         status: {
@@ -23,9 +19,9 @@ const QTopic = sequelize.define(
           },
     },
     {
-        tableName: "question_topic",
+        tableName: "language",
         timestamps: false,
       }
 )
 
-module.exports = QTopic
+module.exports = Language

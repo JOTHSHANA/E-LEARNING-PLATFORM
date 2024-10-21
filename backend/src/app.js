@@ -15,6 +15,7 @@ const regCourseRoutes = require('./routes/regCourse/regCourse')
 const recommendCourses = require('./routes/regCourse/recommed')
 const topic = require('./routes/course/topic')
 const content = require('./routes/course/content')
+const Questions = require('./routes/questions/questions')
 
 const app = express();
 const PORT = process.env.DB_PORT;
@@ -40,6 +41,7 @@ app.use('/api', regCourseRoutes)
 app.use('/api', recommendCourses)
 app.use('/api', topic)
 app.use('/api', content)
+app.use('/api',Questions)
 
 const startServer = async () => {
   try {
