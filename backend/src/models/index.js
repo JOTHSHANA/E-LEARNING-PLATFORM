@@ -5,6 +5,7 @@ const Topic = require('./tables/topic')
 const Content = require('./tables/contents')
 const QTopic = require('./tables/question_topic')
 const Questions = require('./tables/questions')
+const Language = require('./tables/language')
 
 // mapping - regCourse
 User.hasMany(RegCourse, {foreignKey:'user'})
@@ -34,5 +35,6 @@ module.exports = {
     Topic,
     Content,
     QTopic, 
-    Questions
+    Questions,
+    Language
   };

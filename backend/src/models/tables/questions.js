@@ -67,6 +67,10 @@ const Questions = sequelize.define(
             type:DataTypes.TEXT,
             allowNull:false
         },
+        status:{
+            type:DataTypes.ENUM('0', '1'),
+            defaultValue:'1'
+        }
     },
     {tableName:"questions", timestamps:false}
 )
