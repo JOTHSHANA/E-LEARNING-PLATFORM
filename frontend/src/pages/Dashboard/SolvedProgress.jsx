@@ -4,7 +4,7 @@ import ReactApexChart from "react-apexcharts";
 function SolvedProgress() {
     const [chartData] = useState({
         series: [{
-            data: [76, 67, 61, 90, 70]
+            data: [76, 67, 61, 90,67, 70]
         }],
         options: {
             chart: {
@@ -30,7 +30,7 @@ function SolvedProgress() {
                 }
             },
             xaxis: {
-                categories: ['C', 'C++', 'Java', 'Python', 'SQL'],
+                categories: ['C', 'C++', 'Java', 'Python','JavaScript', 'SQL'],
                 labels: {
                     style: {
                         colors: 'var(--text)',

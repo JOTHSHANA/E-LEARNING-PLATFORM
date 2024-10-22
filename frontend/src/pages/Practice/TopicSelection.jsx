@@ -28,7 +28,7 @@ function TopicSelection({ open, onClose, topics, onSelect }) {
                 <FormControl fullWidth sx={{ p: 2 }}>
                     <InputLabel id="topic-select-label">Topics</InputLabel>
                     <Select
-                        sx={{border:"1px solid #1e92e0", color:"var(--text)"}}
+                        sx={{ border: "1px solid #1e92e0", color: "var(--text)" }}
                         labelId="topic-select-label"
                         value={selectedTopic}
                         onChange={handleSelectChange}

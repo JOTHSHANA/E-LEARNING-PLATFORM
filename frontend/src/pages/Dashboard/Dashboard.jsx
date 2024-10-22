@@ -223,6 +223,11 @@ function Body() {
       "medium": { "solved": 10, "total": 30 },
       "hard": { "solved": 5, "total": 30 },
     },
+    "JavaScript": {
+      "easy": { "solved": 30, "total": 40 },
+      "medium": { "solved": 12, "total": 30 },
+      "hard": { "solved": 19, "total": 30 },
+    },
     "SQL": {
       "easy": { "solved": 30, "total": 50 },
       "medium": { "solved": 15, "total": 25 },
@@ -416,6 +421,7 @@ function Body() {
                 </div>
               ))}
             </div>
+
           </div>
         </div>
       </div>
