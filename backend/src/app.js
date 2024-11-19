@@ -8,7 +8,7 @@ const passport = require('passport');
 const session = require('express-session');
 const authenticateJWT = require('./middleware/authenticate')
 
-const { User, Course } = require('./models')
+// const { User, Course } = require('./models')
 const courseRoutes = require('./routes/course/courses')
 const authRouters = require('./routes/auth/auth')
 const regCourseRoutes = require('./routes/regCourse/regCourse')
@@ -26,7 +26,15 @@ app.use(session({
   cookie: { secure: false } 
 }));
 
-app.use(cors());
+const cors_config = {
+  origin: ['http://localhost:5173'],
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+};
+
+app.use(cors(cors_config));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
