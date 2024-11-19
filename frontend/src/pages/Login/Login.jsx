@@ -54,7 +54,7 @@ export default function LoginPopup({ open, onClose }) {
 
   const handleGoogleSuccess = async (credentialResponse) => {
     const tokenId = credentialResponse.credential;
-    console.log(tokenId)
+    // console.log(tokenId)
     const secretKey = import.meta.env.VITE_ENCRYPT_KEY;
   
     try {
