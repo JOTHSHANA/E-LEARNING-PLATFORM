@@ -6,7 +6,7 @@ const PostForm = ({ courseId, topicId, userId, onClose, onPostAdded }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { success, data } = await requestApi("POST", "/posts", {
+    const { success, data } = await requestApi("POST", "/posts/create", {
       userId,
       course: courseId,
       topic: topicId,

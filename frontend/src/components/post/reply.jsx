@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import requestApi from "../utils/axios";
 
-const ReplyForm = ({ parentId, userId, onClose, onReplyAdded }) => {
+const ReplyForm = ({ parentId,courseId, topicId, userId, onClose, onReplyAdded }) => {
   const [content, setContent] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { success, data } = await requestApi("POST", "/posts/reply", {
+    const { success, data } = await requestApi("POST", `/posts/create`, {
       userId,
-      parentId,
+      course:courseId,
+      topic:topicId,
       content,
+      parentId:parentId
     });
 
     if (success) {
