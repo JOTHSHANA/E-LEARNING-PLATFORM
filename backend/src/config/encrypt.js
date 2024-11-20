@@ -4,7 +4,6 @@ require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 
 
 const secretKey = process.env.SECRET_KEY;
-console.log(secretKey)
 
 const hashName = (name) => {
   return CryptoJS.SHA256(name).toString(CryptoJS.enc.Hex);
