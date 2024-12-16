@@ -12,7 +12,7 @@ const Post = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    userId: {
+    user: {
       type: DataTypes.BIGINT,
       allowNull: false,
       references: {

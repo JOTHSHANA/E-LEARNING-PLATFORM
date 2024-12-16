@@ -29,7 +29,7 @@ QTopic.hasMany(Questions, { foreignKey: "topic" });
 Questions.belongsTo(QTopic, { foreignKey: "topic" });
 
 // Mapping - posts
-User.hasMany(Post, { foreignKey: "userId" });
+User.hasMany(Post, { foreignKey: "user" });
 Post.belongsTo(User, { foreignKey: "user" });
 
 Course.hasMany(Post, { foreignKey: "course" });

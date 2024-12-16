@@ -1,9 +1,9 @@
 const { Post, User, Course, Topic } = require("../../models");
 
 exports.createPost = async (req, res) => {
-  const { userId, course, topic, content, parentId } = req.body;
+  const { user, course, topic, content, parentId } = req.body;
 
-  if (!userId || !content) {
+  if (!user || !content) {
     return res.status(400).json({ message: "Missing required fields" });
   }
 
@@ -12,7 +12,7 @@ exports.createPost = async (req, res) => {
 
     if (parentId) {
       post = await Post.create({
-        userId,
+        user,
         content,
         parentId, 
         course,
@@ -20,7 +20,7 @@ exports.createPost = async (req, res) => {
       });
     } else {
       post = await Post.create({
-        userId,
+        user,
         course,
         topic,
         content,
