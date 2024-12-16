@@ -1,0 +1,27 @@
+.post-textarea{
+    border: none;
+    background-color: var(--background-1);
+    padding: 10px 20px 0px 20px;
+    resize: none;
+    flex: 1;
+}
+
+.textarea-container{
+    background-color: var(--background-1);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    width: 100%;
+}
+
+.modal{
+    width: 50%;
+    position: absolute;
+    bottom: 10px;
+}
+.post-form{
+    width: 100%;
+}

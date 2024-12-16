@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
 import requestApi from "../../components/utils/axios";
-import Select from "react-select";
+import { Menu, MenuItem, Button, Typography } from "@mui/material";
 import PostForm from "../../components/post/post";
 import ReplyForm from "../../components/post/reply";
 import CryptoJS from "crypto-js";
+import Layout from "../../components/appLayout/Layout";
 import "./Forum.css";
+import SubdirectoryArrowLeftTwoToneIcon from '@mui/icons-material/SubdirectoryArrowLeftTwoTone'; import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
+import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
 
-const Forum = () => {
+function Forum() {
+  return <Layout body={<Body />} />;
+}
+
+function Body() {
   const [courses, setCourses] = useState([]);
   const [topics, setTopics] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState(null);
@@ -15,6 +22,7 @@ const Forum = () => {
   const [showReplies, setShowReplies] = useState({});
   const [showPostForm, setShowPostForm] = useState(false);
   const [replyTo, setReplyTo] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const secretKey = import.meta.env.VITE_ENCRYPT_KEY;
 
@@ -27,38 +35,38 @@ const Forum = () => {
   useEffect(() => {
     const getCourses = async () => {
       const response = await requestApi("GET", "/course-list", null);
-      const courseOptions = response.data.map((course) => ({
-        value: course.id,
-        label: course.name,
-      }));
-      setCourses(courseOptions);
+      setCourses(response.data);
     };
     getCourses();
   }, []);
 
   // Fetch topics when a course is selected
-  const handleCourseChange = async (selectedOption) => {
-    setSelectedCourse(selectedOption);
+  const handleCourseClick = async (event, course) => {
+    setSelectedCourse(course);
     setSelectedTopic(null);
     setPosts([]);
+    setAnchorEl(event.currentTarget);
+
     const response = await requestApi(
       "GET",
-      `/c_topic?course=${selectedOption.value}`,
+      `/c_topic?course=${course.id}`,
       null
     );
-    const topicOptions = response.data.map((topic) => ({
-      value: topic.id,
-      label: topic.title,
-    }));
-    setTopics(topicOptions);
+    setTopics(response.data);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
   };
 
   // Fetch posts when a topic is selected
-  const handleTopicChange = async (selectedOption) => {
-    setSelectedTopic(selectedOption);
+  const handleTopicSelect = async (topic) => {
+    setSelectedTopic(topic);
+    setAnchorEl(null);
+
     const { success, data } = await requestApi(
       "GET",
-      `/posts/${selectedCourse.value}/${selectedOption.value}`,
+      `/posts/${selectedCourse.id}/${topic.id}`,
       null
     );
     if (success) {
@@ -76,90 +84,136 @@ const Forum = () => {
 
   return (
     <div className="forum-container">
-      <h2>Discussion Forum</h2>
-      <div className="dropdowns">
-        <div className="dropdown-wrapper">
-          <label>Select Course:</label>
-          <Select
-            options={courses}
-            value={selectedCourse}
-            onChange={handleCourseChange}
-            placeholder="Choose a Course"
-          />
-        </div>
-
-        <div className="dropdown-wrapper">
-          <label>Select Topic:</label>
-          <Select
-            options={topics}
-            value={selectedTopic}
-            onChange={handleTopicChange}
-            placeholder="Choose a Topic"
-            isDisabled={!selectedCourse}
-          />
-        </div>
-      </div>
-
-      <div className="posts-section">
-        {posts.map((post) => (
-          <div key={post.id} className="post">
-            {/* Parent Post */}
-            <p className="post-content">{post.content}</p>
-            <span className="post-meta">
-              By {post.User?.name || "Unknown"} on{" "}
-              {new Date(post.createdAt).toLocaleString()}
-            </span>
+      <div style={{ backgroundColor: "var(--background-1)", width: "100%", padding: "5px", borderRadius: "5px", border: "1px solid var(--border-color)", position:"sticky", top:"5px" }}>
+        <p style={{ fontWeight: "600", fontSize: "26px", textAlign: "center" }}>Discussion Forum</p>
+        {/* Courses Display */}
+        <div className="courses-select-container">
+          {courses.map((course) => (
             <button
-              className="reply-btn"
-              onClick={() => setReplyTo(post.id)}
+              key={course.id}
+              className={`course-button ${selectedCourse?.id === course.id ? "selected" : ""}`}
+              onClick={(event) => handleCourseClick(event, course)}
             >
-              Reply
+              {course.name}
             </button>
-            {post.replies.length > 0 && (
-              <button
-                className="view-replies-btn"
-                onClick={() => toggleReplies(post.id)}
-              >
-                {showReplies[post.id] ? "Hide Replies" : "View Replies"}
-              </button>
-            )}
+          ))}
+        </div>
+      </div>
 
-            {/* Replies Section */}
-            {showReplies[post.id] &&
-              post.replies.map((reply) => (
-                <div key={reply.id} className="reply">
-                  <p className="reply-content">{reply.content}</p>
-                  <span className="reply-meta">
-                    By {reply.User?.name || "Unknown"} on{" "}
-                    {new Date(reply.createdAt).toLocaleString()}
-                  </span>
-                  <button
-                    className="reply-btn"
-                    onClick={() => setReplyTo(reply.id)}
-                  >
-                    Reply
-                  </button>
-                </div>
-              ))}
-          </div>
+      {/* Topics Menu */}
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleCloseMenu}
+      >
+        {topics.map((topic) => (
+          <MenuItem
+            key={topic.id}
+            onClick={() => handleTopicSelect(topic)}
+          >
+            {topic.title}
+          </MenuItem>
         ))}
-      </div>
+      </Menu>
 
-      <div className="actions">
-        <button
-          className="new-post-btn"
-          onClick={() => setShowPostForm(true)}
-          disabled={!selectedCourse || !selectedTopic}
-        >
-          New Post
-        </button>
-      </div>
+      {/* Display Message When No Course or Topic is Selected */}
+      {!selectedCourse || !selectedTopic ? (
+        <div className="no-selection-message">
+          <p style={{ fontStyle: "italic", fontSize: "18px" }}>
+            <span style={{ color: "red", marginRight: "5px" }}>*</span>Select a course and topic to display discussions.
+          </p>
+        </div>
+      ) : (
+        <div className="posts-section">
+          {selectedTopic && (
+            <span style={{ color: "var(--primary-color)" }}><b>{selectedTopic.title}</b></span>
+          )}
+
+          {posts.map((post) => (
+            <div style={{ display: "flex" }}>
+              <div key={post.id} className="post">
+              {post.replies.length > 0 && (
+                  <button
+                    className="view-replies-btn"
+                    onClick={() => toggleReplies(post.id)}
+                  >
+                    {showReplies[post.id] ? <>
+                      <span style={{ marginLeft: "5px", color: "var(--text)" }}>Close Replies</span>
+                      <ExpandCircleDownIcon
+                        style={{
+                          transform: "rotate(180deg)",
+                          transition: "transform 0.3s",
+                          color: "var(--text)",
+                        }}
+                      />
+
+                    </> : <>
+                      <span style={{ marginLeft: "5px", color: "var(--text)" }}>View Replies</span>
+                      <ExpandCircleDownIcon
+                        style={{
+                          transform: "rotate(0deg)",
+                          transition: "transform 0.3s",
+                          color: "var(--text)",
+                        }}
+                      />
+
+                    </>}
+                  </button>
+                )}
+                {/* Parent Post */}
+                <p className="post-content">{post.content}</p>
+                {/* <span className="post-meta">
+                  By {post.User?.name || "Unknown"} on {" "}
+                  {new Date(post.createdAt).toLocaleString()}
+                </span> */}
+
+                
+                {/* Replies Section */}
+                {showReplies[post.id] &&
+                  post.replies.map((reply) => (
+                    <div key={reply.id} className="reply">
+                      <p className="reply-content">{reply.content}</p>
+                      <span className="reply-meta">
+                        By {reply.User?.name || "Unknown"} on {" "}
+                        {new Date(reply.createdAt).toLocaleString()}
+                      </span>
+                      <button
+                        className="reply-btn"
+                        onClick={() => setReplyTo(reply.id)}
+                      >
+                        <SubdirectoryArrowLeftTwoToneIcon sx={{ color: "var(--text)" }} />
+                      </button>
+                    </div>
+                  ))}
+              </div>
+              <button
+                className="reply-btn"
+                onClick={() => setReplyTo(post.id)}
+              >
+                <SubdirectoryArrowLeftTwoToneIcon style={{ color: "var(--text)" }} />
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Display New Post Button Only When Necessary */}
+      {selectedCourse && selectedTopic && (
+        <div className="actions">
+          <button
+            className="new-post-btn"
+            onClick={() => setShowPostForm(true)}
+          >
+            <ControlPointDuplicateIcon />NEW POST
+          </button>
+        </div>
+      )}
 
       {/* Post Form Modal */}
       {showPostForm && (
         <PostForm
-          courseId={selectedCourse.value}
-          topicId={selectedTopic.value}
+          courseId={selectedCourse.id}
+          topicId={selectedTopic.id}
           userId={userId}
           onClose={() => setShowPostForm(false)}
           onPostAdded={(newPost) => setPosts((prev) => [newPost, ...prev])}
@@ -169,8 +223,8 @@ const Forum = () => {
       {/* Reply Form Modal */}
       {replyTo && (
         <ReplyForm
-          courseId={selectedCourse.value}
-          topicId={selectedTopic.value}
+          courseId={selectedCourse.id}
+          topicId={selectedTopic.id}
           parentId={replyTo}
           userId={userId}
           onClose={() => setReplyTo(null)}
@@ -190,6 +244,7 @@ const Forum = () => {
       )}
     </div>
   );
-};
+
+}
 
 export default Forum;

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import { IconButton } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 import requestApi from "../utils/axios";
+import "./PostForm.css";
 
 const PostForm = ({ courseId, topicId, userId, onClose, onPostAdded }) => {
   const [content, setContent] = useState("");
@@ -21,18 +24,24 @@ const PostForm = ({ courseId, topicId, userId, onClose, onPostAdded }) => {
 
   return (
     <div className="modal">
-      <form onSubmit={handleSubmit}>
-        <textarea
-          placeholder="Write your post..."
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        ></textarea>
-        <button type="submit">Post</button>
-        <button type="button" onClick={onClose}>
-          Cancel
-        </button>
+      <form onSubmit={handleSubmit} className="post-form">
+        <div className="textarea-container">
+          <textarea
+            className="post-textarea"
+            placeholder="Write your post..."
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          ></textarea>
+          <IconButton
+            type="submit"
+            className="send-icon"
+            aria-label="send post"
+          >
+            <SendIcon />
+          </IconButton>
+        </div>
       </form>
-    </div>
+    </div>    
   );
 };
 
