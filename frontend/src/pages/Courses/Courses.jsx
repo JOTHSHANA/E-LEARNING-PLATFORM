@@ -21,17 +21,23 @@ import apiHost from "../../components/utils/api";
 import requestApi from "../../components/utils/axios";
 import { getDecryptedCookie } from "../../components/utils/encrypt";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import CryptoJS from "crypto-js";
 
 function Courses() {
     return <Layout rId={1} body={<Body />} />;
 }
 
 function Body() {
+    const secretKey = import.meta.env.VITE_ENCRYPT_KEY;
     const [selectedOption, setSelectedOption] = useState(null);
     const [courses, setCourses] = useState([]);
     const [registeredCourses, setRegisteredCourses] = useState([]);
     const [loading, setLoading] = useState(false);
-    const userId = 7;
+    const user = localStorage.getItem("D!");
+    const bytes = CryptoJS.AES.decrypt(user, secretKey);
+    const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+
+    const userId = decryptedData.id;
     const navigate = useNavigate(); // For navigation
 
     const handleSelectChange = (selectedOption) => {

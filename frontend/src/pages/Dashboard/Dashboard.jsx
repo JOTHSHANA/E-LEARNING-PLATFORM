@@ -25,6 +25,7 @@ import BadgeIcon from '@mui/icons-material/Badge';
 import requestApi from "../../components/utils/axios";
 import SolvedProgress from "./SolvedProgress";
 import { LinearProgress, Box, Typography } from '@mui/material';
+import CryptoJS from "crypto-js";
 
 
 
@@ -49,7 +50,8 @@ function Dashboard() {
 }
 
 function Body() {
-  const name = getDecryptedCookie("name");
+  const secretKey = import.meta.env.VITE_ENCRYPT_KEY;
+  // const name = getDecryptedCookie("name");
   const handleClick = () => { };
 
   const [selectedOption, setSelectedOption] = useState(null);
@@ -182,7 +184,13 @@ function Body() {
   };
 
 
-  const userId = getDecryptedCookie("id");
+    const user = localStorage.getItem("D!");
+    const bytes = CryptoJS.AES.decrypt(user, secretKey);
+    const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+
+    const userId = decryptedData.id;
+  const name = decryptedData.name;
+  // const userId = getDecryptedCookie("id");
 
   const fetchRegisteredCoursesCount = async () => {
     console.log(userId);

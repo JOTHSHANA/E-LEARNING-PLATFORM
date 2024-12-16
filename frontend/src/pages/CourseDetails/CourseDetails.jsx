@@ -14,7 +14,8 @@ import react from '../../assets/react.png';
 import Rating from '@mui/material/Rating';
 import requestApi from "../../components/utils/axios";
 import { getDecryptedCookie } from "../../components/utils/encrypt";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
+import CryptoJS from "crypto-js";
 
 function CourseDetails() {
     return <Layout rId={1} body={<Body />} />;
@@ -23,7 +24,8 @@ function CourseDetails() {
 function Body() {
     const [course, setCourse] = useState();
     const [isRegistered, setIsRegistered] = useState(false);
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
+    const secretKey = import.meta.env.VITE_ENCRYPT_KEY;
     // Course images mapping
     const courseImages = {
         c: c,
@@ -39,7 +41,12 @@ function Body() {
     const location = useLocation();
     const { courseId } = location.state || {};
     const { registerStatus } = location.state || {};
-    const userId = getDecryptedCookie("id");
+
+    const user = localStorage.getItem("D!");
+    const bytes = CryptoJS.AES.decrypt(user, secretKey);
+    const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+
+    const userId = decryptedData.id;
     const fetchCourseDetails = async (courseId) => {
         try {
             const response = await requestApi("GET", `/course-id?id=${courseId}`);
@@ -94,7 +101,7 @@ function Body() {
                 <img className="course-images" src={courseImages[course.course.img]} alt={course.course.name} />
                 <div>
                     <h1 style={{ color: "var(--text)" }}>{course.course.name}</h1>
-                    <p style={{color:"gray"}}>{course.course.s_description || "No description available."}</p>
+                    <p style={{ color: "gray" }}>{course.course.s_description || "No description available."}</p>
 
                 </div>
                 {registerStatus === '1' ? (

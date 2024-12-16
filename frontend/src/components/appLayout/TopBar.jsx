@@ -7,10 +7,19 @@ import SignupDialog from "../../pages/Login/Signup";
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import html from '../../assets/html.png'
 import { getDecryptedCookie } from "../../components/utils/encrypt";
+import CryptoJS from "crypto-js";
 
 
 
 function TopBar(props) {
+    const secretKey = import.meta.env.VITE_ENCRYPT_KEY;
+
+    const user = localStorage.getItem("D!");
+    const bytes = CryptoJS.AES.decrypt(user, secretKey);
+    const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+
+    //   const userId = decryptedData.id;
+    const name = decryptedData.name;
     const [openLogin, setOpenLogin] = useState(false);
     const [openSignup, setOpenSignup] = useState(false);
 
@@ -20,7 +29,7 @@ function TopBar(props) {
     const handleSignupOpen = () => setOpenSignup(true);
     const handleSignupClose = () => setOpenSignup(false);
 
-    const name = getDecryptedCookie("name");
+    // const name = getDecryptedCookie("name");
     return (
         <div
             className="app-topbar"
