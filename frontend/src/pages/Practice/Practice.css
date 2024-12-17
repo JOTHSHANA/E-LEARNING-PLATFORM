@@ -22,12 +22,13 @@
 
 .question-content {
     width: 40%;
-    padding: 20px;
+    padding: 10px;
     overflow-y: auto;
     background-color: var(--background-1);
     border: 1px solid var(--border-color);
     border-radius: 5px;
     box-sizing: border-box;
+    margin: 10px;
 }
 
 .editor-container {
@@ -236,4 +237,17 @@
 .flex {
     display: flex;
     flex-direction: column;
+}
+
+.topic-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.problem-solving-page {
+    background-color: var(--background-1);
+    border-radius: 5px;
 }
