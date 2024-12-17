@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Agu+Display&family=Playwrite+TZ+Guides&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 .welcome-container {
     padding: 20px;
     border-radius: 10px;
@@ -22,12 +24,13 @@
 
 .question-content {
     width: 40%;
-    padding: 20px;
+    padding: 10px;
     overflow-y: auto;
     background-color: var(--background-1);
     border: 1px solid var(--border-color);
     border-radius: 5px;
     box-sizing: border-box;
+    margin: 10px;
 }
 
 .editor-container {
@@ -114,12 +117,21 @@
     display: flex;
 }
 
+
 .questions-div {
     flex: 1;
 }
 
+.bold {
+    font-family: "Agu Display", serif;
+    line-height: 40px;
+    position: sticky;
+    top: 200px;
+}
+
 .question-user-info {
     flex: 1;
+    text-align: center;
 }
 
 .solve-button {
@@ -236,4 +248,17 @@
 .flex {
     display: flex;
     flex-direction: column;
+}
+
+.topic-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.problem-solving-page {
+    background-color: var(--background-1);
+    border-radius: 5px;
 }
