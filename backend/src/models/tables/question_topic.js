@@ -14,7 +14,7 @@ const QTopic = sequelize.define(
             allowNull:false
         },
         languages:{
-            type:DataTypes.TEXT,
+            type:DataTypes.STRING,
             allowNull:false
         },
         status: {
