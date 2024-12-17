@@ -17,6 +17,7 @@ function Body() {
     const [languages, setLanguages] = useState("");
     const [preferredLang, setPreferredLang] = useState("");
     const [results, setResults] = useState(null);
+    const [isCompiling, setIsCompiling] = useState(false);
 
     const fetchQuestionDetails = async (quesId) => {
         try {
@@ -31,41 +32,32 @@ function Body() {
     };
 
     const evaluateCode = async (preferredLang, quesId, code) => {
-        if (preferredLang === "C" || preferredLang === "C++") {
-            try {
-                const response = await requestApi("POST", "/compile-c", {
+        setIsCompiling(true);
+        try {
+            let response;
+            if (preferredLang === "C" || preferredLang === "C++") {
+                response = await requestApi("POST", "/compile-c", {
                     language: preferredLang,
                     questionId: parseInt(quesId),
                     code: code,
                 });
-                setResults(response.data);
-                console.log(response.data);
-            } catch (error) {
-                console.error("Error evaluating code:", error);
-            }
-        } else if (preferredLang === "JAVA") {
-            try {
-                const response = await requestApi("POST", "/compile-java", {
+            } else if (preferredLang === "JAVA") {
+                response = await requestApi("POST", "/compile-java", {
                     questionId: parseInt(quesId),
                     code: code,
                 });
-                setResults(response.data);
-                console.log(response.data);
-            } catch (error) {
-                console.error("Error evaluating code:", error);
-            }
-        }
-        else {
-            try {
-                const response = await requestApi("POST", "/compile-py", {
+            } else {
+                response = await requestApi("POST", "/compile-py", {
                     questionId: parseInt(quesId),
                     code: code,
                 });
-                setResults(response.data);
-                console.log(response.data);
-            } catch (error) {
-                console.error("Error evaluating code:", error);
             }
+            setResults(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error("Error evaluating code:", error);
+        } finally {
+            setIsCompiling(false); // Reset to false after compiling ends
         }
     };
 
@@ -177,7 +169,6 @@ function Body() {
                                         </div>
                                     </div>
                                 ))}
-
                             </div>
 
                             {/* Overall Result Card */}
@@ -223,8 +214,21 @@ function Body() {
                         style={{ padding: "20px" }}
                     />
 
-                    <button style={{ float: "right", backgroundColor: "green", border: "none", padding: "5px 10px", fontWeight: "600", borderRadius: "10px", color: "white" }} onClick={() => evaluateCode(preferredLang, quesId, code)}>
-                        Submit
+                    <button
+                        style={{
+                            float: "right",
+                            backgroundColor: isCompiling ? "grey" : "green",
+                            border: "none",
+                            padding: "10px 25px",
+                            fontWeight: "600",
+                            borderRadius: "10px",
+                            color: "white",
+                            cursor: isCompiling ? "not-allowed" : "pointer",
+                        }}
+                        onClick={() => evaluateCode(preferredLang, quesId, code)}
+                        disabled={isCompiling} // Disable the button when loading
+                    >
+                        {isCompiling ? "Compiling..." : "RUN"}
                     </button>
                 </div>
             </div>

@@ -159,7 +159,11 @@ function TopicQuestions() {
                         </ul>
                     </div>
                     <div className="question-user-info">
-                        {/* Additional user info can go here */}
+                        <b className="bold" style={{ fontSize: "22px" }}>Within a computer,
+                            Natural languages are unnatural,
+                            Reduced to binary whispers in a world of logic,
+                            Where poetry becomes patterns, and meaning turns to code.</b>
+
                     </div>
                 </div>
             }
