@@ -82,7 +82,27 @@ exports.getQuestionsById = async(id) => {
         status: '1'
       }
     })
-    return questions
+    const tquery = `
+      SELECT 
+        qt.id, 
+        qt.name, 
+        GROUP_CONCAT(l.language) AS languages
+      FROM 
+        question_topic qt
+      JOIN 
+        language l 
+      ON 
+        FIND_IN_SET(l.id, qt.languages) > 0
+      WHERE 
+        qt.status = '1' 
+      GROUP BY 
+        qt.id, qt.name;
+    `;
+    
+    const topicQuery = await sequelize.query(tquery, {
+      type: QueryTypes.SELECT 
+    });
+    return {questions,topicQuery}
   }catch(err){
     console.log({error:"error to fetch questions by id", err})
   }
