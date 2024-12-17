@@ -61,18 +61,24 @@ function Body() {
 
   // Fetch posts when a topic is selected
   const handleTopicSelect = async (topic) => {
-    setSelectedTopic(topic);
+    setSelectedTopic(topic); // React state is asynchronous, so don't rely on selectedTopic right after this
     setAnchorEl(null);
-
-    const { success, data } = await requestApi(
-      "GET",
-      `/posts/${selectedCourse.id}/${topic.id}`,
-      null
-    );
-    if (success) {
-      setPosts(data.posts);
+  
+    try {
+      const { success, data } = await requestApi(
+        "GET",
+        `/posts/${selectedCourse?.id}/${topic?.id}`, // Use topic.id directly
+        null
+      );
+  
+      if (success) {
+        setPosts(data.posts);
+      }
+    } catch (error) {
+      console.error("Error fetching posts:", error);
     }
   };
+  
 
   // Toggle replies visibility
   const toggleReplies = (postId) => {
@@ -138,7 +144,7 @@ function Body() {
                     onClick={() => toggleReplies(post.id)}
                   >
                     {showReplies[post.id] ? <>
-                      <span style={{ marginLeft: "5px", color: "var(--text)" }}>Close Replies</span>
+                      <span style={{ marginLeft: "5px", color: "var(--text)" }}>Hide Replies</span>
                       <ExpandCircleDownIcon
                         style={{
                           transform: "rotate(180deg)",
@@ -162,10 +168,11 @@ function Body() {
                 )}
                 {/* Parent Post */}
                 <p className="post-content">{post.content}</p>
-                {/* <span className="post-meta">
+                <span className="post-meta">
                   By {post.User?.name || "Unknown"} on {" "}
                   {new Date(post.createdAt).toLocaleString()}
-                </span> */}
+                </span>
+                <br />
 
                 
                 {/* Replies Section */}
@@ -211,37 +218,32 @@ function Body() {
 
       {/* Post Form Modal */}
       {showPostForm && (
-        <PostForm
-          courseId={selectedCourse.id}
-          topicId={selectedTopic.id}
-          userId={userId}
-          onClose={() => setShowPostForm(false)}
-          onPostAdded={(newPost) => setPosts((prev) => [newPost, ...prev])}
-        />
-      )}
+  <PostForm
+    courseId={selectedCourse.id}
+    topicId={selectedTopic.id}
+    userId={userId}
+    onClose={() => setShowPostForm(false)}
+    onPostAdded={() => {
+      setShowPostForm(false);
+      handleTopicSelect(selectedTopic); // Refetch posts for current topic
+    }}
+  />
+)}
 
-      {/* Reply Form Modal */}
-      {replyTo && (
-        <ReplyForm
-          courseId={selectedCourse.id}
-          topicId={selectedTopic.id}
-          parentId={replyTo}
-          userId={userId}
-          onClose={() => setReplyTo(null)}
-          onReplyAdded={(newReply) =>
-            setPosts((prev) => {
-              const updatedPosts = [...prev];
-              const parentIndex = updatedPosts.findIndex(
-                (post) => post.id === newReply.parentId
-              );
-              if (parentIndex !== -1) {
-                updatedPosts[parentIndex].replies.push(newReply);
-              }
-              return updatedPosts;
-            })
-          }
-        />
-      )}
+{/* Reply Form Modal */}
+{replyTo && (
+  <ReplyForm
+    courseId={selectedCourse.id}
+    topicId={selectedTopic.id}
+    parentId={replyTo}
+    userId={userId}
+    onClose={() => setReplyTo(null)}
+    onReplyAdded={() => {
+      setReplyTo(null);
+      handleTopicSelect(selectedTopic); // Refetch posts for current topic
+    }}
+  />
+)}
     </div>
   );
 

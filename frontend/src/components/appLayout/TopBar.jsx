@@ -20,6 +20,7 @@ function TopBar(props) {
 
     //   const userId = decryptedData.id;
     const name = decryptedData.name;
+    const profile = decryptedData.profile
     const [openLogin, setOpenLogin] = useState(false);
     const [openSignup, setOpenSignup] = useState(false);
 
@@ -67,7 +68,7 @@ function TopBar(props) {
                 <div className="top-bar-menus">
                     <CustomizedSwitches />
                     <div className="profile-section">
-                        <img style={{ width: "45px", height: "45px", borderRadius: "50%" }} src={html} alt="" />
+                        <img style={{ width: "45px", height: "45px", borderRadius: "50%" }} src={profile} alt="" />
                         <div style={{ display: "flex", flexDirection: "column" }}>
                             <b>{name}</b>
                             <p style={{ fontSize: "14px", fontWeight: "600", color: "gray" }}>student</p>
