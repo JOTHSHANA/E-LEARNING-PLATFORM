@@ -34,8 +34,8 @@ function App() {
               <Route path="/forum" element={<Forum />} />
               <Route path="/learning" element={<Learning />} />
               <Route path="/practice" element={<Practice />} />
-              <Route path="/practice/:topicName" element={<TopicQuestions />} />
-              <Route path="/practice/:topicName/:quesId" element={<QuestionCompiler />} />
+              <Route path="/practice/:topicId" element={<TopicQuestions />} />
+              <Route path="/practice/:topicId/:quesId" element={<QuestionCompiler />} />
             </Routes>
             <div className="area">
               <ul className="circles">

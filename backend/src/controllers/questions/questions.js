@@ -1,8 +1,12 @@
-const { QTopic, Language, sequelize, Questions } = require('../../models');
+const { QTopic, Language, Questions } = require('../../models');
+const sequelize  = require('../../config/database');
+const { QueryTypes } = require('sequelize'); 
+const { Op, fn, col } = require('sequelize');
+
 
 exports.getQuestionTopic = async () => {
   try {
-    const query = `
+    const tquery = `
       SELECT 
         qt.id, 
         qt.name, 
@@ -19,8 +23,8 @@ exports.getQuestionTopic = async () => {
         qt.id, qt.name;
     `;
     
-    const gQuestions = await sequelize.query(query, {
-      type: sequelize.QueryTypes.SELECT
+    const gQuestions = await sequelize.query(tquery, {
+      type: QueryTypes.SELECT 
     });
 
     return gQuestions;
@@ -30,21 +34,56 @@ exports.getQuestionTopic = async () => {
 };
 
 
-exports.getQuestions = async(topic) =>{
-    try{
-        const gQuestions = await Questions.findAll({
-            where:{
-                status:'1',
-                topic,
-            }
-        })
-        const topics = await QTopic.topics({
-          where:{
-            topic:topic
-          }
-        })
-        return {gQuestions, topics}
-    }catch(err){
-        throw new Error('Error Fetching Question  ' + err.message);
-    }
+exports.getQuestions = async (topic) => {
+  try {
+    // Get questions related to the given topic
+    const gQuestions = await Questions.findAll({
+      where: {
+        topic: topic,
+        status: '1'
+      }
+    });
+
+    // Get the topic details and the associated languages
+    const tquery = `
+      SELECT 
+        qt.id, 
+        qt.name, 
+        GROUP_CONCAT(l.language) AS languages
+      FROM 
+        question_topic qt
+      JOIN 
+        language l 
+      ON 
+        FIND_IN_SET(l.id, qt.languages) > 0
+      WHERE 
+        qt.status = '1' AND
+        qt.id = ?
+      GROUP BY 
+        qt.id, qt.name;
+    `;
+    
+    const topicQuery = await sequelize.query(tquery, {
+      type: QueryTypes.SELECT ,
+      replacements: [topic]
+    });
+
+    return { gQuestions, topicQuery };
+  } catch (err) {
+    throw new Error('Error Fetching Questions: ' + err.message);
+  }
+};
+
+exports.getQuestionsById = async(id) => {
+  try{
+    const questions = await Questions.findAll({
+      where:{
+        id : id,
+        status: '1'
+      }
+    })
+    return questions
+  }catch(err){
+    console.log({error:"error to fetch questions by id", err})
+  }
 }
