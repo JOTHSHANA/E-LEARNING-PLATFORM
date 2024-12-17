@@ -6,6 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import requestApi from "../../components/utils/axios";
 
+
 function TopicQuestions() {
     const { topicId } = useParams();  
     const navigate = useNavigate();
@@ -36,6 +37,10 @@ function TopicQuestions() {
     useEffect(() => {
         fetchQuestions(topicId);  // Fetch questions when topicId changes
     }, [topicId]);
+    
+    const closeFilterMenu = () => {
+        setIsFilterOpen(false);
+    }
 
     const handleDifficultyChange = (difficulty) => {
         if (difficulty === "All") {
