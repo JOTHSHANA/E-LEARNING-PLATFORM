@@ -12,7 +12,7 @@ router.get('/c_content', async(req, res)=>{
         res.status(200).json(getCourseContent)
 
     }
-    catch(errpr){
+    catch(error){
         res.status(500).json({error:error.message})
     }
 })
