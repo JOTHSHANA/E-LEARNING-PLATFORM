@@ -12,6 +12,8 @@ import CourseDetails from "./pages/CourseDetails/CourseDetails";
 import Learning from "./pages/learning/learning";
 import Practice from "./pages/Practice/Practice";
 import { Toaster } from 'react-hot-toast';
+import TopicQuestions from "./pages/Practice/TopicQuestions";
+import QuestionCompiler from "./pages/Practice/QuestionCompiler";
 
 
 function App() {
@@ -32,6 +34,8 @@ function App() {
               <Route path="/forum" element={<Forum />} />
               <Route path="/learning" element={<Learning />} />
               <Route path="/practice" element={<Practice />} />
+              <Route path="/practice/:topicName" element={<TopicQuestions />} />
+              <Route path="/practice/:topicName/:quesId" element={<QuestionCompiler />} />
             </Routes>
             <div className="area">
               <ul className="circles">
