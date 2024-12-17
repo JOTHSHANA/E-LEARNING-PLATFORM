@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {getQuestionTopic,getQuestions} = require('../../controllers/questions/questions')
+const {getQuestionTopic,getQuestions, getQuestionsById} = require('../../controllers/questions/questions')
 
 router.get('/q-topics', async (req , res)=>{
     try{
@@ -20,6 +20,19 @@ router.post('/questions', async (req , res)=>{
     try{
         const questions = await getQuestions(topic)
         res.status(200).json(questions)
+    }catch(err){
+        res.status(500).json({error:err.message})
+    }
+})
+
+router.post('/questions-id', async(req, res)=>{
+    const {id} = req.body
+    if(!id){
+        return res.status(400).json({error:"questions id is required..."})
+    }
+    try{
+        const questionsId = await getQuestionsById(id)
+        res.status(200).json(questionsId)
     }catch(err){
         res.status(500).json({error:err.message})
     }

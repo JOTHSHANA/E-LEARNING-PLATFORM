@@ -73,3 +73,17 @@ exports.getQuestions = async (topic) => {
     throw new Error('Error Fetching Questions: ' + err.message);
   }
 };
+
+exports.getQuestionsById = async(id) => {
+  try{
+    const questions = await Questions.findAll({
+      where:{
+        id : id,
+        status: '1'
+      }
+    })
+    return questions
+  }catch(err){
+    console.log({error:"error to fetch questions by id", err})
+  }
+}

@@ -216,23 +216,23 @@ import Layout from "../../components/appLayout/Layout";
 import TopicSelection from "./TopicSelection";
 import WelcomePage from "./WelcomePage";
 import "./Practice.css";
+import requestApi from "../../components/utils/axios";
 
 function Practice() {
     const [openTopicSelection, setOpenTopicSelection] = useState(false);
     const [topics, setTopics] = useState([]);
     const navigate = useNavigate();
-
-    const dummyTopics = [
-        { id: 1, name: "If Statements" },
-        { id: 2, name: "If-Else Statements" },
-        { id: 3, name: "Loops" },
-        { id: 4, name: "Arrays" },
-        { id: 5, name: "Strings" },
-        { id: 6, name: "Pointers" },
-    ];
+    const fetchTopics = async () => {
+        try {
+            const response = await requestApi("GET","/q-topics"); 
+            setTopics(response.data); 
+        } catch (error) {
+            console.error("Error fetching topics:", error);
+        }
+    };
 
     useEffect(() => {
-        setTopics(dummyTopics);
+        fetchTopics();
     }, []);
 
     const handleStart = () => {
@@ -240,10 +240,7 @@ function Practice() {
     };
 
     const handleTopicSelect = (topicId) => {
-        const selectedTopic = topics.find((topic) => topic.id === topicId);
-        if (selectedTopic) {
-            navigate(`/practice/${selectedTopic.name}`);
-        }
+        navigate(`/practice/${topicId}`);  // Navigate to the selected topic
     };
 
     return (
