@@ -5,7 +5,6 @@ import { Typography } from '@mui/material';
 import requestApi from "../../components/utils/axios";
 import "./Practice.css";
 import Layout from "../../components/appLayout/Layout";
-import { use } from "react";
 
 function QuestionCompiler() {
     return <Layout body={<Body />} />;
@@ -56,7 +55,13 @@ function Body() {
                     questionId: parseInt(quesId),
                     code: code,
                 });
-            } else {
+            } else if (preferredLang === "SQL") {
+                response = await requestApi("POST", "/compile-sql", {
+                    questionId: parseInt(quesId),
+                    userQuery: code,
+                });
+            } 
+            else {
                 response = await requestApi("POST", "/compile-js", {
                     questionId: parseInt(quesId),
                     code: code,

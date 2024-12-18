@@ -220,7 +220,11 @@ import requestApi from "../../components/utils/axios";
 
 function Practice() {
     const [openTopicSelection, setOpenTopicSelection] = useState(false);
+    const [openTopicSelectionsql, setOpenTopicSelectionSQL] = useState(false);
+
     const [topics, setTopics] = useState([]);
+    const [topicssql, setTopicsSQL] = useState([]);
+
     const navigate = useNavigate();
     const fetchTopics = async () => {
         try {
@@ -230,9 +234,17 @@ function Practice() {
             console.error("Error fetching topics:", error);
         }
     };
-
+    const fetchTopicsSQL = async () => {
+        try {
+            const response = await requestApi("GET", "/q-topics-sql");
+            setTopicsSQL(response.data);
+        } catch (error) {
+            console.error("Error fetching topics:", error);
+        }
+    };
     useEffect(() => {
         fetchTopics();
+        fetchTopicsSQL()
     }, []);
 
     const handleStart = () => {
@@ -240,11 +252,11 @@ function Practice() {
     };
 
     const handleStartSQL = () => {
-        setOpenTopicSelection(true);
+        setOpenTopicSelectionSQL(true);
     }
 
     const handleTopicSelect = (topicId) => {
-        navigate(`/practice/${topicId}`);  // Navigate to the selected topic
+        navigate(`/practice/${topicId}`); 
     };
 
     return (
@@ -256,6 +268,12 @@ function Practice() {
                         open={openTopicSelection}
                         onClose={() => setOpenTopicSelection(false)}
                         topics={topics}
+                        onSelect={handleTopicSelect}
+                    />
+                    <TopicSelection
+                        open={openTopicSelectionsql}
+                        onClose={() => setOpenTopicSelectionSQL(false)}
+                        topics={topicssql}
                         onSelect={handleTopicSelect}
                     />
                 </>

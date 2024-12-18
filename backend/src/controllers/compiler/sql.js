@@ -58,7 +58,6 @@ exports.compileSQL = async (questionId, userQuery) => {
       } else {
         try {
           await connection.query(query);
-        //   outputData.push('Query executed successfully.');
         } catch (error) {
           outputData.push('Error executing query: ' + error.message);
         }
@@ -66,7 +65,6 @@ exports.compileSQL = async (questionId, userQuery) => {
     }
 
     await connection.query('DROP DATABASE test_db;');
-
     await connection.end();
 
     const testCaseOutputs = [
@@ -77,9 +75,11 @@ exports.compileSQL = async (questionId, userQuery) => {
       question.t_output5
     ];
 
+    const testCaseResults = compareResults(outputData, testCaseOutputs);
+
     return {
-      results: outputData.length > 0 ? outputData : { status: 'Error', message: 'No results found.' },
-      testCaseOutputs
+      status: testCaseResults.status,
+      testCaseResults: testCaseResults.testCaseResults
     };
 
   } catch (error) {
@@ -105,4 +105,36 @@ function convertRowsToTable(rows) {
   });
 
   return table.join('\r\n').trim();
+}
+
+/**
+ * Helper function to compare the actual results with the expected test case outputs.
+ * @param {Array} results - The actual results from user queries.
+ * @param {Array} testCaseOutputs - The expected test case outputs.
+ * @return {Object} The comparison results for each test case.
+ */
+function compareResults(results, testCaseOutputs) {
+  const testCaseResults = [];
+
+  for (let i = 0; i < testCaseOutputs.length; i++) {
+    const actual = results[i] ? results[i].trim() : '';
+    const expected = testCaseOutputs[i] ? testCaseOutputs[i].trim() : '';
+
+    const status = actual === expected ? 'Passed' : 'Failed';
+
+    testCaseResults.push({
+      testCase: i + 1,
+      input: actual[i] === '' ? [null] : [0],  // Input can be null or 0 depending on the actual result
+      expected: [expected] , // Expected can be null or 0 depending on the expected result
+      actual: [actual],  // Actual can be null or 0
+      status: status
+    });
+  }
+
+  const finalStatus = testCaseResults.every(result => result.status === 'Passed') ? 'Passed' : 'Failed';
+
+  return {
+    status: finalStatus,
+    testCaseResults: testCaseResults
+  };
 }
