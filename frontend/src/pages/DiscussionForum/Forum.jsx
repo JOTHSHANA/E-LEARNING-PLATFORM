@@ -43,7 +43,7 @@ function Body() {
   // Fetch topics when a course is selected
   const handleCourseClick = async (event, course) => {
     setSelectedCourse(course);
-    setSelectedTopic(null);
+    setSelectedTopic([]);
     setPosts([]);
     setAnchorEl(event.currentTarget);
 
@@ -63,14 +63,14 @@ function Body() {
   const handleTopicSelect = async (topic) => {
     setSelectedTopic(topic); // React state is asynchronous, so don't rely on selectedTopic right after this
     setAnchorEl(null);
-  
+
     try {
       const { success, data } = await requestApi(
         "GET",
         `/posts/${selectedCourse?.id}/${topic?.id}`, // Use topic.id directly
         null
       );
-  
+
       if (success) {
         setPosts(data.posts);
       }
@@ -78,7 +78,7 @@ function Body() {
       console.error("Error fetching posts:", error);
     }
   };
-  
+
 
   // Toggle replies visibility
   const toggleReplies = (postId) => {
@@ -90,7 +90,7 @@ function Body() {
 
   return (
     <div className="forum-container">
-      <div style={{ backgroundColor: "var(--background-1)", width: "100%", padding: "5px", borderRadius: "5px", border: "1px solid var(--border-color)", position:"sticky", top:"5px" }}>
+      <div style={{ backgroundColor: "var(--background-1)", width: "100%", padding: "5px", borderRadius: "5px", border: "1px solid var(--border-color)", position: "sticky", top: "5px", zIndex: "1" }}>
         <p style={{ fontWeight: "600", fontSize: "26px", textAlign: "center" }}>Discussion Forum</p>
         {/* Courses Display */}
         <div className="courses-select-container">
@@ -138,7 +138,7 @@ function Body() {
           {posts.map((post) => (
             <div style={{ display: "flex" }}>
               <div key={post.id} className="post">
-              {post.replies.length > 0 && (
+                {post.replies.length > 0 && (
                   <button
                     className="view-replies-btn"
                     onClick={() => toggleReplies(post.id)}
@@ -174,7 +174,7 @@ function Body() {
                 </span>
                 <br />
 
-                
+
                 {/* Replies Section */}
                 {showReplies[post.id] &&
                   post.replies.map((reply) => (
@@ -184,12 +184,12 @@ function Body() {
                         By {reply.User?.name || "Unknown"} on {" "}
                         {new Date(reply.createdAt).toLocaleString()}
                       </span>
-                      <button
+                      {/* <button
                         className="reply-btn"
                         onClick={() => setReplyTo(reply.id)}
                       >
                         <SubdirectoryArrowLeftTwoToneIcon sx={{ color: "var(--text)" }} />
-                      </button>
+                      </button> */}
                     </div>
                   ))}
               </div>
@@ -218,32 +218,32 @@ function Body() {
 
       {/* Post Form Modal */}
       {showPostForm && (
-  <PostForm
-    courseId={selectedCourse.id}
-    topicId={selectedTopic.id}
-    userId={userId}
-    onClose={() => setShowPostForm(false)}
-    onPostAdded={() => {
-      setShowPostForm(false);
-      handleTopicSelect(selectedTopic); // Refetch posts for current topic
-    }}
-  />
-)}
+        <PostForm
+          courseId={selectedCourse.id}
+          topicId={selectedTopic.id}
+          userId={userId}
+          onClose={() => setShowPostForm(false)}
+          onPostAdded={() => {
+            setShowPostForm(false);
+            handleTopicSelect(selectedTopic); // Refetch posts for current topic
+          }}
+        />
+      )}
 
-{/* Reply Form Modal */}
-{replyTo && (
-  <ReplyForm
-    courseId={selectedCourse.id}
-    topicId={selectedTopic.id}
-    parentId={replyTo}
-    userId={userId}
-    onClose={() => setReplyTo(null)}
-    onReplyAdded={() => {
-      setReplyTo(null);
-      handleTopicSelect(selectedTopic); // Refetch posts for current topic
-    }}
-  />
-)}
+      {/* Reply Form Modal */}
+      {replyTo && (
+        <ReplyForm
+          courseId={selectedCourse.id}
+          topicId={selectedTopic.id}
+          parentId={replyTo}
+          userId={userId}
+          onClose={() => setReplyTo(null)}
+          onReplyAdded={() => {
+            setReplyTo(null);
+            handleTopicSelect(selectedTopic); // Refetch posts for current topic
+          }}
+        />
+      )}
     </div>
   );
 

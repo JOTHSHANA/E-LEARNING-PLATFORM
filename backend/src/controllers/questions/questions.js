@@ -104,7 +104,7 @@ exports.getQuestions = async (topic) => {
   }
 };
 
-exports.getQuestionsById = async(id) => {
+exports.getQuestionsById = async(id, topic) => {
   try{
     const questions = await Questions.findAll({
       where:{
@@ -124,13 +124,16 @@ exports.getQuestionsById = async(id) => {
       ON 
         FIND_IN_SET(l.id, qt.languages) > 0
       WHERE 
-        qt.status = '1' 
+        qt.status = '1' AND 
+        qt.id = ?
       GROUP BY 
         qt.id, qt.name;
     `;
     
     const topicQuery = await sequelize.query(tquery, {
-      type: QueryTypes.SELECT 
+      type: QueryTypes.SELECT ,
+      replacements: [topic]
+
     });
     return {questions,topicQuery}
   }catch(err){

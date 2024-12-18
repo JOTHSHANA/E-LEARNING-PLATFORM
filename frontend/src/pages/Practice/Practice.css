@@ -4,7 +4,28 @@
     padding: 20px;
     border-radius: 10px;
     width: fit-content;
-    background-image: var(--lbg)
+    background-image: var(--lbg);
+    flex: 1;
+    position: relative;
+    height: 200px;
+
+}
+
+.welcome-containers {
+    padding: 20px;
+    border-radius: 10px;
+    width: fit-content;
+    background-image: var(--lbg-1);
+    flex: 1;
+    position: relative;
+    height: 200px;
+
+}
+
+.lang-and-sql-welcome {
+    display: flex;
+    gap: 10px;
+    position: absolute;
 }
 
 .welcome-container .MuiTypography-root {
@@ -66,6 +87,9 @@
     cursor: pointer;
     transition: all 0.4s ease;
     color: white;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
 
 .prblm-button:hover {

@@ -1,0 +1,7 @@
+.roadmap-page {
+    background-color: var(--background-1);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    width: 70%;
+}

@@ -30,7 +30,8 @@ const lightModeProperties = {
     "--card": "#c4c5cb",
     "--footer": "#eef0fe",
     "--trans": "rgba(255, 255, 255, 0.5)",
-    "--lbg": "linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)"
+    "--lbg": "linear-gradient(120deg, #fda1a1 0%, #fbc2a1 100%)",
+    "--lbg-1": "linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)"
 
 };
 
@@ -50,7 +51,8 @@ const darkModeProperties = {
     "--card": "#1d1f22",
     "--footer": "#eef0fe",
     "--trans": "rgba(0, 0, 0, 0.5)",
-    "--lbg": "linear-gradient(to right, #434343 0%, #18181b 100%)"
+    "--lbg": "linear-gradient(to right, #434343 0%, #18181b 100%)",
+    "--lbg-1": "linear-gradient(to right, #434343 0%, #18181b 100%)"
 };
 
 
