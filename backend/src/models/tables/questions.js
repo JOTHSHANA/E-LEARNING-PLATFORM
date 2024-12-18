@@ -23,6 +23,10 @@ const Questions = sequelize.define(
             type:DataTypes.TEXT,
             allowNull:false
         },
+        question_query:{
+            type:DataTypes.TEXT,
+            allowNull:true
+        },
         difficulty:{
             type:DataTypes.ENUM("Easy","Medium","Hard"),
             defaultValue:"Easy"

@@ -17,6 +17,7 @@ exports.getQuestionTopic = async () => {
         language l 
       ON 
         FIND_IN_SET(l.id, qt.languages) > 0
+        AND (l.id != 5  OR l.language != 'SQL')
       WHERE 
         qt.status = '1'
       GROUP BY 
@@ -33,6 +34,35 @@ exports.getQuestionTopic = async () => {
   }
 };
 
+exports.getQuestionTopicSQL = async () => {
+  try {
+    const tquery = `
+      SELECT 
+    qt.id, 
+    qt.name, 
+    GROUP_CONCAT(l.language) AS languages
+FROM 
+    question_topic qt
+JOIN 
+    LANGUAGE l 
+ON 
+    FIND_IN_SET(l.id, qt.languages) > 0
+    AND (l.id = 5 OR l.language = 'SQL')  
+WHERE 
+    qt.status = '1'
+GROUP BY 
+    qt.id, qt.name;
+    `;
+    
+    const gQuestions = await sequelize.query(tquery, {
+      type: QueryTypes.SELECT 
+    });
+
+    return gQuestions;
+  } catch (err) {
+    throw new Error('Error Fetching Question Topics ' + err.message);
+  }
+};
 
 exports.getQuestions = async (topic) => {
   try {

@@ -1,11 +1,20 @@
 const express = require('express');
 const router = express.Router();
 
-const {getQuestionTopic,getQuestions, getQuestionsById} = require('../../controllers/questions/questions')
+const {getQuestionTopic,getQuestions, getQuestionsById, getQuestionTopicSQL} = require('../../controllers/questions/questions')
 
 router.get('/q-topics', async (req , res)=>{
     try{
         const questionsTopic = await getQuestionTopic()
+        res.status(200).json(questionsTopic)
+    }catch(err){
+        res.status(500).json({error:err.message})
+    }
+})
+
+router.get('/q-topics-sql', async (req , res)=>{
+    try{
+        const questionsTopic = await getQuestionTopicSQL()
         res.status(200).json(questionsTopic)
     }catch(err){
         res.status(500).json({error:err.message})
