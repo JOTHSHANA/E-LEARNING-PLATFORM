@@ -84,11 +84,11 @@
 }
 
 .social-login {
-    display: flex;
-    justify-content: space-between;
+    width: 100%;
 }
 
-.google-login, .facebook-login {
+.google-login,
+.facebook-login {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -101,7 +101,8 @@
     font-size: 14px;
 }
 
-.google-login:hover, .facebook-login:hover {
+.google-login:hover,
+.facebook-login:hover {
     border-color: #3498db;
 }
 
@@ -121,7 +122,7 @@
 }
 
 
-.login-modal-content{
+.login-modal-content {
     display: flex;
 }
 
@@ -147,7 +148,7 @@
 .signup-modal {
     display: flex;
     border-radius: 8px;
-    max-width: 900px;  
+    max-width: 900px;
     width: fit-content;
     overflow: hidden;
     position: relative;
@@ -188,7 +189,8 @@
     justify-content: space-between;
 }
 
-.google-signup, .facebook-signup {
+.google-signup,
+.facebook-signup {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -197,11 +199,13 @@
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    width: 48%;
     font-size: 14px;
+    flex: 1;
+    background-color: rgb(239, 239, 223);
 }
 
-.google-signup:hover, .facebook-signup:hover {
+.google-signup:hover,
+.facebook-signup:hover {
     border-color: #3498db;
 }
 
@@ -224,9 +228,7 @@
 }
 
 
-.signup-modal-content{
+.signup-modal-content {
     display: flex;
     border-radius: 8px;
 }
-
-

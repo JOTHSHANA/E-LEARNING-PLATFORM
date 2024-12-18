@@ -143,9 +143,6 @@ export default function SignUpPopup({ open, onClose }) {
                             <button className="google-signup">
                                 <GoogleIcon /> Sign up with Google
                             </button>
-                            <button className="facebook-signup">
-                                <FacebookIcon /> Sign up with Facebook
-                            </button>
                         </div>
                     </div>
                 </div>

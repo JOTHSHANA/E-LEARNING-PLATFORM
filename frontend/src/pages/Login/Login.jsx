@@ -153,6 +153,11 @@ export default function LoginPopup({ open, onClose }) {
               Login
             </button>
 
+            <hr />
+            <br />
+            <center>(or)</center>
+<br />
+
             <div className="social-login">
               <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
                 <GoogleLogin
@@ -160,9 +165,6 @@ export default function LoginPopup({ open, onClose }) {
                   onError={handleGoogleError}
                 />
               </GoogleOAuthProvider>
-              <button className="facebook-login">
-                <FacebookIcon /> Sign in with Facebook
-              </button>
             </div>
           </div>
         </div>

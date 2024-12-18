@@ -15,6 +15,10 @@
   width: 100%;
 }
 
+.reply-content{
+  color: var(--text);
+}
+
 .course-button {
   padding: 5px 5px;
   margin: 2px;
@@ -82,6 +86,7 @@ label {
 .post-content {
   font-size: 16px;
   margin-bottom: 5px;
+  font-weight: 600;
 }
 
 .post-meta {
@@ -92,7 +97,7 @@ label {
 
 .posts-section {
   margin-top: 20px;
-  width: 50%;
+  width: 54%;
 }
 
 .post {

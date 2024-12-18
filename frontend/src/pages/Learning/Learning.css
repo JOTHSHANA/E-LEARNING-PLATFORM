@@ -34,7 +34,7 @@
     width: 320px;
     padding: 20px;
     background-color: var(--background-1);
-    height: 100%;
+    height: fit-content;
     color: var(--text);
 }
 
