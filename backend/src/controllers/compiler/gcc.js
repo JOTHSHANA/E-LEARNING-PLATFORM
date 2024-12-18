@@ -41,12 +41,32 @@ exports.compileC_Cpp = async (language, questionId, code) => {
     }
 
     const compileResult = await executeCommand(compileCommand);
+    const testCaseResults = [];
+
     if (compileResult.error) {
-      return { status: 'Failed', message: 'Compilation error', error: compileResult.stderr };
+      // If compilation fails, add the compilation error for all test cases
+      testCases.forEach((testCase, index) => {
+        testCaseResults.push({
+          testCase: index + 1,
+          input: testCase.inputs,
+          expected: testCase.expected,
+          actual: 'Compilation Error: ' + compileResult.stderr.trim(),
+          status: 'Failed'
+        });
+      });
+
+      // Cleanup files after use
+      if (fs.existsSync(sourceFile)) fs.unlinkSync(sourceFile);
+      if (fs.existsSync(executableFile)) fs.unlinkSync(executableFile);
+
+      return { 
+        status: 'Failed', 
+        message: 'Compilation error', 
+        testCaseResults 
+      };
     }
 
     let allTestsPassed = true;
-    const testCaseResults = [];
 
     for (let i = 0; i < testCases.length; i++) {
       const testCase = testCases[i];
@@ -65,7 +85,7 @@ exports.compileC_Cpp = async (language, questionId, code) => {
           testCase: i + 1,
           input: testCase.inputs,
           expected: testCase.expected,
-          actual: 'Error: ' + executionResult.stderr,
+          actual: 'Runtime Error: ' + executionResult.stderr.trim(),
           status: 'Failed'
         });
       } else {
@@ -86,8 +106,9 @@ exports.compileC_Cpp = async (language, questionId, code) => {
       }
     }
 
-    fs.unlinkSync(sourceFile);
-    fs.unlinkSync(executableFile);
+    // Cleanup files after use
+    if (fs.existsSync(sourceFile)) fs.unlinkSync(sourceFile);
+    if (fs.existsSync(executableFile)) fs.unlinkSync(executableFile);
 
     return { 
       status: allTestsPassed ? 'Passed' : 'Failed', 
