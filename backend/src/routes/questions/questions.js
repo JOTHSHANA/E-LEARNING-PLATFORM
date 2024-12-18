@@ -26,12 +26,12 @@ router.post('/questions', async (req , res)=>{
 })
 
 router.post('/questions-id', async(req, res)=>{
-    const {id} = req.body
-    if(!id){
+    const {id, topic} = req.body
+    if(!id || !topic){
         return res.status(400).json({error:"questions id is required..."})
     }
     try{
-        const questionsId = await getQuestionsById(id)
+        const questionsId = await getQuestionsById(id, topic)
         res.status(200).json(questionsId)
     }catch(err){
         res.status(500).json({error:err.message})

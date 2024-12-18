@@ -239,6 +239,10 @@ function Practice() {
         setOpenTopicSelection(true);
     };
 
+    const handleStartSQL = () => {
+        setOpenTopicSelection(true);
+    }
+
     const handleTopicSelect = (topicId) => {
         navigate(`/practice/${topicId}`);  // Navigate to the selected topic
     };
@@ -247,7 +251,7 @@ function Practice() {
         <Layout
             body={
                 <>
-                    <WelcomePage onStart={handleStart} />
+                    <WelcomePage onStart={handleStart} onStartSQL={handleStartSQL} />
                     <TopicSelection
                         open={openTopicSelection}
                         onClose={() => setOpenTopicSelection(false)}

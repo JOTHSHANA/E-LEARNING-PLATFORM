@@ -5,6 +5,7 @@ import { Typography } from '@mui/material';
 import requestApi from "../../components/utils/axios";
 import "./Practice.css";
 import Layout from "../../components/appLayout/Layout";
+import { use } from "react";
 
 function QuestionCompiler() {
     return <Layout body={<Body />} />;
@@ -18,12 +19,16 @@ function Body() {
     const [preferredLang, setPreferredLang] = useState("");
     const [results, setResults] = useState(null);
     const [isCompiling, setIsCompiling] = useState(false);
+    const [currTopic, setCurrTopic] = useState("")
 
     const fetchQuestionDetails = async (quesId) => {
         try {
-            const response = await requestApi("POST", "/questions-id", { id: quesId });
+            const response = await requestApi("POST", "/questions-id", { id: quesId , topic:topicId});
             setQuestion(response.data.questions[0]);
+            // console.log("hi")
+            console.log(response)
             setLanguages(response.data.topicQuery[0].languages);
+            setCurrTopic(response.data.topicQuery[0].name)
             const defaultLang = response.data.topicQuery[0].languages.split(",")[0];
             setPreferredLang(defaultLang);
         } catch (error) {
@@ -46,8 +51,13 @@ function Body() {
                     questionId: parseInt(quesId),
                     code: code,
                 });
-            } else {
+            } else if (preferredLang === "PYTHON") {
                 response = await requestApi("POST", "/compile-py", {
+                    questionId: parseInt(quesId),
+                    code: code,
+                });
+            } else {
+                response = await requestApi("POST", "/compile-js", {
                     questionId: parseInt(quesId),
                     code: code,
                 });
@@ -95,7 +105,7 @@ function Body() {
     return (
         <div className="problem-solving-page">
             <Typography variant="h6" className="topic-section">
-                Topic: {topicId} | Question ID: {quesId}
+                <b>{currTopic}</b>
             </Typography>
             <div className="question-page">
                 <div className="question-content">
@@ -217,7 +227,7 @@ function Body() {
                     <button
                         style={{
                             float: "right",
-                            backgroundColor: isCompiling ? "grey" : "green",
+                            backgroundColor: isCompiling ? "grey" : "#4CAF50",
                             border: "none",
                             padding: "10px 25px",
                             fontWeight: "600",

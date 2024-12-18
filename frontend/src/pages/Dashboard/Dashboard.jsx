@@ -10,7 +10,7 @@ import "react-calendar-heatmap/dist/styles.css";
 import Tooltip from "@mui/material/Tooltip";
 import { styled } from "@mui/material/styles";
 import { getDecryptedCookie } from "../../components/utils/encrypt";
-import profile from '../../assets/profile.png';
+// import profile from '../../assets/profile.png';
 import html from "../../assets/html.png";
 import css from "../../assets/css.png";
 import js from "../../assets/js.png";
@@ -30,6 +30,7 @@ import CryptoJS from "crypto-js";
 
 
 const ProgressWithLabel = ({ value, total, label, color }) => {
+
   const progress = (value / total) * 100;
   return (
     <Box sx={{ width: '100%', mb: 0 }}>
@@ -184,12 +185,13 @@ function Body() {
   };
 
 
-    const user = localStorage.getItem("D!");
-    const bytes = CryptoJS.AES.decrypt(user, secretKey);
-    const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+  const user = localStorage.getItem("D!");
+  const bytes = CryptoJS.AES.decrypt(user, secretKey);
+  const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 
-    const userId = decryptedData.id;
+  const userId = decryptedData.id;
   const name = decryptedData.name;
+  const profile = decryptedData.profile
   // const userId = getDecryptedCookie("id");
 
   const fetchRegisteredCoursesCount = async () => {
@@ -249,6 +251,7 @@ function Body() {
         <div className="dashboard-content">
           <div className="profile-activity">
             <div className="profile-info">
+              {/* <img style={{ width: "150px", height: "150px", borderRadius: "50%", border: "5px solid #1e92e0", borderStyle: "dashed" }} src={profile} alt="" /> */}
               <img style={{ width: "150px", height: "150px", borderRadius: "50%", border: "5px solid #1e92e0", borderStyle: "dashed" }} src={profile} alt="" />
               <div className="profile-details">
                 <h2>{name}</h2>

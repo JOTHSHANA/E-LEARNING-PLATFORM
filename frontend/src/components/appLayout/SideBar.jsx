@@ -12,6 +12,8 @@ import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import { useNavigate } from 'react-router-dom';
 // Dummy JSON data for sidebar items
 const sidebarData = [
     {
@@ -33,6 +35,11 @@ const sidebarData = [
         name: 'Discussion Forum',
         path: '/forum',
         icon_path: 'ForumRoundedIcon'
+    },
+    {
+        name: 'Road Maps',
+        path: '/roadmap',
+        icon_path: 'AccountTreeIcon'
     }
 ];
 
@@ -47,6 +54,8 @@ function getIconComponent(iconPath) {
             return <ForumRoundedIcon className="custom-sidebar-icon2" />;
         case 'GridViewRoundedIcon':
             return <GridViewRoundedIcon className="custom-sidebar-icon3" />;
+        case 'AccountTreeIcon':
+            return <AccountTreeIcon className="custom-sidebar-icon3" />;
         default:
             return null;
     }
@@ -57,6 +66,7 @@ function SideBar(props) {
     const location = useLocation();
     const sidebarRef = useRef(null);
 
+    const navigate = useNavigate();
     useEffect(() => {
         const pathname = location.pathname;
 
@@ -83,6 +93,15 @@ function SideBar(props) {
         };
     }, [props.open]);
 
+    const handleLogout = () => {
+
+        navigate('/landingPage');
+    };
+
+    const roadMap = () => {
+        navigate('/roadmap');
+    }
+
     return (
         <div ref={sidebarRef} className={props.open ? "app-sidebar sidebar-open" : "app-sidebar"}>
             <ul className="list-div">
@@ -99,10 +118,16 @@ function SideBar(props) {
                     </li>
                 ))}
             </ul>
-
-            <div className="list-div">
+            {/* 
+            <div className="list-div" onClick={roadMap}>
                 <div className="list-items">
-                    <div className="link"><ExitToAppRoundedIcon className="custom-sidebar-icon3" /> <div className="menu-names">logout</div></div>
+                    <div className="link"><ExitToAppRoundedIcon className="custom-sidebar-icon3" /> <div className="menu-names" >Road Maps</div></div>
+                </div>
+            </div> */}
+
+            <div className="list-div" onClick={handleLogout}>
+                <div className="list-items">
+                    <div className="link"><ExitToAppRoundedIcon className="custom-sidebar-icon3" /> <div className="menu-names" >logout</div></div>
                 </div>
             </div>
         </div>
