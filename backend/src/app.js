@@ -20,7 +20,7 @@ const Forum = require('./routes/forum/post')
 const Compiler = require('./routes/compiler/compile')
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.HOST_PORT;
 app.use(session({
   secret: process.env.SESSION_SECRET || 'someSecretKey',
   resave: false,
@@ -29,12 +29,11 @@ app.use(session({
 }));
 
 const cors_config = {
-  origin: ['http://localhost:5173'],
-  methods: ['GET', 'POST', 'OPTIONS'],
+  origin: ['http://localhost:5173', 'https://techlehren-frontend.onrender.com'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'], 
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 };
-
 app.use(cors(cors_config));
 
 app.use(passport.initialize());

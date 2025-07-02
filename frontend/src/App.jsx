@@ -9,7 +9,7 @@ import Course from "./pages/Course/course";
 import Courses from "./pages/Courses/Courses";
 import Forum from "./pages/DiscussionForum/Forum";
 import CourseDetails from "./pages/CourseDetails/CourseDetails";
-import Learning from "./pages/learning/learning";
+import Learning from "./pages/Learning/Learning";
 import Practice from "./pages/Practice/Practice";
 import { Toaster } from 'react-hot-toast';
 import TopicQuestions from "./pages/Practice/TopicQuestions";
