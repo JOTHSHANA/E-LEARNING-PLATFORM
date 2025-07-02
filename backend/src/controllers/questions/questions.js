@@ -7,23 +7,22 @@ const { Op, fn, col } = require('sequelize');
 exports.getQuestionTopic = async () => {
   try {
     const tquery = `
-      SELECT 
-        qt.id, 
-        qt.name, 
-        GROUP_CONCAT(l.language) AS languages
-      FROM 
-        question_topic qt
-      JOIN 
-        language l 
-      ON 
-        FIND_IN_SET(l.id, qt.languages) > 0
-        AND (l.id != 5  OR l.language != 'SQL')
-      WHERE 
-        qt.status = '1'
-      GROUP BY 
-        qt.id, qt.name;
-    `;
-    
+  SELECT 
+    qt.id, 
+    qt.name, 
+    STRING_AGG(l.language, ', ') AS languages
+  FROM 
+    question_topic qt
+  JOIN 
+    language l 
+    ON l.id = ANY(string_to_array(qt.languages, ',')::bigint[])
+    AND (l.id != 5 OR l.language != 'SQL')
+  WHERE 
+    qt.status = '1'
+  GROUP BY 
+    qt.id, qt.name;
+`;
+
     const gQuestions = await sequelize.query(tquery, {
       type: QueryTypes.SELECT 
     });
@@ -37,22 +36,22 @@ exports.getQuestionTopic = async () => {
 exports.getQuestionTopicSQL = async () => {
   try {
     const tquery = `
-      SELECT 
+  SELECT 
     qt.id, 
     qt.name, 
-    GROUP_CONCAT(l.language) AS languages
-FROM 
+    STRING_AGG(l.language, ', ') AS languages
+  FROM 
     question_topic qt
-JOIN 
-    LANGUAGE l 
-ON 
-    FIND_IN_SET(l.id, qt.languages) > 0
-    AND (l.id = 5 OR l.language = 'SQL')  
-WHERE 
+  JOIN 
+    language l 
+    ON l.id = ANY(string_to_array(qt.languages, ',')::bigint[])
+    AND (l.id = 5 OR l.language = 'SQL')
+  WHERE 
     qt.status = '1'
-GROUP BY 
+  GROUP BY 
     qt.id, qt.name;
-    `;
+`;
+
     
     const gQuestions = await sequelize.query(tquery, {
       type: QueryTypes.SELECT 
@@ -74,24 +73,23 @@ exports.getQuestions = async (topic) => {
       }
     });
 
-    // Get the topic details and the associated languages
     const tquery = `
-      SELECT 
-        qt.id, 
-        qt.name, 
-        GROUP_CONCAT(l.language) AS languages
-      FROM 
-        question_topic qt
-      JOIN 
-        language l 
-      ON 
-        FIND_IN_SET(l.id, qt.languages) > 0
-      WHERE 
-        qt.status = '1' AND
-        qt.id = ?
-      GROUP BY 
-        qt.id, qt.name;
-    `;
+  SELECT 
+    qt.id, 
+    qt.name, 
+    STRING_AGG(l.language, ', ') AS languages
+  FROM 
+    question_topic qt
+  JOIN 
+    language l 
+    ON l.id = ANY(string_to_array(qt.languages, ',')::bigint[])
+  WHERE 
+    qt.status = '1'
+    AND qt.id = ?
+  GROUP BY 
+    qt.id, qt.name;
+`;
+
     
     const topicQuery = await sequelize.query(tquery, {
       type: QueryTypes.SELECT ,
@@ -113,22 +111,22 @@ exports.getQuestionsById = async(id, topic) => {
       }
     })
     const tquery = `
-      SELECT 
-        qt.id, 
-        qt.name, 
-        GROUP_CONCAT(l.language) AS languages
-      FROM 
-        question_topic qt
-      JOIN 
-        language l 
-      ON 
-        FIND_IN_SET(l.id, qt.languages) > 0
-      WHERE 
-        qt.status = '1' AND 
-        qt.id = ?
-      GROUP BY 
-        qt.id, qt.name;
-    `;
+  SELECT 
+    qt.id, 
+    qt.name, 
+    STRING_AGG(l.language, ', ') AS languages
+  FROM 
+    question_topic qt
+  JOIN 
+    language l 
+    ON l.id = ANY(string_to_array(qt.languages, ',')::bigint[])
+  WHERE 
+    qt.status = '1'
+    AND qt.id = ?
+  GROUP BY 
+    qt.id, qt.name;
+`;
+
     
     const topicQuery = await sequelize.query(tquery, {
       type: QueryTypes.SELECT ,

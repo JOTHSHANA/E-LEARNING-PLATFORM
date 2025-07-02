@@ -34,7 +34,7 @@ const RegCourse = sequelize.define(
     },
 
     status: {
-      type: DataTypes.ENUM("0", "1"),
+      type: DataTypes.STRING,
       defaultValue: "1",
     },
   },

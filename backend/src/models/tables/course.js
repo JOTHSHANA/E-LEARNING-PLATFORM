@@ -28,11 +28,11 @@ const Course = sequelize.define('Course', {
     defaultValue: '1'
   },
   c_type:{
-    type:DataTypes.ENUM('Technology','Programming'),
+    type: DataTypes.STRING,
     defaultValue:'Programming',
   },
   status: {
-    type: DataTypes.ENUM('0', '1'),
+    type: DataTypes.STRING,
     defaultValue: '1',
   },
 }, {

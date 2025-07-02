@@ -28,7 +28,7 @@ const Questions = sequelize.define(
             allowNull:true
         },
         difficulty:{
-            type:DataTypes.ENUM("Easy","Medium","Hard"),
+            type: DataTypes.STRING,
             defaultValue:"Easy"
         },
         t_case1:{
@@ -72,7 +72,7 @@ const Questions = sequelize.define(
             allowNull:false
         },
         status:{
-            type:DataTypes.ENUM('0', '1'),
+            type: DataTypes.STRING,
             defaultValue:'1'
         }
     },
