@@ -35,6 +35,7 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
       require: true,
       rejectUnauthorized: false,
     },
+    family: 4,
   },
   logging: false,
 });
