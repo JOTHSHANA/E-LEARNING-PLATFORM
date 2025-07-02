@@ -20,7 +20,7 @@ const Forum = require('./routes/forum/post')
 const Compiler = require('./routes/compiler/compile')
 
 const app = express();
-const PORT = process.env.DB_PORT;
+const PORT = process.env.PORT;
 app.use(session({
   secret: process.env.SESSION_SECRET || 'someSecretKey',
   resave: false,
